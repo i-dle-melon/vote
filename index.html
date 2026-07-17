@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Thing 音源數據觀測儀表板</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #121212;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .song-card {
+            background: #1e1e1e; /* 改為深灰色 */
+            color: #fff;        /* 文字改為白色 */
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* 調整陰影 */
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* 確保在小螢幕時也能自動適應 */
+}
+        .song-info h2 {
+    margin: 0 0 5px 0;
+    font-size: 24px;
+}
+.song-info p {
+    margin: 0;
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* 新增：中間與右側數據區塊的統一容器 */
+.stats-container {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* 每個方塊之間的間距 */
+}
+
+/* 數據方塊基本設計 */
+.stat-box {
+    text-align: right;
+    min-width: 100px;
+}
+.stat-box .label {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 4px;
+}
+.stat-box .value {
+    font-size: 20px;
+    font-weight: bold;
+}
+.stat-box .change {
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+/* 漲跌顏色控制（音源追榜：排名數字越小越好、收聽越高越好） */
+.up-trend { color: #ff4d4d; }   /* 紅色：排名上升、收聽增加 */
+.down-trend { color: #00e676; } /* 綠色：排名下降、收聽減少 */
+.neutral-trend { color: #aaa; }/* 灰色：維持不變 */
+
+        .chart-card {
+            background: #1e1e1e; /* 改為深灰色 */
+            color: #fff;        /* 文字改為白色 */
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* 調整陰影 */
+        }
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .chart-title { font-size: 18px; font-weight: bold; }
+        .btn-group { display: flex; gap: 5px; }
+        .btn {
+            background: #333333;
+            color: #ffffff;
+            border: 1px solid #444444;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .btn.active { background: #00cd3c; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="upload-card">
+        <label for="excelFile">請選擇本地 Excel 檔案：</label>
+        <input type="file" id="excelFile" accept=".xlsx, .xls" />
+    </div>
+
+    <div class="song-card">
+    <div class="song-info">
+        <h2 id="songTitle">Good Thing</h2>
+        <p id="songArtist">i-dle*</p>
+    </div>
+
+    <div class="stats-container">
+        <div class="stat-box">
+            <div class="label">日榜排名</div>
+            <div class="value" id="latestRank">-</div>
+            <div class="change" id="rankChange">-</div>
+        </div>
+        
+        <div class="stat-box">
+            <div class="label">每日收聽量</div>
+            <div class="value" id="latestDaily">-</div>
+            <div class="change" id="dailyChange">-</div>
+        </div>
+
+        <div class="stat-box">
+            <div class="label">目前累積總收聽量</div>
+            <div class="value" style="font-size: 20px; color: #00e676;" id="totalListeners">-</div>
+            <div class="change" style="visibility: hidden;">-</div> </div>
+    </div>
+</div>
+
+    <div class="chart-card">
+        <div class="chart-header">
+            <div class="chart-title">收聽量動態趨勢曲線</div>
+            <div class="btn-group">
+                <button class="btn" onclick="updatePeriod(7)">7天</button>
+                <button class="btn" onclick="updatePeriod(14)">14天</button>
+                <button class="btn active" onclick="updatePeriod(0)">全部</button>
+            </div>
+        </div>
+
+<div id="customLegend" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 10px;"></div>
+
+        <canvas id="trendChart"></canvas>
+    </div>
+
+</div>
+
+<script>
+// ================= 配置區 =================
+// 請貼上你從 Google 試算表發布的 CSV 網址
+const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSK6iUeL_Nrc6YHQCw4_jmAsbiXL1B2zO6kiKx_WXk-KX8HSIsoVzvelwLxt7w7wR_-toYnoYGJApn9/pub?gid=1703196335&single=true&output=csv";
+// ==========================================
+
+const ctx = document.getElementById('trendChart').getContext('2d');
+let trendChart;
+let rawData = [];
+
+// 偵測目前是本地執行還是線上環境
+const isLocalFile = window.location.protocol === 'file:';
+
+// 初始化
+async function init() {
+    const uploadBlock = document.getElementById('excelFile')?.closest('div');
+    
+    if (isLocalFile) {
+        if (uploadBlock) uploadBlock.style.display = 'flex';
+        setupExcelListener();
+    } else {
+        if (uploadBlock) uploadBlock.style.display = 'none';
+        await fetchSpreadsheetData();
+    }
+}
+
+// 邏輯 A：抓取 Google 試算表 (CSV)
+async function fetchSpreadsheetData() {
+    try {
+        const response = await fetch(csvUrl);
+        const csvText = await response.text();
+        const rows = csvText.split('\n').map(row => row.split(','));
+        
+        rawData = [];
+        for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            if (row.length < 3 || !row[0]) continue;
+            
+            rawData.push({
+                date: row[0].trim(),                                   // A欄：日期
+                total: parseInt(row[1].replace(/,/g, '')) || 0,        // B欄：總累積收聽量
+                daily: parseInt(row[2].replace(/,/g, '')) || 0,        // C欄：每日收聽量
+                change: parseInt(row[3]?.replace(/,/g, '')) || 0,      // D欄：收聽量增減
+                accounts: parseInt(row[4]?.replace(/,/g, '')) || 0,    // E欄：每日切瓜號數量
+                rank: parseInt(row[5]?.replace(/,/g, '')) || null      // F欄：日榜排名
+            });
+        }
+        updateDashboard();
+    } catch (error) {
+        console.error("無法讀取線上試算表資料：", error);
+    }
+}
+
+// 邏輯 B：讀取本地 Excel
+function setupExcelListener() {
+    document.getElementById('excelFile').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const data = new Uint8Array(event.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
+            const sheetData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+            rawData = [];
+            for (let i = 1; i < sheetData.length; i++) {
+                const row = sheetData[i];
+                if (!row || row.length < 3 || row[0] === undefined) continue;
+
+                rawData.push({
+                    date: String(row[0]).trim(),                                   // A欄：日期
+                    total: parseInt(String(row[1] || 0).replace(/,/g, '')) || 0,   // B欄：總累積
+                    daily: parseInt(String(row[2] || 0).replace(/,/g, '')) || 0,   // C欄：每日
+                    change: parseInt(String(row[3] || 0).replace(/,/g, '')) || 0,  // D欄：增減
+                    accounts: parseInt(String(row[4] || 0).replace(/,/g, '')) || 0,// E欄：切瓜號
+                    rank: parseInt(String(row[5] || '').replace(/,/g, '')) || null // F欄：排名
+                });
+            }
+            updateDashboard();
+        };
+        reader.readAsArrayBuffer(file);
+    });
+}
+
+// 更新畫面上累積量與圖表
+function updateDashboard() {
+    if (rawData.length > 0) {
+        // 1. 取得最新一天（最後一筆）與前一天（倒數第二筆）的數據
+        const latest = rawData[rawData.length - 1];
+        const prev = rawData.length > 1 ? rawData[rawData.length - 2] : null;
+
+        const curRank = latest.rank;
+        const curDaily = latest.daily;
+        const curTotal = latest.total;
+
+        // 2. 渲染右側：目前總累積收聽量 (左側歌曲名稱與此代碼完全不變動)
+        document.getElementById('totalListeners').innerText = curTotal.toLocaleString() + " 次";
+
+        // 3. 計算與渲染：日榜排名升降 (排名數字越小越好)
+        const rankEl = document.getElementById("latestRank");
+        const rankChangeEl = document.getElementById("rankChange");
+        if (curRank !== null && curRank !== undefined) {
+            rankEl.innerText = "第 " + curRank + " 名";
+            
+            if (prev && prev.rank !== null && prev.rank !== undefined) {
+                const prevRank = prev.rank;
+                const rankDiff = prevRank - curRank; // 前一天排名 - 最新排名
+
+                if (rankDiff > 0) {
+                    // 數字變小代表上升 (紅色)
+                    rankChangeEl.className = "change up-trend";
+                    rankChangeEl.innerHTML = "▲ " + Math.abs(rankDiff);
+                } else if (rankDiff < 0) {
+                    // 數字變大代表下降 (綠色)
+                    rankChangeEl.className = "change down-trend";
+                    rankChangeEl.innerHTML = "▼ " + Math.abs(rankDiff);
+                } else {
+                    rankChangeEl.className = "change neutral-trend";
+                    rankChangeEl.innerHTML = " - 持平";
+                }
+            } else {
+                rankChangeEl.innerHTML = "-";
+            }
+        } else {
+            rankEl.innerText = "-";
+            rankChangeEl.innerHTML = "-";
+        }
+
+        // 4. 計算與渲染：每日收聽量升降 (數據越高越好)
+        const dailyEl = document.getElementById("latestDaily");
+        const dailyChangeEl = document.getElementById("dailyChange");
+        if (curDaily !== null && curDaily !== undefined) {
+            dailyEl.innerText = curDaily.toLocaleString();
+
+            if (prev && prev.daily !== null && prev.daily !== undefined) {
+                const prevDaily = prev.daily;
+                const dailyDiff = curDaily - prevDaily; // 最新收聽 - 前一天收聽
+
+                if (dailyDiff > 0) {
+                    // 數據增加代表上升 (紅色)
+                    dailyChangeEl.className = "change up-trend";
+                    dailyChangeEl.innerHTML = "▲ " + dailyDiff.toLocaleString();
+                } else if (dailyDiff < 0) {
+                    // 數據減少代表下降 (綠色)
+                    dailyChangeEl.className = "change down-trend";
+                    dailyChangeEl.innerHTML = "▼ " + Math.abs(dailyDiff).toLocaleString();
+                } else {
+                    dailyChangeEl.className = "change neutral-trend";
+                    dailyChangeEl.innerHTML = " - 持平";
+                }
+            } else {
+                dailyChangeEl.innerHTML = "-";
+            }
+        } else {
+            dailyEl.innerText = "-";
+            dailyChangeEl.innerHTML = "-";
+        }
+
+        // 5. 渲染圖表
+        renderChart(0);
+    } else {
+        if (isLocalFile) alert("未能成功解析數據，請確認 Excel 欄位順序是否為 A~F 欄。");
+    }
+}
+
+function renderChart(days) {
+    if (rawData.length === 0) return;
+    
+    const displayData = days === 0 ? rawData : rawData.slice(-days);
+    
+    const labels = displayData.map(d => d.date);
+    const totalDataset = displayData.map(d => d.total);
+    const dailyDataset = displayData.map(d => d.daily);
+    const changeDataset = displayData.map(d => d.change);
+    const accountsDataset = displayData.map(d => d.accounts);
+    const rankDataset = displayData.map(d => d.rank);
+
+    if (trendChart) { trendChart.destroy(); }
+
+    trendChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: '每日收聽量 ',
+                    data: dailyDataset,
+                    borderColor: '#00cd3c',
+                    backgroundColor: 'rgba(0, 205, 60, 0.05)',
+                    yAxisID: 'yDaily',
+                    tension: 0.3,
+                    fill: true
+                },
+                {
+                    label: '累積總收聽量 ',
+                    data: totalDataset,
+                    borderColor: '#4a90e2',
+                    backgroundColor: 'transparent',
+                    yAxisID: 'yTotal',
+                    tension: 0.1,
+                    borderDash: [4, 4]
+                },
+                {
+                    label: '收聽量增減 ',
+                    data: changeDataset,
+                    borderColor: '#ff9f43',
+                    backgroundColor: 'transparent',
+                    yAxisID: 'yDaily',
+                    tension: 0.3
+                },
+                {
+                    label: '每日切瓜號數',
+                    data: accountsDataset,
+                    borderColor: '#9b59b6',
+                    backgroundColor: 'transparent',
+                    yAxisID: 'yDaily',
+                    tension: 0.3,
+                    hidden: true,
+                },
+                {
+                    label: '日榜排名',
+                    data: rankDataset,
+                    borderColor: '#ed4c67',
+                    backgroundColor: 'transparent',
+                    yAxisID: 'yRank',
+                    tension: 0.2,
+                    spanGaps: true,
+                    hidden: true,
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            interaction: { mode: 'index', intersect: false },
+            elements: {
+        point: {
+            radius: 2,           // 正常狀態下的點半徑 (設為 0 可隱藏)
+            hoverRadius: 10,      // 滑鼠懸停時的點半徑 (調大這裡即可)
+            hoverBorderWidth: 2  // 滑鼠懸停時的邊框寬度
+        }
+    },
+            scales: {
+    yDaily: {
+        type: 'linear',
+        position: 'left',
+        title: { 
+            display: true, 
+            text: '收 聽 量 ＋ － <<     /     >> 每 日 收 聽 量', 
+            color: '#aaa', 
+            rotation: 0,
+            font: {
+                size: 14,       // 設定字體大小，例如 14px
+            }
+        },
+        ticks: { color: '#aaa', callback: val => val.toLocaleString() },
+        grid: { color: '#333' }
+    },
+    yTotal: {
+        type: 'linear',
+        position: 'right',
+        title: { 
+            display: true, 
+            text: '累 積 總 收 聽 量', 
+            color: '#aaa', 
+            rotation: 0,
+            font: {
+                size: 14,       // 這裡也同步設定
+            }
+        },
+        ticks: { color: '#aaa', callback: val => val.toLocaleString() },
+        grid: { drawOnChartArea: false }
+    },
+                yRank: {
+    type: 'linear',
+    position: 'right',
+    reverse: true,
+    title: { 
+        display: true, 
+        text: '日 榜 排 名', 
+        color: '#aaa',
+        font: {
+            size: 14 // 已新增字體大小設定
+        }
+    },
+    ticks: { 
+        color: '#aaa', 
+        stepSize: 1, 
+        callback: val => '第 ' + val + ' 名' 
+    },
+    grid: { 
+        drawOnChartArea: false 
+    }
+},
+
+                x: {
+                    ticks: { color: '#aaa' },
+                    grid: { color: '#333' }
+                }
+            },
+}
+        
+    });
+
+// 2. 在 Chart 初始化後，新增此邏輯產生勾選框
+const legendContainer = document.getElementById('customLegend');
+legendContainer.innerHTML = ''; 
+
+trendChart.data.datasets.forEach((dataset, index) => {
+    const div = document.createElement('div');
+    div.style.cssText = "cursor: pointer; display: flex; align-items: center; color: #fff;";
+    
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = trendChart.isDatasetVisible(index);
+    checkbox.style.marginRight = '8px';
+    
+    div.onclick = () => {
+        const isVisible = trendChart.isDatasetVisible(index);
+        isVisible ? trendChart.hide(index) : trendChart.show(index);
+        checkbox.checked = !isVisible;
+    };
+
+    div.appendChild(checkbox);
+    div.appendChild(document.createTextNode(dataset.label));
+    legendContainer.appendChild(div);
+});
+        }
+
+function updatePeriod(days) {
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    if (event && event.target) event.target.classList.add('active');
+    renderChart(days);
+}
+// 啟動流程
+init();
+</script>
+</body>
+</html>
