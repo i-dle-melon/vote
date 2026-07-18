@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>K-POP 追榜打歌投票應援指南</title>
     <style>
+html {
+    scroll-behavior: smooth; /* 讓網頁所有跳轉都變成滑動特效 */
+}
         /* 基礎暗黑風格設定 */
         body {
             background-color: #121212;
@@ -252,28 +255,67 @@
     display: block; /* 改為 block 確保抓到正確的圖片寬度 */
     width: 100%;
     max-width: 100%; /* 限制最大寬度 */
-    margin-bottom: 20px; /* 每張圖的下移間距 */
+    margin-bottom: 25px; /* 每張圖的下移間距 */
 }
 
-/* 確保圖片填滿容器，定位才不會歪掉 */
+/* 改為獨立的一行，排在圖片正上方 */
+.step-badge {
+    display: block;       /* ❌ 刪除 position: absolute, top, left, background 等設定 */
+    margin-bottom: 8px;   /* 讓文字與下方的圖片保持一些微小空隙 */
+    color: #00cd3c;       /* 經典應援綠字 */
+    font-size: 16px;      /* 字體稍微放大一點，當作標題比較好看 */
+    font-weight: bold;
+}
+
+/* 教學圖片 */
 .image-wrapper .guide-image {
     display: block;
     width: 100%;
     height: auto;
+    border-radius: 8px;   /* 依需求保留或刪除：幫圖片加點圓角更精緻 */
 }
 
-/* 精準浮在「每張圖片」的左上角 */
-.step-badge {
-    position: absolute;
-    top: 15px; /* 距離圖片頂端 15px */
-    left: 15px; /* 距離圖片左邊 15px */
-    background-color: rgba(0, 0, 0, 0.75); /* 半透明黑色背景 */
-    color: #00cd3c; /* 經典應援綠字 */
-    padding: 6px 12px;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 4px;
-    z-index: 10; /* 確保字體在圖片最上層 */
+/* 新增綠色小標籤按鈕樣式 */
+.tag.tag-btn {
+    border-color: #00cd3c; /* 經典應援綠邊框 */
+    color: #00cd3c;        /* 綠色字體 */
+    cursor: pointer;       /* 游標變成小手手提示可點擊 */
+    transition: all 0.2s;
+}
+
+/* 滑鼠滑入時的微發光效果 */
+.tag.tag-btn:hover {
+    background-color: rgba(0, 205, 60, 0.1); /* 淡淡的綠色背景 */
+    box-shadow: 0 0 8px rgba(0, 205, 60, 0.3);
+}
+
+/* 懸浮回到最頂按鈕 */
+/* 懸浮回到最頂按鈕 - 縮小且半透明版 */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;                  /* 稍微往右下角縮一點 */
+    right: 20px;
+    background-color: #00cd3c; 
+    color: #000000; 
+    width: 40px;                   /* 縮小寬度（從50px改為40px） */
+    height: 40px;                  /* 縮小高度（從50px改為40px） */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;               /* 箭頭稍微變小 */
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999; 
+    
+    opacity: 0.6;                  /* 【關鍵】預設半透明度 60% */
+    transition: opacity 0.2s, transform 0.2s; /* 加入透明度轉場效果 */
+}
+
+/* 滑鼠移上去時的效果 */
+.back-to-top:hover {
+    opacity: 1;                    /* 【關鍵】滑鼠移上去時恢復 100% 全清晰 */
+    transform: scale(1.05); 
 }
 
     </style>
@@ -295,7 +337,8 @@
             </div>
             <div class="menu-card" onclick="switchPage('music-page')">
                 <div class="img-wrapper">
-                <img src="https://i-dle-melon.github.io/Crow/Crow.png"class="song-cover" alt="切瓜教學">
+                <img src="https://i-dle-melon.github.io/vote/melon
+/melon.png"class="song-cover" alt="切瓜教學">
                </div> <h3>🎵 Melon App 切瓜刷音源教學</h3>
             </div>
         </div>
@@ -347,8 +390,8 @@
                     <div class="app-badge">Fancast</div>
     </div>
                 </div>
-                <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週五 17:00 (KST)</div></div>
-                <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週一 15:00 ～ 每週三 11:00 (KST)</div></div>
+                <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週五 16:00 (GMT+8)</div></div>
+                <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週一 14:00 ～ 每週三 10:00 (GMT+8)</div></div>
                 
                 <div class="tutorial-section">
                     <button class="toggle-tutorial-btn" onclick="toggleTutorial('mubank-tut')">查看詳細圖文教學 <span>▼</span></button>
@@ -372,8 +415,8 @@
                     <div class="app-badge">Mnet Plus</div>
     </div>
                 </div>
-                <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週四 18:00 (KST)</div></div>
-                <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週六 12:00 ～ 每週一 11:59 (KST)</div></div>
+                <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週四 17:00 (GMT+8)</div></div>
+                <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週六 11:00 ～ 每週一 10:59 (GMT+8)</div></div>
                 <div class="info-row"><div class="info-label">🗳️ 實時投票</div><div>依音放節目宣布開始 / 結束時間</div></div>
                 
                 <div class="tutorial-section">
@@ -399,8 +442,8 @@
                     <div class="app-badge">Mubeat</div>
     </div>
                 </div>
-                <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週六 15:15 (KST)</div></div>
-                <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週二 18:00 ～ 每週四 11:00 (KST)</div></div>
+                <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週六 14:15 (GMT+8)</div></div>
+                <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週二 15:00 ～ 每週四 10:00 (GMT+8)</div></div>
                 
                 <div class="tutorial-section">
                     <button class="toggle-tutorial-btn" onclick="toggleTutorial('musiccenter-tut')">查看詳細圖文教學 <span>▼</span></button>
@@ -425,8 +468,8 @@
                     <div class="app-badge">Linc</div>
     </div>
                 </div>
-                <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週日 15:20 (KST)</div></div>
-                <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週一 12:00 ～ 每週五 23:59 (KST) (Linc / tin )</div></div>
+                <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週日 14:20 (GMT+8)</div></div>
+                <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週一 11:00 ～ 每週五 22:59 (GMT+8) (Linc / tin )</div></div>
                 <div class="info-row"><div class="info-label">🗳️ 實時投票</div><div>依節目宣布時間 (Higher)</div></div>
                 
                 <div class="tutorial-section">
@@ -448,13 +491,15 @@
                     <div class="app-badge">tin</div>
     </div>
                 </div>
-                <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週日 15:20 (KST)</div></div>
-                <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週一 12:00 ～ 每週五 23:59 (KST) (Linc / tin )</div></div>
+                <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週日 14:20 (GMT+8)</div></div>
+                <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週一 11:00 ～ 每週五 22:59 (GMT+8) (Linc / tin )</div></div>
                 <div class="info-row"><div class="info-label">🗳️ 實時投票</div><div>依節目宣布時間 (Higher)</div></div>
                 
                 <div class="tutorial-section">
                     <button class="toggle-tutorial-btn" onclick="toggleTutorial('tin-tut')">查看詳細圖文教學 <span>▼</span></button>
                     <div id="tin-tut" class="tutorial-content">
+                        <span class="tag">#事前投票</span>
+                        <span class="tag">#實時投票</span>
                         <p style="color:#aaa; font-size:14px;">圖文教程準備中，請上傳圖片以更新...</p>
 
                 </div>
@@ -469,15 +514,20 @@
                     <div class="app-badge">Higher</div>
     </div>
                 </div>
-                <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週日 15:20 (KST)</div></div>
-                <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週一 12:00 ～ 每週五 23:59 (KST) (Linc / tin )</div></div>
+                <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週日 14:20 (GMT+8)</div></div>
+                <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週一 11:00 ～ 每週五 22:59 (GMT+8) (Linc / tin )</div></div>
                 <div class="info-row"><div class="info-label">🗳️ 實時投票</div><div>依節目宣布時間 (Higher)</div></div>
                 
                 <div class="tutorial-section">
                     <button class="toggle-tutorial-btn" onclick="toggleTutorial('Higher-tut')">查看詳細圖文教學 <span>▼</span></button>
+            
                     <div id="Higher-tut" class="tutorial-content">
+                        <p style="color:#aaa; font-size:14px;">以下標籤直接跳轉圖片⇩</p>
+                        <span class="tag tag-btn" onclick="document.getElementById('collect-tickets').scrollIntoView({ behavior: 'smooth' })">#存票教學</span>
+                        <span class="tag tag-btn" onclick="document.getElementById('vote-tickets').scrollIntoView({ behavior: 'smooth' })">#投票教學</span>
+
                         <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解-實時投票待：</p>
-                                <div class="image-wrapper">
+                                <div class="image-wrapper" id="collect-tickets">
                             <span class="step-badge">存票步驟 1</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/存票1.jpg" alt="步驟1">
                     </div>
@@ -489,7 +539,7 @@
                             <span class="step-badge">存票步驟 3</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/存票3.jpg" alt="步驟3">
                     </div>
-                                <div class="image-wrapper">
+                                <div class="image-wrapper" id="vote-tickets">
                             <span class="step-badge">投票步驟 1</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/投票1.jpg" alt="步驟1">
                     </div>
@@ -510,7 +560,6 @@
             </div>
         </div>
 
-
             <div id="showchamp-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
     
@@ -522,8 +571,8 @@
                     <div class="app-badge">IDOL CHAMP</div>
     </div>
                 </div>
-                <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週六 15:15 (KST)</div></div>
-                <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週二 18:00 ～ 每週四 11:00 (KST)</div></div>
+                <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週六 14:15 (GMT+8)</div></div>
+                <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週二 17:00 ～ 每週四 10:00 (GMT+8)</div></div>
                 
                 <div class="tutorial-section">
     <button class="toggle-tutorial-btn" onclick="toggleTutorial('showchamp-tut')">查看詳細圖文教學 <span>▼</span></button>
@@ -557,6 +606,9 @@
         </div>
     </div>
 
+<div class="back-to-top" onclick="scrollToTop()">
+    ▲
+</div>
 
 <script>
 // 1. 新增：定義每個頁面 ID 對應的網址路徑
@@ -636,6 +688,15 @@
             btn.querySelector('span').innerText = '▼';
         }
     }
+
+// 回到最頂端功能
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // 平滑捲動效果
+    });
+}
+
 </script>
 
 </body>
