@@ -82,6 +82,18 @@
             border: 1px solid #2a2a2a;
             transition: transform 0.2s, border-color 0.2s;
             text-align: center;
+
+            display: flex;
+                flex-direction: column; 
+                align-items: stretch;
+        }
+        .menu-card .img-wrapper {
+            height: 180px;           /* 固定圖片區域的高度為 180px */
+            display: flex;
+            justify-content: center; /* 讓長條圖水平完美居中 */
+            align-items: center;     /* 讓長條圖垂直居中 */
+            background: #1e1e1e;     /* 兩側多出來的空間會融入底色 */
+            overflow: hidden;
         }
 
         .menu-card:hover {
@@ -92,13 +104,17 @@
         .menu-card img {
             width: auto;
             height: 180px;
-            object-fit: cover;
+            object-fit: contain;   /* 改為 contain，圖片會完整縮放，不足的地方留背景色 */
             background-color: #2a2a2a; /* 圖片載入前襯底 */
         }
 
+        /* 💡 核心修正：強制把文字推到最下方，並拉開距離 */
         .menu-card h3 {
-            margin: 15px 0;
+            margin: 0;
+            padding: 15px 10px;      /* 給文字舒適的上下間距 */
+            background: #1e1e1e;     /* 確保文字底色一致 */
             font-size: 18px;
+            color: #ffffff;
         }
 
         /* 頁面切換邏輯隱藏樣式 */
@@ -242,12 +258,14 @@
     <div id="home-page" class="page active">
         <div class="main-menu">
             <div class="menu-card" onclick="switchPage('vote-page')">
+                <div class="img-wrapper">
                 <img src="https://i-dle-melon.github.io/Gimme-Dat-Love/Gimme Dat Love.png"class="song-cover" alt="投票教學">
-                <h3>🗳️ 音放存票投票教學</h3>
+               </div> <h3>🗳️ 音放存票投票教學</h3>
             </div>
             <div class="menu-card" onclick="switchPage('music-page')">
+                <div class="img-wrapper">
                 <img src="https://i-dle-melon.github.io/Crow/Crow.png"class="song-cover" alt="切瓜教學">
-                <h3>🎵 Melon App 切瓜刷音源教學</h3>
+               </div> <h3>🎵 Melon App 切瓜刷音源教學</h3>
             </div>
         </div>
     </div>
@@ -257,28 +275,33 @@
     
     <div class="main-menu">
         <div class="menu-card" onclick="switchPage('mubank-page')">
+                <div class="img-wrapper">
             <img src="https://i-dle-melon.github.io/vote/Music_Bank/Music Bank.png" alt="Music Bank" class="song-cover">
-            <h3>1️⃣ Music Bank 音樂銀行(KBS)</h3>
+           </div> <h3>1️⃣ Music Bank 音樂銀行(KBS)</h3>
         </div>
 
         <div class="menu-card" onclick="switchPage('mcd-page')">
+                <div class="img-wrapper">
             <img src="https://i-dle-melon.github.io/vote/M_Countdown/M Countdown.png" alt="M Countdown" class="song-cover">
-            <h3>2️⃣ M Countdown MCD(Mnet)</h3>
+           </div> <h3>2️⃣ M Countdown MCD(Mnet)</h3>
         </div>
 
         <div class="menu-card" onclick="switchPage('musiccenter-page')">
+                <div class="img-wrapper">
             <img src="https://i-dle-melon.github.io/vote/Show_Music/Show Music.jpg" alt="Show! 音樂中心" class="song-cover">
-            <h3>3️⃣ Show 音樂中心 (MBC)</h3>
+          </div> <h3>3️⃣ Show 音樂中心 (MBC)</h3>
         </div>
 
         <div class="menu-card" onclick="switchPage('inkigayo-page')">
+                <div class="img-wrapper">
             <img src="https://i-dle-melon.github.io/vote/Inkigayo/Inkigayo.png" alt="人氣歌謠" class="song-cover">
-            <h3>4️⃣ Inkigayo 人氣歌謠(SBS)</h3>
+           </div> <h3>4️⃣ Inkigayo 人氣歌謠(SBS)</h3>
         </div>
 
         <div class="menu-card" onclick="switchPage('showchamp-page')">
+                <div class="img-wrapper">
             <img src="https://i-dle-melon.github.io/vote/Show_Champion/Show Champion.png" alt="SHOW champion" class="song-cover">
-            <h3>5️⃣ SHOW champion 冠軍秀(MBC Music)</h3>
+           </div> <h3>5️⃣ SHOW champion 冠軍秀(MBC Music)</h3>
         </div>
     </div>
 </div>
