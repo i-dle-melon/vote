@@ -16,7 +16,10 @@ html {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* 讓整個網頁底盤強制撐滿螢幕高度，配合 footer 的 margin-top: auto 就能完美貼底 */
+            }
 
         .container {
             max-width: 800px;
@@ -414,6 +417,10 @@ html {
                             <span class="step-badge">存票步驟 3</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/存票3.jpg" alt="步驟3">
                     </div>
+                                <div class="image-wrapper">
+                            <span class="step-badge">存票步驟 4</span>
+                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/存票4.jpg" alt="步驟4">
+                    </div>
                                 <div class="image-wrapper" id="vote-tickets">
                             <span class="step-badge">投票步驟 1</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/投票1.jpg" alt="步驟1">
@@ -473,19 +480,23 @@ html {
                     </div>
                                 <div class="image-wrapper" id="vote-tickets">
                             <span class="step-badge">投票步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet_Plus/投票1.jpg" alt="步驟1">
+                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票1.jpg" alt="步驟1">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet_Plus/投票2.jpg" alt="步驟2">
+                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票2.jpg" alt="步驟2">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet_Plus/投票3.jpg" alt="步驟3">
+                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票3.jpg" alt="步驟3">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 4</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet_Plus/投票4.jpg" alt="步驟4">
+                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票4.jpg" alt="步驟4">
+                        </div>
+                                <div class="image-wrapper">
+                            <span class="step-badge">投票步驟 5</span>
+                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票5.jpg" alt="步驟5">
                         </div>
                     </div>
                 </div>
@@ -939,3 +950,23 @@ function scrollToTop() {
 
 </body>
 </html>
+
+<footer class="site-footer" style="
+    position: relative; 
+    margin-top: 250px; 
+    width: 100%; 
+    text-align: center; 
+    padding: 10px 0 0 0; 
+    background-color: #111111; 
+    border-top: 1px solid #2a2a2a;
+">
+<p style="margin: 0; font-size: 14px; color: #888888; line-height: 1;">
+        &copy; 2026 
+        <a href="https://line.me/ti/g2/lquJYJWOJudOLkUti7prCFNeSbvKF2vn2AdEYQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" 
+           target="_blank" 
+           style="color: #00cd3c; text-decoration: none; font-weight: bold;">
+           i-dle西瓜攤
+        </a> 
+        GigiBoss. All rights reserved. Designed & Maintained by GigiBoss
+    </p>
+</footer>
