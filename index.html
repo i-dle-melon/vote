@@ -246,6 +246,36 @@
             flex-shrink: 0;      /* 防止圖標被文字擠壓變形 */
         }
 
+/* 建立一個獨立的圖片包裹容器 */
+.image-wrapper {
+    position: relative;
+    display: block; /* 改為 block 確保抓到正確的圖片寬度 */
+    width: 100%;
+    max-width: 100%; /* 限制最大寬度 */
+    margin-bottom: 20px; /* 每張圖的下移間距 */
+}
+
+/* 確保圖片填滿容器，定位才不會歪掉 */
+.image-wrapper .guide-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* 精準浮在「每張圖片」的左上角 */
+.step-badge {
+    position: absolute;
+    top: 15px; /* 距離圖片頂端 15px */
+    left: 15px; /* 距離圖片左邊 15px */
+    background-color: rgba(0, 0, 0, 0.75); /* 半透明黑色背景 */
+    color: #00cd3c; /* 經典應援綠字 */
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    z-index: 10; /* 確保字體在圖片最上層 */
+}
+
     </style>
 </head>
 <body>
@@ -447,13 +477,34 @@
                     <button class="toggle-tutorial-btn" onclick="toggleTutorial('Higher-tut')">查看詳細圖文教學 <span>▼</span></button>
                     <div id="Higher-tut" class="tutorial-content">
                         <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解-實時投票待：</p>
+                                <div class="image-wrapper">
+                            <span class="step-badge">存票步驟 1</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/存票1.jpg" alt="步驟1">
+                    </div>
+                                <div class="image-wrapper">
+                            <span class="step-badge">存票步驟 2</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/存票2.jpg" alt="步驟2">
+                    </div>
+                                <div class="image-wrapper">
+                            <span class="step-badge">存票步驟 3</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/存票3.jpg" alt="步驟3">
+                    </div>
+                                <div class="image-wrapper">
+                            <span class="step-badge">投票步驟 1</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/投票1.jpg" alt="步驟1">
+                    </div>
+                                <div class="image-wrapper">
+                            <span class="step-badge">投票步驟 2</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/投票2.jpg" alt="步驟2">
+                    </div>
+                                <div class="image-wrapper">
+                            <span class="step-badge">投票步驟 3</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/投票3.jpg" alt="步驟3">
+                    </div>
+                                <div class="image-wrapper">
+                            <span class="step-badge">投票步驟 4</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/投票4.jpg" alt="步驟4">
+                    </div>
                     </div>
                 </div>
             </div>
