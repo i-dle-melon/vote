@@ -605,12 +605,15 @@
         }
     });
 
-    // 4. 新增：當網頁重新整理時，讀取網址參數直接幫使用者開到該頁面
+    // 4. 新增：當網頁重新整理時，讀取網址參數直接幫使用者開到該頁面（加入解碼修復回首頁問題）
     window.addEventListener('DOMContentLoaded', function() {
         const urlParams = new URLSearchParams(window.location.search);
-        const pageParam = urlParams.get('page');
+        let pageParam = urlParams.get('page');
         
         if (pageParam) {
+            // 關鍵修改：將網址轉碼後的 %2F 完美還原成斜線 /，這樣才能和 pageUrls 成功對照
+            pageParam = decodeURIComponent(pageParam); 
+            
             const matchedPageId = Object.keys(pageUrls).find(key => pageUrls[key] === pageParam);
             if (matchedPageId) {
                 switchPage(matchedPageId);
