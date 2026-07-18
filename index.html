@@ -90,7 +90,7 @@
         }
 
         .menu-card img {
-            width: 100%;
+            width: auto;
             height: 180px;
             object-fit: cover;
             background-color: #2a2a2a; /* 圖片載入前襯底 */
@@ -252,11 +252,39 @@
         </div>
     </div>
 
-    <div id="vote-page" class="page">
-        <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
-        
-        <div class="app-grid">
-            
+<div id="vote-page" class="page">
+    <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
+    
+    <div class="main-menu">
+        <div class="menu-card" onclick="switchPage('mubank-page')">
+            <img src="https://i-dle-melon.github.io/vote/Music_Bank/Music Bank.png" alt="Music Bank" class="song-cover">
+            <h3>1️⃣ Music Bank 音樂銀行(KBS)</h3>
+        </div>
+
+        <div class="menu-card" onclick="switchPage('mcd-page')">
+            <img src="https://i-dle-melon.github.io/vote/M_Countdown/M Countdown.png" alt="M Countdown" class="song-cover">
+            <h3>2️⃣ M Countdown MCD(Mnet)</h3>
+        </div>
+
+        <div class="menu-card" onclick="switchPage('musiccenter-page')">
+            <img src="https://i-dle-melon.github.io/vote/Show_Music/Show Music.jpg" alt="Show! 音樂中心" class="song-cover">
+            <h3>3️⃣ Show 音樂中心 (MBC)</h3>
+        </div>
+
+        <div class="menu-card" onclick="switchPage('inkigayo-page')">
+            <img src="https://i-dle-melon.github.io/vote/Inkigayo/Inkigayo.png" alt="人氣歌謠" class="song-cover">
+            <h3>4️⃣ Inkigayo 人氣歌謠(SBS)</h3>
+        </div>
+
+        <div class="menu-card" onclick="switchPage('showchamp-page')">
+            <img src="https://i-dle-melon.github.io/vote/Show_Champion/Show Champion.png" alt="SHOW champion" class="song-cover">
+            <h3>5️⃣ SHOW champion 冠軍秀(MBC Music)</h3>
+        </div>
+    </div>
+</div>
+            <div id="mubank-page" class="page">
+    <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
+    
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">1️⃣ Music Bank (音樂銀行)</div>
@@ -277,12 +305,16 @@
                     </div>
                 </div>
             </div>
+        </div>
 
+            <div id="mcd-page" class="page">
+    <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
+    
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">2️⃣ M Countdown (MCD)</div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
-<img src="https://i-dle-melon.github.io/vote/Music Bank.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;">
+<img src="https://i-dle-melon.github.io/vote/M_Countdown/M Countdown.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;">
                     <div class="app-badge">Mnet Plus</div>
     </div>
                 </div>
@@ -300,7 +332,11 @@
                     </div>
                 </div>
             </div>
+        </div>
 
+            <div id="musiccenter-page" class="page">
+    <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
+    
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">3️⃣ Show! 音樂中心 (音中)</div>
@@ -322,7 +358,11 @@
                     </div>
                 </div>
             </div>
+        </div>
 
+            <div id="inkigayo-page" class="page">
+    <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
+    
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">4️⃣ 人氣歌謠</div>
@@ -342,10 +382,14 @@
                     </div>
                 </div>
             </div>
+        </div>
 
+            <div id="showchamp-page" class="page">
+    <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
+    
             <div class="app-card">
                 <div class="app-header">
-                    <div class="app-title">5️⃣ SHOW chrmpion 冠軍秀</div>
+                    <div class="app-title">5️⃣ SHOW champion 冠軍秀</div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
 <img src="https://i-dle-melon.github.io/vote/Music Bank.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;">
                     <div class="app-badge">IDOL CHAMP</div>
@@ -361,12 +405,10 @@
         <span class="tag">#IDOL CHAMP投票資源收集</span>
         <span class="tag">#秀冠軍事前投票</span>
         <p style="color:#aaa; font-size:14px; margin-top:10px;">圖文教程準備中，請上傳圖片以更新...</p>
-    </div>
-</div>
             </div>
-
         </div>
     </div>
+</div>
 
     <div id="music-page" class="page">
         <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
@@ -387,7 +429,7 @@
             </div>
         </div>
     </div>
-</div>
+
 
 <script>
     // 控制首頁與各分頁切換的邏輯
