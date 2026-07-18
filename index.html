@@ -359,6 +359,18 @@ html {
     color: #00cd3c;
 }
 
+/* 動態特效 */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 4px 12px rgba(0, 205, 60, 0.2); border-color: rgba(0, 205, 60, 0.6); }
+    50% { box-shadow: 0 4px 20px rgba(0, 205, 60, 0.6); border-color: rgba(0, 205, 60, 1); }
+    100% { box-shadow: 0 4px 12px rgba(0, 205, 60, 0.2); border-color: rgba(0, 205, 60, 0.6); }
+}
+
 /* 圖片自適應縮放樣式 */
 .guide-img {
     width: 30%;          /* 讓圖片寬度最大撐滿容器 */
@@ -368,6 +380,33 @@ html {
     display: block;       /* 消除圖片下方微小間隙 */
     margin: 15px auto 15px 15px;       /* 圖片水平置中 */
     border-radius: 8px;   /* 可選：給圖片加點圓角，看起來更精緻 */
+}
+
+/* 將這段代碼加入到您網頁頂端的 <style> 標籤內 */
+
+/* 定義一個「未開放」的類別 */
+.not-open {
+    position: relative; /* 讓偽元素可以絕對定位在卡片上方 */
+    cursor: not-allowed; /* 讓滑鼠游標變成「禁止」符號 */
+}
+
+/* 建立灰色半透明遮罩 */
+.not-open::after {
+    content: "暫未開放"; /* 顯示的文字內容 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* 黑色背景，0.7 是透明度（灰色半透明效果） */
+    color: #ffffff; /* 文字顏色為白色 */
+    display: flex;
+    justify-content: center; /* 文字水平居中 */
+    align-items: center; /* 文字垂直居中 */
+    font-size: 20px; /* 文字大小 */
+    font-weight: bold; /* 文字加粗 */
+    border-radius: 12px; /* 保持跟卡片一樣的圓角，不跑版 */
+    z-index: 10; /* 確保遮罩在圖片和文字上方 */
 }
 
     </style>
@@ -396,22 +435,22 @@ html {
                 <img src="https://i-dle-melon.github.io/Gimme-Dat-Love/Gimme Dat Love.png"class="song-cover" alt="投票教學">
                </div> <h3>🗳️ 音放存票投票教學</h3>
             </div>
-            <div class="menu-card" onclick="switchPage('Melon-page')">
+            <div class="menu-card not-open" onclick="switchPage('Melon-page')">
                 <div class="img-wrapper">
                 <img src="https://i-dle-melon.github.io/vote/melon/melon.png"class="song-cover" alt="切瓜教學">
                </div> <h3>🎵 Melon 切瓜刷音源教學</h3>
             </div>
-            <div class="menu-card" onclick="switchPage('Youtube-page')">
+            <div class="menu-card not-open" onclick="switchPage('Youtube-page')">
                 <div class="img-wrapper">
                 <img src="https://i-dle-melon.github.io/vote/Youtube/Youtube.png"class="song-cover" alt="切瓜教學">
                </div> <h3>🎵 Youtube  無痕刷音源教學</h3>
             </div>
-            <div class="menu-card" onclick="switchPage('Tiktok-page')">
+            <div class="menu-card not-open" onclick="switchPage('Tiktok-page')">
                 <div class="img-wrapper">
                 <img src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok.png"class="song-cover" alt="切瓜教學">
                </div> <h3> ♪ Tiktok  引用刷音源教學</h3>
             </div>
-            <div class="menu-card" onclick="switchPage('Shazam-page')">
+            <div class="menu-card not-open" onclick="switchPage('Shazam-page')">
                 <div class="img-wrapper">
                 <img src="https://i-dle-melon.github.io/vote/Shazam/Shazam.png"class="song-cover" alt="切瓜教學">
                </div> <h3>🎵 Shazam  搜尋刷音源教學</h3>
