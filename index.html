@@ -321,9 +321,67 @@ html {
     transform: scale(1.05); 
 }
 
+.orientation-warning {
+    align-items: center;
+    justify-content: center;
+    background: rgba(30, 30, 30, 0.95); /* 深灰色背景 */
+    border: 2px solid #00cd3c; /* 經典亮綠色邊框 */
+    border-radius: 12px;
+    padding: 0px;/* 將原本的 20px 上下內距縮減為 0px */
+    margin: 10px auto 20px auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    animation: pulse 2s infinite;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+}
+
+.warning-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.warning-icon {
+    font-size: 22px;
+    animation: spin 4s linear infinite;
+    display: inline-block;
+}
+
+.warning-content p {
+    margin: 0;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.warning-content b {
+    color: #00cd3c;
+}
+
+/* 圖片自適應縮放樣式 */
+.guide-img {
+    width: 30%;          /* 讓圖片寬度最大撐滿容器 */
+    max-width: 100px;        /* 限制最大寬度，避免在平板或大螢幕上突然變得太大 */
+    min-width: 100px;        /* 限制最小寬度，避免在極小的小手機上變太小看不清 */
+    height: auto;         /* 高度自動等比例縮放，防止圖片變形 */
+    display: block;       /* 消除圖片下方微小間隙 */
+    margin: 15px auto 15px 15px;       /* 圖片水平置中 */
+    border-radius: 8px;   /* 可選：給圖片加點圓角，看起來更精緻 */
+}
+
     </style>
 </head>
 <body>
+
+<div id="rotateWarning" class="orientation-warning">
+    <div class="warning-content">
+        <img src="https://i-dle-melon.github.io/vote/NEVERLAND.png" alt="" class="guide-img">
+<p><b>公告：</b>事前投票存票優先順序：Fancast = IDOL CHAMP ≥ FiNC ≥ Mubeat<br>
+實時投票存票：Higher只需要存250顆紅色鑽石，後面提及過期的問題只限於免費的存票！</p>
+    </div>
+</div>
+
 
 <div class="container">
     <header>
