@@ -409,6 +409,92 @@ html {
     z-index: 10; /* 確保遮罩在圖片和文字上方 */
 }
 
+/* 多段式比例進度條樣式 */
+.ratio-progress-container {
+    margin: 0px 0 0px 0;/* 依序為：上 5px、右 0、下 20px、左 0 */
+    background: #1e1e1e;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 15px;
+}
+.ratio-progress-bar {
+    display: flex;
+    height: 60px;/* 增加厚度 */
+    border-radius: 6px;/* 這裡控制進度條的圓角 */
+    overflow: hidden;
+    margin-top: 0px;   /* 控制進度條與上方返回按鈕的間距 */
+    margin-bottom: 0px;/* 控制進度條與下方詳細計分按鈕的間距 */
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+}
+.ratio-segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* 強制文字水平置中 */
+
+    font-size: 11px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    transition: width 0.3s ease;
+/* 💡 您可在此處修改字體樣式 💡 */
+    font-size: 11px; /* 改為 14px 讓字變大（原本為 11px） */
+    font-weight: 600; /* 改粗細（常規粗體為 bold 或 700，一般字體為 normal 或 400） */
+}
+/* 各項目專屬顏色 */
+.seg-music   { background-color: #00cd3c; } /* 音源：應援綠 */
+.seg-sales   { background-color: #1d72b8; } /* 銷量：藍 */
+.seg-sns     { background-color: #ff007f; } /* SNS：粉紅 */
+.seg-broadcast{ background-color: #ff9900; } /* 放送：橘 */
+.seg-pre     { background-color: #8a2be2; } /* 事前：紫 */
+.seg-live    { background-color: #e53935; } /* 實時：紅 */
+
+.ratio-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    font-size: 13px;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+/* 讓詳細計分按鈕區塊靠右對齊的容器 */
+.detail-btn-wrapper {
+    display: flex;
+    justify-content: flex-end; /* 關鍵：強制子元素靠右 */
+    margin-top: 0px;           /* 與上方進度條的間距，可自行調整 */
+    margin-bottom: 20px;       /* 控制按鈕下方的留白 */
+    width: 100%;
+}
+
+/* 詳細計分按鈕樣式 */
+.detail-score-btn {
+    background-color: transparent;
+    color: #00cd3c;            /* 經典應援綠，可改為您喜歡的顏色 */
+    border: 1px solid #2a2a2a;
+    border-radius: 20px;       /* 圓角造型 */
+    padding: 6px 14px;         /* 上下左右內距 */
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease; /* 讓滑鼠懸停動畫更平滑 */
+}
+
+/* 滑鼠滑入按鈕時的效果 */
+.detail-score-btn:hover {
+    background-color: #00cd3c;
+    color: #121212;            /* 文字變成深色背景色 */
+    box-shadow: 0 0 10px rgba(0, 205, 60, 0.5); /* 微微的亮綠色光暈 */
+}
+
     </style>
 </head>
 <body>
@@ -493,9 +579,33 @@ html {
         </div>
     </div>
 </div>
+
+
             <div id="mubank-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
     
+<div class="ratio-progress-container">
+    <div class="ratio-progress-bar">
+        <div class="ratio-segment seg-music" style="width: 60%;">音源60%<br>Melon,Genie,Flo,Vibe,Bugs</div>
+        <div class="ratio-segment seg-sales" style="width: 5%;">銷<br>量<br>5%<br>CIRCLE</div>
+        <div class="ratio-segment seg-sns" style="width: 5%;">SNS<br>5%<br>YT</div>
+        <div class="ratio-segment seg-broadcast" style="width: 20%;">放送20%<br>KBS電視台/廣播</div>
+        <div class="ratio-segment seg-pre" style="width: 10%;">事前<br>投票10%</div>
+
+    </div>
+    <div class="ratio-legend">
+        <div class="legend-item"><span class="legend-dot seg-music"></span>音源 60%</div>
+        <div class="legend-item"><span class="legend-dot seg-sales"></span>銷量 5%</div>
+        <div class="legend-item"><span class="legend-dot seg-sns"></span>SNS 5%</div>
+        <div class="legend-item"><span class="legend-dot seg-broadcast"></span>放送 20%</div>
+        <div class="legend-item"><span class="legend-dot seg-pre"></span>事前投票 10%</div>
+
+    </div>
+</div>
+<div class="detail-btn-wrapper">
+    <button class="detail-score-btn" onclick="switchPage('mubank-detail-page')">詳細計分 ➔</button>
+</div>
+ 
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">① Music Bank (音樂銀行)</div>
@@ -553,9 +663,84 @@ html {
             </div>
         </div>
 
+<div id="mubank-detail-page" class="page">
+    <button class="back-btn" onclick="switchPage('mubank-page')">⏎ 返回投票介面</button>
+    
+<h2>📊 各項分數詳細計分說明</h2>
+    <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算公式與管道說明：</p>
+
+    <div class="app-grid">
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">🎵 音源 (佔比 60%)</div>
+                <span class="app-badge">核心主要項</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Melon, Genie, Bugs, Flo, VIBE 等韓國主流音源榜單。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>主要統計每日獨立收聽數（Stream）與下載量（Download），依比例換算成分數。</div>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">💿 銷量 (佔比 5%)</div>
+                <span class="app-badge">實體專輯</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Hanteo Chart (瀚特榜)、Circle Chart (原Gaon榜)。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>採計首週或當週實體專輯之總銷售張數。</div>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">📱 SNS (佔比 5%)</div>
+                <span class="app-badge">社群數據</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>YouTube 官方 MV 播放量、TikTok 等社群互動。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>主要依據官方釋出之主打歌 MV 點閱率與按讚數成長量進行結算。</div>
+            </div>
+        </div>
+        </div>
+</div>
+
             <div id="mcd-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
     
+<div class="ratio-progress-container">
+    <div class="ratio-progress-bar">
+        <div class="ratio-segment seg-music" style="width: 45.45%;">音源50%<br>CIRCLE Global Kpop Chart</div>
+        <div class="ratio-segment seg-sales" style="width: 13.64%;">銷量15%<br>CIRCLE</div>
+        <div class="ratio-segment seg-sns" style="width: 13.64%;">SNS15%<br>Youtube</div>
+        <div class="ratio-segment seg-broadcast" style="width: 9.09%;">放送10%<br>Mnet</div>
+        <div class="ratio-segment seg-pre" style="width: 9.09%;">事前<br>投票10%</div>
+        <div class="ratio-segment seg-live" style="width: 9.09%;">實時<br>投票10%</div>
+    </div>
+    <div class="ratio-legend">
+        <div class="legend-item"><span class="legend-dot seg-music"></span>音源 50%</div>
+        <div class="legend-item"><span class="legend-dot seg-sales"></span>銷量 15%</div>
+        <div class="legend-item"><span class="legend-dot seg-sns"></span>SNS 15%</div>
+        <div class="legend-item"><span class="legend-dot seg-broadcast"></span>放送 10%</div>
+        <div class="legend-item"><span class="legend-dot seg-pre"></span>事前投票 10%</div>
+        <div class="legend-item"><span class="legend-dot seg-live"></span>實時投票 10%</div>
+    </div>
+</div>
+ <div class="detail-btn-wrapper">
+    <button class="detail-score-btn" onclick="switchPage('score-detail-page')">詳細計分 ➔</button>
+</div>
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">② M Countdown (MCD)</div>
@@ -605,6 +790,27 @@ html {
             <div id="musiccenter-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
     
+<div class="ratio-progress-container">
+    <div class="ratio-progress-bar">
+        <div class="ratio-segment seg-music" style="width: 50%;">音源50%<br>CIRCLE</div>
+        <div class="ratio-segment seg-sales" style="width: 10%;">銷量10%<br>CIRCLE</div>
+        <div class="ratio-segment seg-sns" style="width: 10%;">SNS<br>10%<br>YT</div>
+        <div class="ratio-segment seg-broadcast" style="width: 10%;">放送<br>10%<br>MBC<br>電台</div>
+        <div class="ratio-segment seg-pre" style="width: 10%;">事前<br>投票<br>10%<br>(App5%)</div>
+        <div class="ratio-segment seg-live" style="width: 10%;">實時<br>投票<br>10%<br>(App5%)</div>
+    </div>
+    <div class="ratio-legend">
+        <div class="legend-item"><span class="legend-dot seg-music"></span>音源 50%</div>
+        <div class="legend-item"><span class="legend-dot seg-sales"></span>銷量 10%</div>
+        <div class="legend-item"><span class="legend-dot seg-sns"></span>SNS 10%</div>
+        <div class="legend-item"><span class="legend-dot seg-broadcast"></span>放送 10%</div>
+        <div class="legend-item"><span class="legend-dot seg-pre"></span>事前投票 10%</div>
+        <div class="legend-item"><span class="legend-dot seg-live"></span>實時投票 10%</div>
+    </div>
+</div><div class="detail-btn-wrapper">
+    <button class="detail-score-btn" onclick="switchPage('score-detail-page')">詳細計分 ➔</button>
+</div>
+ 
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">③ Show! Music Core 音樂中心(事前投票) </div>
@@ -712,6 +918,27 @@ html {
             <div id="inkigayo-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
     
+<div class="ratio-progress-container">
+    <div class="ratio-progress-bar">
+        <div class="ratio-segment seg-music" style="width: 50%;">音源50%<br>Melon,Genie,Flo,CIRCLE Glonal</div>
+        <div class="ratio-segment seg-sales" style="width: 10%;">銷量10%<br>CIRCLE</div>
+        <div class="ratio-segment seg-sns" style="width: 20%;">SNS<br>20%<br>Youtube</div>
+        <div class="ratio-segment seg-broadcast" style="width: 10%;">放送<br>10%<br>SBS<br>電台</div>
+        <div class="ratio-segment seg-pre" style="width: 10%;">事前<br>投票<br>5%<br></div>
+        <div class="ratio-segment seg-live" style="width: 10%;">實時<br>投票<br>5%<br></div>
+    </div>
+    <div class="ratio-legend">
+        <div class="legend-item"><span class="legend-dot seg-music"></span>音源 50%</div>
+        <div class="legend-item"><span class="legend-dot seg-sales"></span>銷量 10%</div>
+        <div class="legend-item"><span class="legend-dot seg-sns"></span>SNS 20%</div>
+        <div class="legend-item"><span class="legend-dot seg-broadcast"></span>放送 10%</div>
+        <div class="legend-item"><span class="legend-dot seg-pre"></span>事前投票 5%</div>
+        <div class="legend-item"><span class="legend-dot seg-live"></span>實時投票 5%</div>
+    </div>
+</div><div class="detail-btn-wrapper">
+    <button class="detail-score-btn" onclick="switchPage('score-detail-page')">詳細計分 ➔</button>
+</div>
+ 
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">④ 人氣歌謠(事前投票)</div>
@@ -870,6 +1097,27 @@ html {
             <div id="showchamp-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
     
+<div class="ratio-progress-container">
+    <div class="ratio-progress-bar">
+        <div class="ratio-segment seg-music" style="width: 35%;">音源35%<br>Melon,Genie,Flo,Bugs</div>
+        <div class="ratio-segment seg-sales" style="width: 15%;">銷量<br>15%<br>Hanteo</div>
+        <div class="ratio-segment seg-sns" style="width: 10%;">SNS<br>10%<br>YT</div>
+        <div class="ratio-segment seg-broadcast" style="width: 20%;">放送20%<br>MBC Music</div>
+        <div class="ratio-segment seg-pre" style="width: 20%;">事前投票<br>20%</div>
+
+    </div>
+    <div class="ratio-legend">
+        <div class="legend-item"><span class="legend-dot seg-music"></span>音源 35%</div>
+        <div class="legend-item"><span class="legend-dot seg-sales"></span>銷量 15%</div>
+        <div class="legend-item"><span class="legend-dot seg-sns"></span>SNS 10%</div>
+        <div class="legend-item"><span class="legend-dot seg-broadcast"></span>放送 20%</div>
+        <div class="legend-item"><span class="legend-dot seg-pre"></span>事前投票 20%</div>
+
+    </div>
+</div>
+ <div class="detail-btn-wrapper">
+    <button class="detail-score-btn" onclick="switchPage('score-detail-page')">詳細計分 ➔</button>
+</div>
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">⑤ SHOW champion 冠軍秀</div>
@@ -1068,7 +1316,8 @@ window.addEventListener('popstate', function(event) {
         'Melon-page': 'Melon_切瓜刷音源教學',
         'Youtube-page': 'Youtube_無痕刷音源教學',
         'Tiktok-page': 'Tiktok_引用刷音源教學',
-        'Shazam-page': 'Shazam_搜尋刷音源教學'
+        'Shazam-page': 'Shazam_搜尋刷音源教學',
+        'mubank-detail-page': '音放詳細計分/Music_Bank_音樂銀行'
     };
 
     // 2. 這是你原本的 switchPage，升級成可以改網址的版本
