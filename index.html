@@ -189,6 +189,12 @@ html {
             flex-shrink: 0;
         }
 
+        .info-label-vote {
+            color: #888;
+            min-width: 50px;
+            flex-shrink: 0;
+        }
+
         /* 教練按鈕與未來圖片放置區 */
         .tutorial-section {
             margin-top: 15px;
@@ -650,6 +656,7 @@ html {
                         <p style="color:#aaa; font-size:14px;">以下標籤直接跳轉圖片⇩</p>
                         <span class="tag tag-btn" onclick="document.getElementById('Fancast-tickets').scrollIntoView({ behavior: 'smooth' })">#存票教學👈</span>
                         <span class="tag tag-btn" onclick="document.getElementById('Fancast-vote').scrollIntoView({ behavior: 'smooth' })">#投票教學👈</span>
+                        <span class="tag tag-btn" onclick="document.getElementById('Fancast-vote1-expired').scrollIntoView({ behavior: 'smooth' })">#投票&過期說明👇</span>
 
                         <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解-實時投票待：</p>
                                 <div class="image-wrapper" id="Fancast-tickets">
@@ -684,6 +691,16 @@ html {
                             <span class="step-badge">投票步驟 4</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/投票4.jpg" alt="步驟4">
                         </div>
+
+                                <div class="image-wrapper" id="Fancast-vote1-expired">
+        <div class="app-card">
+            <div class="app-header">
+            <div class="info-row">
+                <div class="info-label-vote">規則</div>
+                <div>1.每日簽到(隨簽到日增加每日獲得數量)+刷廣告。<br>2.需使用愛心投票，一票50藍心or 一票1黃心，投票每次只能選擇一種愛心最多500票，CD10分鐘(藍心30天過期)。</div>
+            </div>
+        </div>
+                    </div> </div>  
                     </div>
                 </div>
             </div>
@@ -709,33 +726,34 @@ html {
             <tr>
                 <td>數位音源</td>
                 <td>各團均分120000分</td>
-                <td>Bugs、Melon、Genie、Flo</td>
+                <td> <span class="tag tag-btn" onclick="document.getElementById('Fancast-digitals-remark').scrollIntoView({ behavior: 'smooth' })">音源說明👇</span></td>
             </tr>
             <tr>
                 <td>實體銷量</td>
                 <td>各團均分10000分</td>
-                <td>CIRCLE CHART</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('Fancast-album-remark').scrollIntoView({ behavior: 'smooth' })">銷量說明👇</span></td>
             </tr>
             <tr>
                 <td>SNS</td>
                 <td>各團均分10000分</td>
-                <td>以CIRCLE SOCIAL榜為準，基本上看YT+Tiktok</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('Fancast-SNS-remark').scrollIntoView({ behavior: 'smooth' })">SNS說明👇</span></td>
             </tr>
             <tr>
                 <td>Broadcast<br>放送分</td>
                 <td>各團均分40000分</td>
-                <td>參加音銀打歌+打歌舞台觀看數、在電台的播放次數</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('Fancast-broadcast-remark').scrollIntoView({ behavior: 'smooth' })">放送說明👇</span></td>
             </tr>
             <tr>
                 <td>事前投票</td>
                 <td>2000分</td>
-                <td> </td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('Fancast-vote1-remark').scrollIntoView({ behavior: 'smooth' })">投票說明👇</span></td>
             </tr>
         </tbody>
     </table>
 </div>
 
-    <div class="app-grid">
+
+                                <div class="image-wrapper" id="Fancast-digitals-remark">
         <div class="app-card">
             <div class="app-header">
                 <div class="app-title">🎵 音源 (佔比 60%)</div>
@@ -747,10 +765,12 @@ html {
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
-                <div>主要統計每日獨立收聽數與下載量，依比例換算成分數。</div>
+                <div>主要統計每日獨立收聽數與下載量，依比例換算成分數。<br>※需數位音源任一周榜單200名內才計入。</div>
             </div>
         </div>
+                    </div>
 
+                                <div class="image-wrapper" id="Fancast-album-remark">
         <div class="app-card">
             <div class="app-header">
                 <div class="app-title">💿 銷量 (佔比 5%)</div>
@@ -765,20 +785,42 @@ html {
                 <div>採計首週或當週實體專輯之總銷售張數。</div>
             </div>
         </div>
+                    </div>
 
+                                <div class="image-wrapper" id="Fancast-broadcast-remark">
         <div class="app-card">
             <div class="app-header">
-                <div class="app-title">📱 SNS (佔比 5%)</div>
-                <span class="app-badge">社群數據</span>
+                <div class="app-title">📺 放送 (佔比 20%)</div>
+                <span class="app-badge">放送節目</span>
             </div>
             <div class="info-row">
                 <div class="info-label">採計渠道</div>
-                <div>YouTube 官方 MV 播放量、TikTok 等社群互動。</div>
+                <div>KBS打歌舞台/廣播。</div>
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
-                <div>主要依據官方釋出之主打歌 MV 點閱率與按讚數成長量進行結算。</div>
+                <div>參加音銀打歌+打歌舞台觀看數、在電台的播放次數。</div>
             </div>
+        </div>
+                    </div>
+
+                                <div class="image-wrapper" id="Fancast-vote1-remark">
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">🗳️ 投票 (佔比 10%)</div>
+                <span class="app-badge">全網投票</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Fancast事前投票。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>1.每日簽到(隨簽到日增加每日獲得數量)+刷廣告。<br>2.需使用藍心投票，一票50藍心，投票一次最多500票，CD10分鐘(愛心30天過期)。</div>
+            </div>
+        </div>
+                    </div> 
+
         </div>
     </div>
 </div>
@@ -1043,7 +1085,7 @@ html {
                 </div>
                 <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週六 14:15 (GMT+8)</div></div>
                 <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週二 17:00 ～ 每週四 10:00 (GMT+8)</div></div>
-
+                <div class="info-row"><div class="info-label">🗳️ 實時投票APP</div><div>每週六 14:15 (GMT+8)(Higher)</div></div>
                 
                 <div class="tutorial-section">
                     <button class="toggle-tutorial-btn" onclick="toggleTutorial('Muniverse-tut')">查看詳細圖文教學 <span>▼</span></button>
