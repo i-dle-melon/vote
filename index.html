@@ -714,7 +714,7 @@ html {
                 <div>主要依據官方釋出之主打歌 MV 點閱率與按讚數成長量進行結算。</div>
             </div>
         </div>
-        </div>
+    </div>
 </div>
 
             <div id="mcd-page" class="page">
@@ -738,8 +738,9 @@ html {
         <div class="legend-item"><span class="legend-dot seg-live"></span>實時投票 10%</div>
     </div>
 </div>
+
  <div class="detail-btn-wrapper">
-    <button class="detail-score-btn" onclick="switchPage('score-detail-page')">詳細計分 ➔</button>
+    <button class="detail-score-btn" onclick="switchPage('mcd-detail-page')">詳細計分 ➔</button>
 </div>
             <div class="app-card">
                 <div class="app-header">
@@ -787,6 +788,62 @@ html {
                 </div>
             </div>
         </div>
+
+<div id="mcd-detail-page" class="page">
+    <button class="back-btn" onclick="switchPage('mcd-page')">⏎ 返回投票介面</button>
+    
+<h2>📊 各項分數詳細計分說明</h2>
+    <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算公式與管道說明：</p>
+
+    <div class="app-grid">
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">🎵 音源 (佔比 50%)</div>
+                <span class="app-badge">核心主要項</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Melon, Genie, Bugs, Flo, VIBE 等韓國主流音源榜單。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>主要統計每日獨立收聽數（Stream）與下載量（Download），依比例換算成分數。</div>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">💿 銷量 (佔比 15%)</div>
+                <span class="app-badge">實體專輯</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Hanteo Chart (瀚特榜)、Circle Chart (原Gaon榜)。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>採計首週或當週實體專輯之總銷售張數。</div>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">📱 SNS (佔比 15%)</div>
+                <span class="app-badge">社群數據</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>YouTube 官方 MV 播放量、TikTok 等社群互動。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>主要依據官方釋出之主打歌 MV 點閱率與按讚數成長量進行結算。</div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+
             <div id="musiccenter-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
     
@@ -807,10 +864,12 @@ html {
         <div class="legend-item"><span class="legend-dot seg-pre"></span>事前投票 10%</div>
         <div class="legend-item"><span class="legend-dot seg-live"></span>實時投票 10%</div>
     </div>
-</div><div class="detail-btn-wrapper">
-    <button class="detail-score-btn" onclick="switchPage('score-detail-page')">詳細計分 ➔</button>
 </div>
- 
+
+<div class="detail-btn-wrapper">
+    <button class="detail-score-btn" onclick="switchPage('musiccenter-detail-page')">詳細計分 ➔</button>
+</div>
+
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">③ Show! Music Core 音樂中心(事前投票) </div>
@@ -915,6 +974,62 @@ html {
                 </div>
             </div>
         </div>
+
+<div id="musiccenter-detail-page" class="page">
+    <button class="back-btn" onclick="switchPage('musiccenter-page')">⏎ 返回投票介面</button>
+    
+<h2>📊 各項分數詳細計分說明</h2>
+    <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算公式與管道說明：</p>
+
+    <div class="app-grid">
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">🎵 音源 (佔比 50%)</div>
+                <span class="app-badge">核心主要項</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Melon, Genie, Bugs, Flo, VIBE 等韓國主流音源榜單。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>主要統計每日獨立收聽數（Stream）與下載量（Download），依比例換算成分數。</div>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">💿 銷量 (佔比 10%)</div>
+                <span class="app-badge">實體專輯</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Hanteo Chart (瀚特榜)、Circle Chart (原Gaon榜)。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>採計首週或當週實體專輯之總銷售張數。</div>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">📱 SNS (佔比 10%)</div>
+                <span class="app-badge">社群數據</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>YouTube 官方 MV 播放量、TikTok 等社群互動。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>主要依據官方釋出之主打歌 MV 點閱率與按讚數成長量進行結算。</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
             <div id="inkigayo-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
     
@@ -936,7 +1051,7 @@ html {
         <div class="legend-item"><span class="legend-dot seg-live"></span>實時投票 5%</div>
     </div>
 </div><div class="detail-btn-wrapper">
-    <button class="detail-score-btn" onclick="switchPage('score-detail-page')">詳細計分 ➔</button>
+    <button class="detail-score-btn" onclick="switchPage('inkigayo-detail-page')">詳細計分 ➔</button>
 </div>
  
             <div class="app-card">
@@ -1034,7 +1149,6 @@ html {
             </div>
         </div>
 
-
 <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">④ 人氣歌謠(實時投票)</div>
@@ -1094,6 +1208,61 @@ html {
         </div>
     </div>
 
+<div id="inkigayo-detail-page" class="page">
+    <button class="back-btn" onclick="switchPage('inkigayo-page')">⏎ 返回投票介面</button>
+    
+<h2>📊 各項分數詳細計分說明</h2>
+    <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算公式與管道說明：</p>
+
+    <div class="app-grid">
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">🎵 音源 (佔比 50%)</div>
+                <span class="app-badge">核心主要項</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Melon, Genie, Bugs, Flo, VIBE 等韓國主流音源榜單。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>主要統計每日獨立收聽數（Stream）與下載量（Download），依比例換算成分數。</div>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">💿 銷量 (佔比 10%)</div>
+                <span class="app-badge">實體專輯</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Hanteo Chart (瀚特榜)、Circle Chart (原Gaon榜)。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>採計首週或當週實體專輯之總銷售張數。</div>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">📱 SNS (佔比 20%)</div>
+                <span class="app-badge">社群數據</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>YouTube 官方 MV 播放量、TikTok 等社群互動。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>主要依據官方釋出之主打歌 MV 點閱率與按讚數成長量進行結算。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
             <div id="showchamp-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
     
@@ -1116,7 +1285,7 @@ html {
     </div>
 </div>
  <div class="detail-btn-wrapper">
-    <button class="detail-score-btn" onclick="switchPage('score-detail-page')">詳細計分 ➔</button>
+    <button class="detail-score-btn" onclick="switchPage('showchamp-detail-page')">詳細計分 ➔</button>
 </div>
             <div class="app-card">
                 <div class="app-header">
@@ -1187,6 +1356,61 @@ html {
                 </div>
             </div>
         </div>
+
+<div id="showchamp-detail-page" class="page">
+    <button class="back-btn" onclick="switchPage('showchamp-page')">⏎ 返回投票介面</button>
+    
+<h2>📊 各項分數詳細計分說明</h2>
+    <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算公式與管道說明：</p>
+
+    <div class="app-grid">
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">🎵 音源 (佔比 35%)</div>
+                <span class="app-badge">核心主要項</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Melon, Genie, Bugs, Flo, VIBE 等韓國主流音源榜單。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>主要統計每日獨立收聽數（Stream）與下載量（Download），依比例換算成分數。</div>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">💿 銷量 (佔比 15%)</div>
+                <span class="app-badge">實體專輯</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Hanteo Chart (瀚特榜)、Circle Chart (原Gaon榜)。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>採計首週或當週實體專輯之總銷售張數。</div>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">📱 SNS (佔比 10%)</div>
+                <span class="app-badge">社群數據</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>YouTube 官方 MV 播放量、TikTok 等社群互動。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>主要依據官方釋出之主打歌 MV 點閱率與按讚數成長量進行結算。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div id="Melon-page" class="page">
         <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
@@ -1317,7 +1541,8 @@ window.addEventListener('popstate', function(event) {
         'Youtube-page': 'Youtube_無痕刷音源教學',
         'Tiktok-page': 'Tiktok_引用刷音源教學',
         'Shazam-page': 'Shazam_搜尋刷音源教學',
-        'mubank-detail-page': '音放詳細計分/Music_Bank_音樂銀行'
+        'mubank-detail-page': '音放詳細計分/Music_Bank_音樂銀行',
+        'mcd-detail-page': '音放詳細計分/mcd'
     };
 
     // 2. 這是你原本的 switchPage，升級成可以改網址的版本
