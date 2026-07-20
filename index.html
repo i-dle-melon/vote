@@ -495,6 +495,32 @@ html {
     box-shadow: 0 0 10px rgba(0, 205, 60, 0.5); /* 微微的亮綠色光暈 */
 }
 
+/* 詳細計分表格專用樣式 */
+.score-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 14px;
+    color: #eee;
+}
+
+.score-table th, .score-table td {
+    padding: 10px 12px;
+    text-align: center; /* 文字居中對齊 */
+    border-bottom: 1px solid #2a2a2a; /* 深灰色分隔線 */
+}
+
+.score-table th {
+    background-color: #1e1e1e;
+    color: #00cd3c; /* 經典應援綠標題 */
+    font-weight: bold;
+}
+
+/* 滑鼠滑過表格列時的微亮效果 */
+.score-table tbody tr:hover {
+    background-color: rgba(0, 205, 60, 0.05);
+}
+
     </style>
 </head>
 <body>
@@ -666,8 +692,48 @@ html {
 <div id="mubank-detail-page" class="page">
     <button class="back-btn" onclick="switchPage('mubank-page')">⏎ 返回教學介面</button>
     
-<h2>📊 各項分數詳細計分說明</h2>
-    <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算公式與管道說明：</p>
+<h2>Music Bank (音樂銀行) 詳細計分</h2>
+    <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算方式與管道說明：</p>
+
+<div class="app-card">
+    <h3>計分模式</h3>
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>各項</th>
+                <th>總分<br>20萬分</th>
+                <th>備註</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>數位音源</td>
+                <td>各團均分120000分</td>
+                <td>Bugs、Melon、Genie、Flo</td>
+            </tr>
+            <tr>
+                <td>實體銷量</td>
+                <td>各團均分10000分</td>
+                <td>CIRCLE CHART</td>
+            </tr>
+            <tr>
+                <td>SNS</td>
+                <td>各團均分10000分</td>
+                <td>以CIRCLE SOCIAL榜為準，基本上看YT+Tiktok</td>
+            </tr>
+            <tr>
+                <td>Broadcast<br>放送分</td>
+                <td>各團均分40000分</td>
+                <td>參加音銀打歌+打歌舞台觀看數、在電台的播放次數</td>
+            </tr>
+            <tr>
+                <td>事前投票</td>
+                <td>2000分</td>
+                <td> </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
     <div class="app-grid">
         <div class="app-card">
@@ -677,11 +743,11 @@ html {
             </div>
             <div class="info-row">
                 <div class="info-label">採計渠道</div>
-                <div>Melon, Genie, Bugs, Flo, VIBE 等韓國主流音源榜單。</div>
+                <div>Melon, Genie, Bugs, Flo, Vibe 等韓國主流音源榜單。</div>
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
-                <div>主要統計每日獨立收聽數（Stream）與下載量（Download），依比例換算成分數。</div>
+                <div>主要統計每日獨立收聽數與下載量，依比例換算成分數。</div>
             </div>
         </div>
 
@@ -692,7 +758,7 @@ html {
             </div>
             <div class="info-row">
                 <div class="info-label">採計渠道</div>
-                <div>Hanteo Chart (瀚特榜)、Circle Chart (原Gaon榜)。</div>
+                <div>Hanteo Chart、CIRCLE CHART(原Gaon榜)。</div>
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
@@ -792,6 +858,51 @@ html {
 <div id="mcd-detail-page" class="page">
     <button class="back-btn" onclick="switchPage('mcd-page')">⏎ 返回教學介面</button>
     
+<div class="app-card">
+    <h3>計分模式</h3>
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>各項</th>
+                <th>總分<br>1.1萬分</th>
+                <th>備註</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>數位音源</td>
+                <td>5000分</td>
+                <td>Apple Music、YTM、Bugs、Melon、Genie、Flo<br>(MCD&音中是唯二計入國際音樂平台的)"			</td>
+            </tr>
+            <tr>
+                <td>實體銷量</td>
+                <td>1500分</td>
+                <td>CIRCLE CHART</td>
+            </tr>
+            <tr>
+                <td>SNS</td>
+                <td>1500分</td>
+                <td>YT MV觀看數<br>Tiktok引用音源+觀看/點讚</td>
+            </tr>
+            <tr>
+                <td>Broadcast<br>放送分</td>
+                <td>1000分</td>
+                <td>1.藝人是否有參加MCD<br>2.上週打歌舞台在YT MNET TV的觀看數</td>
+            </tr>
+            <tr>
+                <td>事前投票</td>
+                <td>1000分</td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td>實時投票</td>
+                <td>1000分</td>
+                <td> </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 <h2>📊 各項分數詳細計分說明</h2>
     <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算公式與管道說明：</p>
 
@@ -932,6 +1043,7 @@ html {
                 </div>
                 <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週六 14:15 (GMT+8)</div></div>
                 <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週二 17:00 ～ 每週四 10:00 (GMT+8)</div></div>
+
                 
                 <div class="tutorial-section">
                     <button class="toggle-tutorial-btn" onclick="toggleTutorial('Muniverse-tut')">查看詳細圖文教學 <span>▼</span></button>
@@ -989,7 +1101,7 @@ html {
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
-                <div>主要統計每日獨立收聽數（Stream）與下載量（Download），依比例換算成分數。</div>
+                <div>主要統計每日獨立收聽數與下載量，依比例換算成分數。</div>
             </div>
         </div>
 
@@ -1060,7 +1172,7 @@ html {
                 </div>
                 <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週日 14:20 (GMT+8)</div></div>
                 <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週一 11:00 ～ 每週五 22:59 (GMT+8) (Linc / tin )</div></div>
-                <div class="info-row"><div class="info-label">🗳️ 實時投票</div><div>依節目宣布時間 (Higher)</div></div>
+                <div class="info-row"><div class="info-label">🗳️ 實時投票</div><div>每週日 14:35 ～  15:25 (GMT+8)(Higher)</div></div>
                 
                 <div class="tutorial-section">
                     <button class="toggle-tutorial-btn" onclick="toggleTutorial('LiNC-tut')">查看詳細圖文教學 <span>▼</span></button>
@@ -1109,7 +1221,7 @@ html {
                 </div>
                 <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週日 14:20 (GMT+8)</div></div>
                 <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週一 11:00 ～ 每週五 22:59 (GMT+8) (Linc / tin )</div></div>
-                <div class="info-row"><div class="info-label">🗳️ 實時投票</div><div>依節目宣布時間 (Higher)</div></div>
+                <div class="info-row"><div class="info-label">🗳️ 實時投票</div><div>每週日 14:35 ～  15:25 (GMT+8)(Higher)</div></div>
                 
                 <div class="tutorial-section">
                     <button class="toggle-tutorial-btn" onclick="toggleTutorial('tin-tut')">查看詳細圖文教學 <span>▼</span></button>
@@ -1151,7 +1263,7 @@ html {
                 </div>
                 <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週日 14:20 (GMT+8)</div></div>
                 <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週一 11:00 ～ 每週五 22:59 (GMT+8) (Linc / tin )</div></div>
-                <div class="info-row"><div class="info-label">🗳️ 實時投票</div><div>依節目宣布時間 (Higher)</div></div>
+                <div class="info-row"><div class="info-label">🗳️ 實時投票</div><div>每週日 14:35 ～  15:25 (GMT+8)(Higher)</div></div>
                 
                 <div class="tutorial-section">
                     <button class="toggle-tutorial-btn" onclick="toggleTutorial('Higher-tut')">查看詳細圖文教學 <span>▼</span></button>
