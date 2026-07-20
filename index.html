@@ -29,7 +29,7 @@ html {
 
         header {
             text-align: center;
-            padding: 30px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #2a2a2a;
         }
 
@@ -39,11 +39,23 @@ html {
             color: #00cd3c; /* 經典應援綠 */
         }
 
+        header h2 {
+            margin: 0;
+            font-size: 20px;
+            color: #00cd3c; /* 經典應援綠 */
+        }
+
         header p {
             color: #aaa;
             font-size: 14px;
             margin-top: 5px;
         }
+
+        /* 專屬調整該標題的間距 */
+        header.weight-header {
+            padding-top: 5px !important;    /* 縮減上方留白，與按鈕拉近 */
+            padding-bottom: 15px;           /* 保持與下方進度條的適當距離 */
+            }
 
         /* 導覽按鈕（返回首頁用） */
         .back-btn {
@@ -55,7 +67,7 @@ html {
             padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
-            margin-bottom: 20px;
+            margin-bottom: 0px;
             font-size: 14px;
             transition: 0.2s;
         }
@@ -542,7 +554,7 @@ html {
 
 <div class="container">
     <header>
-        <h1>i-dle* 追榜打歌投票應援指南</h1>
+        <h1 onclick="switchPage('home-page')" style="cursor: pointer;">i-dle* 打歌投票刷榜單指南</h1>
         <p>即時更新最新打歌節目投票時間與音源刷榜教學</p>
     </header>
 
@@ -578,6 +590,12 @@ html {
 
 <div id="vote-page" class="page">
     <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
+
+<div class="header.weight-header">
+    <header>
+        <h2>節目選單</h2>
+    </header>
+    </div>
     
     <div class="main-menu">
         <div class="menu-card" onclick="switchPage('mubank-page')">
@@ -616,6 +634,12 @@ html {
             <div id="mubank-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
     
+<div class="header.weight-header">
+    <header>
+        <h2>總分統計權重</h2>
+    </header>
+    </div>
+
 <div class="ratio-progress-container">
     <div class="ratio-progress-bar">
         <div class="ratio-segment seg-music" style="width: 60%;">音源60%<br>Melon,Genie,Flo,Vibe,Bugs</div>
@@ -638,6 +662,12 @@ html {
     <button class="detail-score-btn" onclick="switchPage('mubank-detail-page')">詳細計分 ➔</button>
 </div>
  
+<div class="header.weight-header">
+    <header>
+        <h2>投票App教學</h2>
+    </header>
+    </div>
+   
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">① Music Bank (音樂銀行)</div>
@@ -709,7 +739,12 @@ html {
 <div id="mubank-detail-page" class="page">
     <button class="back-btn" onclick="switchPage('mubank-page')">⏎ 返回教學介面</button>
     
-<h2>Music Bank (音樂銀行) 詳細計分</h2>
+<div class="container">
+    <header>
+        <h2>Music Bank音樂銀行(KBS)詳細計分</h2>
+    </header>
+        </div>
+
     <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算方式與管道說明：</p>
 
 <div class="app-card">
@@ -841,7 +876,13 @@ html {
 
             <div id="mcd-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
-    
+        
+<div class="header.weight-header">
+    <header>
+        <h2>總分統計權重</h2>
+    </header>
+    </div>
+
 <div class="ratio-progress-container">
     <div class="ratio-progress-bar">
         <div class="ratio-segment seg-music" style="width: 45.45%;">音源50%<br>CIRCLE Global Kpop Chart</div>
@@ -864,6 +905,13 @@ html {
  <div class="detail-btn-wrapper">
     <button class="detail-score-btn" onclick="switchPage('mcd-detail-page')">詳細計分 ➔</button>
 </div>
+
+<div class="header.weight-header">
+    <header>
+        <h2>投票App教學</h2>
+    </header>
+    </div>
+   
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">② M Countdown (MCD)</div>
@@ -914,6 +962,14 @@ html {
 <div id="mcd-detail-page" class="page">
     <button class="back-btn" onclick="switchPage('mcd-page')">⏎ 返回教學介面</button>
     
+<div class="container">
+    <header>
+        <h2>M Countdown (Mnet)詳細計分</h2>
+    </header>
+        </div>
+
+    <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算方式與管道說明：</p>
+
 <div class="app-card">
     <h3>計分模式</h3>
     <table class="score-table">
@@ -958,9 +1014,6 @@ html {
         </tbody>
     </table>
 </div>
-
-<h2>📊 各項分數詳細計分說明</h2>
-    <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算公式與管道說明：</p>
 
     <div class="app-grid">
         <div class="app-card">
@@ -1013,7 +1066,13 @@ html {
 
             <div id="musiccenter-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
-    
+        
+<div class="header.weight-header">
+    <header>
+        <h2>總分統計權重</h2>
+    </header>
+    </div>
+
 <div class="ratio-progress-container">
     <div class="ratio-progress-bar">
         <div class="ratio-segment seg-music" style="width: 50%;">音源50%<br>CIRCLE</div>
@@ -1037,6 +1096,12 @@ html {
     <button class="detail-score-btn" onclick="switchPage('musiccenter-detail-page')">詳細計分 ➔</button>
 </div>
 
+<div class="header.weight-header">
+    <header>
+        <h2>投票App教學</h2>
+    </header>
+    </div>
+   
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">③ Show! Music Core 音樂中心(事前投票) </div>
@@ -1142,8 +1207,13 @@ html {
 <div id="musiccenter-detail-page" class="page">
     <button class="back-btn" onclick="switchPage('musiccenter-page')">⏎ 返回教學介面</button>
     
-<h2>📊 各項分數詳細計分說明</h2>
-    <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算公式與管道說明：</p>
+<div class="container">
+    <header>
+        <h2>Show! Music Core 音樂中心 (MBC) 詳細計分</h2>
+    </header>
+        </div>
+
+    <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算方式與管道說明：</p>
 
     <div class="app-grid">
         <div class="app-card">
@@ -1196,7 +1266,13 @@ html {
 
             <div id="inkigayo-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
-    
+        
+<div class="header.weight-header">
+    <header>
+        <h2>總分統計權重</h2>
+    </header>
+    </div>
+
 <div class="ratio-progress-container">
     <div class="ratio-progress-bar">
         <div class="ratio-segment seg-music" style="width: 50%;">音源50%<br>Melon,Genie,Flo,CIRCLE Glonal</div>
@@ -1218,6 +1294,12 @@ html {
     <button class="detail-score-btn" onclick="switchPage('inkigayo-detail-page')">詳細計分 ➔</button>
 </div>
  
+<div class="header.weight-header">
+    <header>
+        <h2>投票App教學</h2>
+    </header>
+    </div>
+   
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">④ 人氣歌謠(事前投票)</div>
@@ -1371,8 +1453,14 @@ html {
 <div id="inkigayo-detail-page" class="page">
     <button class="back-btn" onclick="switchPage('inkigayo-page')">⏎ 返回教學介面</button>
     
-<h2>📊 各項分數詳細計分說明</h2>
-    <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算公式與管道說明：</p>
+<div class="container">
+    <header>
+        <h2>Inkigayo 人氣歌謠(SBS) 詳細計分</h2>
+    </header>
+        </div>
+
+    <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算方式與管道說明：</p>
+
 
     <div class="app-grid">
         <div class="app-card">
@@ -1425,7 +1513,13 @@ html {
 
             <div id="showchamp-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
-    
+        
+<div class="header.weight-header">
+    <header>
+        <h2>總分統計權重</h2>
+    </header>
+    </div>
+
 <div class="ratio-progress-container">
     <div class="ratio-progress-bar">
         <div class="ratio-segment seg-music" style="width: 35%;">音源35%<br>Melon,Genie,Flo,Bugs</div>
@@ -1447,6 +1541,13 @@ html {
  <div class="detail-btn-wrapper">
     <button class="detail-score-btn" onclick="switchPage('showchamp-detail-page')">詳細計分 ➔</button>
 </div>
+
+<div class="header.weight-header">
+    <header>
+        <h2>投票App教學</h2>
+    </header>
+    </div>
+   
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">⑤ SHOW champion 冠軍秀</div>
@@ -1520,8 +1621,13 @@ html {
 <div id="showchamp-detail-page" class="page">
     <button class="back-btn" onclick="switchPage('showchamp-page')">⏎ 返回教學介面</button>
     
-<h2>📊 各項分數詳細計分說明</h2>
-    <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算公式與管道說明：</p>
+<div class="container">
+    <header>
+        <h2>SHOW champion 冠軍秀(MBC Music)詳細計分</h2>
+    </header>
+        </div>
+
+    <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算方式與管道說明：</p>
 
     <div class="app-grid">
         <div class="app-card">
