@@ -2410,12 +2410,46 @@ function scrollToTop() {
     });
 }
 
+
+</script>
+
+<div style="text-align: center; color: #888888; font-size: 14px;  margin-top: 250px;margin-bottom: 0px;">
+    <p>總次數：<span id="view-count" style="color: #00e676; font-weight: bold;">載入中...</span> 次瀏覽</p>
+</div>
+
+<script>
+
 // 觸發彈窗顯示的函式（可綁定在任何頁面的按鈕上）
         function openScoreModal() {
             document.getElementById('score-modal').style.display = 'flex';
         }
 
-
+  // 替換成你部署後的 Cloudflare Workers 網址
+  const workerUrl = 'https://wispy-wind-f5df.1fangwh.workers.dev/?page=idle_vote'; 
+    
+// 檢查這一個分頁是否已經算過瀏覽量
+if (!sessionStorage.getItem('has_voted')) {
+  // 1. 如果是第一次進來，呼叫 API（這會讓 KV 資料庫 +1）
+  fetch(workerUrl)
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('view-count').innerText = data.views;
+      // 標記這個分頁已經算過次數了
+      sessionStorage.setItem('has_voted', 'true');
+      // 把當前的數字也存起來，方便重整時使用
+      sessionStorage.setItem('current_views', data.views);
+    })
+    .catch(error => {
+      console.error('計數器載入失敗:', error);
+      document.getElementById('view-count').innerText = '0';
+    });
+} else {
+  // 2. 如果是重新整理（已經有標記了），就直接抓最新數字，但不讓資料庫 +1
+  // 提示：為了不讓資料庫增加，我們可以另外在 Worker 寫一個不加次數的邏輯，
+  // 或者是直接顯示剛剛存下來的數字：
+  const savedViews = sessionStorage.getItem('current_views');
+  document.getElementById('view-count').innerText = savedViews ? savedViews : '---';
+}
 </script>
 
 
@@ -2424,7 +2458,7 @@ function scrollToTop() {
 
 <footer class="site-footer" style="
     position: relative; 
-    margin-top: 250px; 
+    margin-top: 0px; 
     width: 100%; 
     text-align: center; 
     padding: 10px 0 0 0; 
