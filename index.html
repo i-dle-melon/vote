@@ -610,7 +610,7 @@ html {
            </div> <h3>② M Countdown MCD(Mnet)</h3>
         </div>
 
-        <div class="menu-card" onclick="switchPage('musiccenter-page')">
+        <div class="menu-card" onclick="switchPage('musiccore-page')">
                 <div class="img-wrapper">
             <img src="https://i-dle-melon.github.io/vote/Show_Music/Show Music.png" alt="Show! Music Core 音樂中心 (MBC)" class="song-cover">
           </div> <h3>③ Show! Music Core 音樂中心 (MBC)</h3>
@@ -899,9 +899,9 @@ html {
         <div class="legend-item"><span class="legend-dot seg-broadcast"></span>放送 10%</div>
         <div class="legend-item"><span class="legend-dot seg-pre"></span>事前投票 10%</div>
         <div class="legend-item"><span class="legend-dot seg-live"></span>實時投票 10%</div>
+
     </div>
 </div>
-
  <div class="detail-btn-wrapper">
     <button class="detail-score-btn" onclick="switchPage('mcd-detail-page')">詳細計分 ➔</button>
 </div>
@@ -922,7 +922,7 @@ html {
                 </div>
                 <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週四 17:00 (GMT+8)</div></div>
                 <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週五 23:00 ～ 每週二 22:59 (GMT+8)</div></div>
-                <div class="info-row"><div class="info-label">🗳️ 實時投票</div><div>依音放節目宣布開始 / 結束時間</div></div>
+                <div class="info-row"><div class="info-label">🗳️ 實時投票</div><div>週四約17:10 (GMT+8)，約1小時</div></div>
                 
                 <div class="tutorial-section">
                     <button class="toggle-tutorial-btn" onclick="toggleTutorial('mcd-tut')">查看詳細圖文教學 <span>▼</span></button>
@@ -931,6 +931,7 @@ html {
                         <p style="color:#aaa; font-size:14px;">以下標籤直接跳轉圖片⇩</p>
 
                         <span class="tag tag-btn" onclick="document.getElementById('Mnet Plus-vote').scrollIntoView({ behavior: 'smooth' })">#投票教學👈</span>
+                        <span class="tag tag-btn" onclick="document.getElementById('Mnet Plus-vote1-expired').scrollIntoView({ behavior: 'smooth' })">#投票說明👇</span>
 
                         <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解-實時投票待：</p>
 
@@ -954,6 +955,16 @@ html {
                             <span class="step-badge">投票步驟 5</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票5.jpg" alt="步驟5">
                         </div>
+
+                                <div class="image-wrapper" id="Mnet Plus-vote1-expired">
+        <div class="app-card">
+            <div class="app-header">
+            <div class="info-row">
+                <div class="info-label-vote">規則</div>
+                <div>①事前:1次5票。每週五 23:00 ～ 每週二 22:59 (GMT+8)<br>②實時:1次5票，不用存票。<br>週四約17:10，限時1小時，請在時限內投完。</div>
+            </div>
+        </div>
+                    </div> </div>  
                     </div>
                 </div>
             </div>
@@ -984,38 +995,39 @@ html {
             <tr>
                 <td>數位音源</td>
                 <td>5000分</td>
-                <td>Apple Music、YTM、Bugs、Melon、Genie、Flo<br>(MCD&音中是唯二計入國際音樂平台的)"			</td>
+                <td> <span class="tag tag-btn" onclick="document.getElementById('mcd-digitals-remark').scrollIntoView({ behavior: 'smooth' })">音源說明👇</span></td>
             </tr>
             <tr>
                 <td>實體銷量</td>
                 <td>1500分</td>
-                <td>CIRCLE CHART</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('mcd-album-remark').scrollIntoView({ behavior: 'smooth' })">銷量說明👇</span></td>
             </tr>
             <tr>
                 <td>SNS</td>
                 <td>1500分</td>
-                <td>YT MV觀看數<br>Tiktok引用音源+觀看/點讚</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('mcd-SNS-remark').scrollIntoView({ behavior: 'smooth' })">SNS說明👇</span></td>
             </tr>
             <tr>
                 <td>Broadcast<br>放送分</td>
                 <td>1000分</td>
-                <td>1.藝人是否有參加MCD<br>2.上週打歌舞台在YT MNET TV的觀看數</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('mcd-broadcast-remark').scrollIntoView({ behavior: 'smooth' })">放送說明👇</span></td>
             </tr>
             <tr>
                 <td>事前投票</td>
                 <td>1000分</td>
-                <td> </td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('mcd-vote1-remark').scrollIntoView({ behavior: 'smooth' })">事前說明👇</span></td>
             </tr>
             <tr>
                 <td>實時投票</td>
                 <td>1000分</td>
-                <td> </td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('mcd-vote2-remark').scrollIntoView({ behavior: 'smooth' })">實時說明👇</span></td>
             </tr>
         </tbody>
     </table>
 </div>
 
-    <div class="app-grid">
+
+                                <div class="image-wrapper" id="mcd-digitals-remark">
         <div class="app-card">
             <div class="app-header">
                 <div class="app-title">🎵 音源 (佔比 50%)</div>
@@ -1023,14 +1035,16 @@ html {
             </div>
             <div class="info-row">
                 <div class="info-label">採計渠道</div>
-                <div>Melon, Genie, Bugs, Flo, VIBE 等韓國主流音源榜單。</div>
+                <div>CIRCLE Global K-pop Chart。</div>
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
-                <div>主要統計每日獨立收聽數（Stream）與下載量（Download），依比例換算成分數。</div>
+                <div>Apple Music、Youtube Music、Bugs、Melon、Genie、Flo<br>(MCD&音中是唯二計入國際音樂平台的)。</div>
             </div>
         </div>
+                    </div>
 
+                                <div class="image-wrapper" id="mcd-album-remark">
         <div class="app-card">
             <div class="app-header">
                 <div class="app-title">💿 銷量 (佔比 15%)</div>
@@ -1038,33 +1052,85 @@ html {
             </div>
             <div class="info-row">
                 <div class="info-label">採計渠道</div>
-                <div>Hanteo Chart (瀚特榜)、Circle Chart (原Gaon榜)。</div>
+                <div>CIRCLE CHART(原Gaon榜)。</div>
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
                 <div>採計首週或當週實體專輯之總銷售張數。</div>
             </div>
         </div>
+                    </div>
 
+                                <div class="image-wrapper" id="mcd-SNS-remark">
+                 <div class="app-card">
+                     <div class="app-header">
+                         <div class="app-title">📱 SNS (佔比 15%)</div>
+                         <span class="app-badge">音樂平台</span>
+                     </div>
+                     <div class="info-row">
+                         <div class="info-label">採計渠道</div>
+                         <div>Youtube/Tiktok。</div>
+                     </div>
+                     <div class="info-row">
+                         <div class="info-label">計算規則</div>
+                         <div>Youtube MV觀看數(10%)<br>Tiktok引用音源+觀看/點讚(5%)。</div>
+                     </div>
+                 </div>
+                    </div> 
+
+                                <div class="image-wrapper" id="mcd-broadcast-remark">
         <div class="app-card">
             <div class="app-header">
-                <div class="app-title">📱 SNS (佔比 15%)</div>
-                <span class="app-badge">社群數據</span>
+                <div class="app-title">📺 放送 (佔比 10%)</div>
+                <span class="app-badge">放送節目</span>
             </div>
             <div class="info-row">
                 <div class="info-label">採計渠道</div>
-                <div>YouTube 官方 MV 播放量、TikTok 等社群互動。</div>
+                <div>MNET打歌舞台。</div>
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
-                <div>主要依據官方釋出之主打歌 MV 點閱率與按讚數成長量進行結算。</div>
+                <div>1.藝人是否有參加MCD<br>2.上週打歌舞台在YT MNET TV的觀看數。</div>
+            </div>
+        </div>
+                    </div>
+
+                                <div class="image-wrapper" id="mcd-vote1-remark">
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">🗳️ 事前投票 (佔比 10%)</div>
+                <span class="app-badge">全網投票</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Mnet Plus事前投票。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>1次5票，不用存票。<br>每週五 23:00 ～ 每週二 22:59 (GMT+8)</div>
+                     </div>
+                 </div>
+                    </div> 
+                                <div class="image-wrapper" id="mcd-vote2-remark">
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">🗳️ 實時投票 (佔比 10%)</div>
+                <span class="app-badge">全網投票</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Mnet Plus實時投票。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>1次5票，不用存票。<br>週四約17:10，限時1小時，請在時限內投完。</div>
             </div>
         </div>
     </div>
 </div>
- 
 
-            <div id="musiccenter-page" class="page">
+
+            <div id="musiccore-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
         
 <div class="header.weight-header">
@@ -1078,9 +1144,9 @@ html {
         <div class="ratio-segment seg-music" style="width: 50%;">音源50%<br>CIRCLE</div>
         <div class="ratio-segment seg-sales" style="width: 10%;">銷量10%<br>CIRCLE</div>
         <div class="ratio-segment seg-sns" style="width: 10%;">SNS<br>10%<br>YT</div>
-        <div class="ratio-segment seg-broadcast" style="width: 10%;">放送<br>10%<br>MBC<br>電台</div>
-        <div class="ratio-segment seg-pre" style="width: 10%;">事前<br>投票<br>10%<br>(App5%)</div>
-        <div class="ratio-segment seg-live" style="width: 10%;">實時<br>投票<br>10%<br>(App5%)</div>
+        <div class="ratio-segment seg-broadcast" style="width: 5%;">放送<br>5%<br>MBC<br>電台</div>
+        <div class="ratio-segment seg-pre" style="width: 15%;">事前<br>投票<br>15%<br>(App10%)</div>
+        <div class="ratio-segment seg-live" style="width: 10%;">實時<br>投票<br>10%<br>(App6%)</div>
     </div>
     <div class="ratio-legend">
         <div class="legend-item"><span class="legend-dot seg-music"></span>音源 50%</div>
@@ -1089,11 +1155,11 @@ html {
         <div class="legend-item"><span class="legend-dot seg-broadcast"></span>放送 10%</div>
         <div class="legend-item"><span class="legend-dot seg-pre"></span>事前投票 10%</div>
         <div class="legend-item"><span class="legend-dot seg-live"></span>實時投票 10%</div>
+
     </div>
 </div>
-
 <div class="detail-btn-wrapper">
-    <button class="detail-score-btn" onclick="switchPage('musiccenter-detail-page')">詳細計分 ➔</button>
+    <button class="detail-score-btn" onclick="switchPage('musiccore-detail-page')">詳細計分 ➔</button>
 </div>
 
 <div class="header.weight-header">
@@ -1112,6 +1178,7 @@ html {
                 </div>
                 <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週六 14:15 (GMT+8)</div></div>
                 <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週二 17:00 ～ 每週四 10:00 (GMT+8)</div></div>
+                <div class="info-row"><div class="info-label">🗳️ 實時投票</div><div>每週六 14:15 (GMT+8)(Mubeat)</div></div>
                 
                 <div class="tutorial-section">
                     <button class="toggle-tutorial-btn" onclick="toggleTutorial('Mubeat-tut')">查看詳細圖文教學 <span>▼</span></button>
@@ -1120,9 +1187,10 @@ html {
                         <p style="color:#aaa; font-size:14px;">以下標籤直接跳轉圖片⇩</p>
                         <span class="tag tag-btn" onclick="document.getElementById('Mubeat-tickets').scrollIntoView({ behavior: 'smooth' })">#存票教學👈</span>
                         <span class="tag tag-btn" onclick="document.getElementById('Mubeat-vote').scrollIntoView({ behavior: 'smooth' })">#投票教學👈</span>
+                        <span class="tag tag-btn" onclick="document.getElementById('Mubeat-vote1-expired').scrollIntoView({ behavior: 'smooth' })">#投票&過期說明👇</span>
 
                         <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解-實時投票待：</p>
-                                <div class="image-wrapper" id="Mubeattickets">
+                                <div class="image-wrapper" id="Mubeat-tickets">
                             <span class="step-badge">存票步驟 1</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat/存票1.jpg" alt="步驟1">
                     </div>
@@ -1150,6 +1218,17 @@ html {
                             <span class="step-badge">投票步驟 4</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat/投票4.jpg" alt="步驟4">
                     </div>
+                                <div class="image-wrapper" id="Mubeat-vote1-expired">
+        <div class="app-card">
+            <div class="app-header">
+            <div class="info-row">
+                <div class="info-label-vote">規則</div>
+                <div>1.每日簽到(隨簽到日增加每日獲得數量)+刷廣告。<br>2.需使用愛心投票，一票50藍心or 一票1黃心，投票每次只能選擇一種愛心最多500票，CD10分鐘(藍心30天過期)。</div>
+            </div>
+        </div>
+                    </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -1164,7 +1243,7 @@ html {
                 </div>
                 <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週六 14:15 (GMT+8)</div></div>
                 <div class="info-row"><div class="info-label">🗳️ 事前投票</div><div>每週二 17:00 ～ 每週四 10:00 (GMT+8)</div></div>
-                <div class="info-row"><div class="info-label">🗳️ 實時投票APP</div><div>每週六 14:15 (GMT+8)(Higher)</div></div>
+                <div class="info-row"><div class="info-label">🗳️ 實時投票</div><div>每週六 14:15 (GMT+8)(Muniverse)</div></div>
                 
                 <div class="tutorial-section">
                     <button class="toggle-tutorial-btn" onclick="toggleTutorial('Muniverse-tut')">查看詳細圖文教學 <span>▼</span></button>
@@ -1173,6 +1252,7 @@ html {
                         <p style="color:#aaa; font-size:14px;">以下標籤直接跳轉圖片⇩</p>
                         <span class="tag tag-btn" onclick="document.getElementById('Muniverse-tickets').scrollIntoView({ behavior: 'smooth' })">#存票教學👈</span>
                         <span class="tag tag-btn" onclick="document.getElementById('Muniverse-vote').scrollIntoView({ behavior: 'smooth' })">#投票教學👈</span>
+                        <span class="tag tag-btn" onclick="document.getElementById('Muniverse-vote1-expired').scrollIntoView({ behavior: 'smooth' })">#投票&過期說明👇</span>
 
                         <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解-實時投票待：</p>
                                 <div class="image-wrapper" id="Muniverse-tickets">
@@ -1199,13 +1279,24 @@ html {
                             <span class="step-badge">投票步驟 4</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse/投票4.jpg" alt="步驟4">
                         </div>
+                                <div class="image-wrapper" id="Muniverse-vote1-expired">
+        <div class="app-card">
+            <div class="app-header">
+            <div class="info-row">
+                <div class="info-label-vote">規則</div>
+                <div>1.每日簽到(隨簽到日增加每日獲得數量)+刷廣告。<br>2.需使用愛心投票，一票50藍心or 一票1黃心，投票每次只能選擇一種愛心最多500票，CD10分鐘(藍心30天過期)。</div>
+            </div>
+        </div>
+                    </div> </div> 
+
                     </div>
                 </div>
             </div>
         </div>
 
-<div id="musiccenter-detail-page" class="page">
-    <button class="back-btn" onclick="switchPage('musiccenter-page')">⏎ 返回教學介面</button>
+
+<div id="musiccore-detail-page" class="page">
+    <button class="back-btn" onclick="switchPage('musiccore-page')">⏎ 返回教學介面</button>
     
 <div class="container">
     <header>
@@ -1215,7 +1306,53 @@ html {
 
     <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算方式與管道說明：</p>
 
-    <div class="app-grid">
+<div class="app-card">
+    <h3>計分模式</h3>
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>各項</th>
+                <th>總分<br>1萬分</th>
+                <th>備註</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>數位音源</td>
+                <td>5000分</td>
+                <td> <span class="tag tag-btn" onclick="document.getElementById('musiccore-digitals-remark').scrollIntoView({ behavior: 'smooth' })">音源說明👇</span></td>
+            </tr>
+            <tr>
+                <td>實體銷量</td>
+                <td>1000分</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('musiccore-album-remark').scrollIntoView({ behavior: 'smooth' })">銷量說明👇</span></td>
+            </tr>
+            <tr>
+                <td>SNS</td>
+                <td>1000分</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('musiccore-SNS-remark').scrollIntoView({ behavior: 'smooth' })">SNS說明👇</span></td>
+            </tr>
+            <tr>
+                <td>Broadcast<br>放送分</td>
+                <td>1000分</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('musiccore-broadcast-remark').scrollIntoView({ behavior: 'smooth' })">放送說明👇</span></td>
+            </tr>
+            <tr>
+                <td>事前投票</td>
+                <td>1000分</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('musiccore-vote1-remark').scrollIntoView({ behavior: 'smooth' })">事前說明👇</span></td>
+            </tr>
+            <tr>
+                <td>實時投票</td>
+                <td>1000分</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('musiccore-vote2-remark').scrollIntoView({ behavior: 'smooth' })">實時說明👇</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+                                <div class="image-wrapper" id="musiccore-digitals-remark">
         <div class="app-card">
             <div class="app-header">
                 <div class="app-title">🎵 音源 (佔比 50%)</div>
@@ -1223,14 +1360,16 @@ html {
             </div>
             <div class="info-row">
                 <div class="info-label">採計渠道</div>
-                <div>Melon, Genie, Bugs, Flo, VIBE 等韓國主流音源榜單。</div>
+                <div>CIRCLE Global K-pop Chart。</div>
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
-                <div>主要統計每日獨立收聽數與下載量，依比例換算成分數。</div>
+                <div>CIRCLE CHART(Apple Music、Spotify、Melon、Bugs、Vibe、Genie、Flo、Samsung Music、V Coloring)。</div>
             </div>
         </div>
+                    </div>
 
+                                <div class="image-wrapper" id="musiccore-album-remark">
         <div class="app-card">
             <div class="app-header">
                 <div class="app-title">💿 銷量 (佔比 10%)</div>
@@ -1238,26 +1377,78 @@ html {
             </div>
             <div class="info-row">
                 <div class="info-label">採計渠道</div>
-                <div>Hanteo Chart (瀚特榜)、Circle Chart (原Gaon榜)。</div>
+                <div>CIRCLE CHART(原Gaon榜)。</div>
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
                 <div>採計首週或當週實體專輯之總銷售張數。</div>
             </div>
         </div>
+                    </div>
 
+                                <div class="image-wrapper" id="musiccore-SNS-remark">
+                 <div class="app-card">
+                     <div class="app-header">
+                         <div class="app-title">📱 SNS (佔比 10%)</div>
+                         <span class="app-badge">音樂平台</span>
+                     </div>
+                     <div class="info-row">
+                         <div class="info-label">採計渠道</div>
+                         <div>Youtube/Tiktok。</div>
+                     </div>
+                     <div class="info-row">
+                         <div class="info-label">計算規則</div>
+                         <div>Youtube MV觀看數(10%)<br>Tiktok引用音源+觀看/點讚(5%)。</div>
+                     </div>
+                 </div>
+                    </div> 
+
+                                <div class="image-wrapper" id="musiccore-broadcast-remark">
         <div class="app-card">
             <div class="app-header">
-                <div class="app-title">📱 SNS (佔比 10%)</div>
-                <span class="app-badge">社群數據</span>
+                <div class="app-title">📺 放送 (佔比 5%)</div>
+                <span class="app-badge">放送節目</span>
             </div>
             <div class="info-row">
                 <div class="info-label">採計渠道</div>
-                <div>YouTube 官方 MV 播放量、TikTok 等社群互動。</div>
+                <div>MNET打歌舞台。</div>
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
-                <div>主要依據官方釋出之主打歌 MV 點閱率與按讚數成長量進行結算。</div>
+                <div>1.藝人是否有參加MBC<br>2.上週打歌舞台在YT MNET TV的觀看數。</div>
+            </div>
+        </div>
+                    </div>
+
+                                <div class="image-wrapper" id="musiccore-vote1-remark">
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">🗳️ 事前投票 (佔比 15%)</div>
+                <span class="app-badge">全網投票</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Mubeat/Muniverse事前投票。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>MBC定期招募的2000名，在節目播出前先看過內容進行評分。(5%)<br>App投票90天過期。(10%)</div>
+                     </div>
+                 </div>
+                    </div> 
+                                <div class="image-wrapper" id="musiccore-vote2-remark">
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">🗳️ 實時投票 (佔比 10%)</div>
+                <span class="app-badge">全網投票</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Mubeat/Muniverse實時投票。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>韓國人簡訊投票。(4%)<br>APP投票，週六約14:15~15:15(GMT+8)，請在時限內投完。(6%)</div>
             </div>
         </div>
     </div>
@@ -1319,6 +1510,7 @@ html {
                         <p style="color:#aaa; font-size:14px;">以下標籤直接跳轉圖片⇩</p>
                         <span class="tag tag-btn" onclick="document.getElementById('Linc-tickets').scrollIntoView({ behavior: 'smooth' })">#存票教學👈</span>
                         <span class="tag tag-btn" onclick="document.getElementById('Linc-vote').scrollIntoView({ behavior: 'smooth' })">#投票教學👈</span>
+                        <span class="tag tag-btn" onclick="document.getElementById('Linc-vote1-expired').scrollIntoView({ behavior: 'smooth' })">#投票&過期說明👇</span>
 
                         <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解-實時投票待：</p>
                                 <div class="image-wrapper" id="Linc-tickets">
@@ -1345,11 +1537,23 @@ html {
                             <span class="step-badge">投票步驟 4</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/投票4.jpg" alt="步驟4">
                     </div>
+
+                                <div class="image-wrapper" id="Linc-vote1-expired">
+        <div class="app-card">
+            <div class="app-header">
+            <div class="info-row">
+                <div class="info-label-vote">規則</div>
+                <div>1.每日簽到(隨簽到日增加每日獲得數量)+刷廣告。<br>2.需使用愛心投票，一票50藍心or 一票1黃心，投票每次只能選擇一種愛心最多500票，CD10分鐘(藍心30天過期)。</div>
+            </div>
+        </div>
+                    </div>
+
+                    </div>
                 </div>
             </div>
         </div>
 
-<div class="app-card">
+            <div class="app-card">
                 <div class="app-header">
                     <div class="app-title">④ 人氣歌謠(事前投票)</div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
@@ -1410,6 +1614,7 @@ html {
                         <p style="color:#aaa; font-size:14px;">以下標籤直接跳轉圖片⇩</p>
                         <span class="tag tag-btn" onclick="document.getElementById('Higher-tickets').scrollIntoView({ behavior: 'smooth' })">#存票教學👈</span>
                         <span class="tag tag-btn" onclick="document.getElementById('Higher-vote').scrollIntoView({ behavior: 'smooth' })">#投票教學👈</span>
+                        <span class="tag tag-btn" onclick="document.getElementById('Higher-vote1-expired').scrollIntoView({ behavior: 'smooth' })">#投票&過期說明👇</span>
 
                         <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解-實時投票待：</p>
                                 <div class="image-wrapper" id="Higher-tickets">
@@ -1445,10 +1650,21 @@ html {
                             <span class="step-badge">投票步驟 4</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/投票4.jpg" alt="步驟4">
                     </div>
+                                <div class="image-wrapper" id="Higher-vote1-expired">
+        <div class="app-card">
+            <div class="app-header">
+            <div class="info-row">
+                <div class="info-label-vote">規則</div>
+                <div>1.每日簽到(隨簽到日增加每日獲得數量)+刷廣告。<br>2.需使用愛心投票，一票50藍心or 一票1黃心，投票每次只能選擇一種愛心最多500票，CD10分鐘(藍心30天過期)。</div>
+            </div>
+        </div>
+                    </div> </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
 
 <div id="inkigayo-detail-page" class="page">
     <button class="back-btn" onclick="switchPage('inkigayo-page')">⏎ 返回教學介面</button>
@@ -1461,8 +1677,53 @@ html {
 
     <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算方式與管道說明：</p>
 
+<div class="app-card">
+    <h3>計分模式</h3>
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>各項</th>
+                <th>總分<br>1萬分</th>
+                <th>備註</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>數位音源</td>
+                <td>5000分</td>
+                <td> <span class="tag tag-btn" onclick="document.getElementById('inkigayo-digitals-remark').scrollIntoView({ behavior: 'smooth' })">音源說明👇</span></td>
+            </tr>
+            <tr>
+                <td>實體銷量</td>
+                <td>1000分</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('inkigayo-album-remark').scrollIntoView({ behavior: 'smooth' })">銷量說明👇</span></td>
+            </tr>
+            <tr>
+                <td>SNS</td>
+                <td>1000分</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('inkigayo-SNS-remark').scrollIntoView({ behavior: 'smooth' })">SNS說明👇</span></td>
+            </tr>
+            <tr>
+                <td>Broadcast<br>放送分</td>
+                <td>1000分</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('inkigayo-broadcast-remark').scrollIntoView({ behavior: 'smooth' })">放送說明👇</span></td>
+            </tr>
+            <tr>
+                <td>事前投票</td>
+                <td>1000分</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('inkigayo-vote1-remark').scrollIntoView({ behavior: 'smooth' })">事前說明👇</span></td>
+            </tr>
+            <tr>
+                <td>實時投票</td>
+                <td>1000分</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('inkigayo-vote2-remark').scrollIntoView({ behavior: 'smooth' })">實時說明👇</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-    <div class="app-grid">
+
+                                <div class="image-wrapper" id="inkigayo-digitals-remark">
         <div class="app-card">
             <div class="app-header">
                 <div class="app-title">🎵 音源 (佔比 50%)</div>
@@ -1470,14 +1731,16 @@ html {
             </div>
             <div class="info-row">
                 <div class="info-label">採計渠道</div>
-                <div>Melon, Genie, Bugs, Flo, VIBE 等韓國主流音源榜單。</div>
+                <div>CIRCLE Global K-pop Chart。</div>
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
-                <div>主要統計每日獨立收聽數（Stream）與下載量（Download），依比例換算成分數。</div>
+                <div>CIRCLE CHART(Apple Music、Spotify、Melon、Bugs、Vibe、Genie、Flo、Samsung Music、V Coloring)。</div>
             </div>
         </div>
+                    </div>
 
+                                <div class="image-wrapper" id="inkigayo-album-remark">
         <div class="app-card">
             <div class="app-header">
                 <div class="app-title">💿 銷量 (佔比 10%)</div>
@@ -1485,30 +1748,83 @@ html {
             </div>
             <div class="info-row">
                 <div class="info-label">採計渠道</div>
-                <div>Hanteo Chart (瀚特榜)、Circle Chart (原Gaon榜)。</div>
+                <div>CIRCLE CHART(原Gaon榜)。</div>
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
                 <div>採計首週或當週實體專輯之總銷售張數。</div>
             </div>
         </div>
+                    </div>
 
+                                <div class="image-wrapper" id="inkigayo-SNS-remark">
+                 <div class="app-card">
+                     <div class="app-header">
+                         <div class="app-title">📱 SNS (佔比 10%)</div>
+                         <span class="app-badge">音樂平台</span>
+                     </div>
+                     <div class="info-row">
+                         <div class="info-label">採計渠道</div>
+                         <div>Youtube/Tiktok。</div>
+                     </div>
+                     <div class="info-row">
+                         <div class="info-label">計算規則</div>
+                         <div>Youtube MV觀看數(10%)<br>Tiktok引用音源+觀看/點讚(5%)。</div>
+                     </div>
+                 </div>
+                    </div> 
+
+                                <div class="image-wrapper" id="inkigayo-broadcast-remark">
         <div class="app-card">
             <div class="app-header">
-                <div class="app-title">📱 SNS (佔比 20%)</div>
-                <span class="app-badge">社群數據</span>
+                <div class="app-title">📺 放送 (佔比 5%)</div>
+                <span class="app-badge">放送節目</span>
             </div>
             <div class="info-row">
                 <div class="info-label">採計渠道</div>
-                <div>YouTube 官方 MV 播放量、TikTok 等社群互動。</div>
+                <div>MNET打歌舞台。</div>
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
-                <div>主要依據官方釋出之主打歌 MV 點閱率與按讚數成長量進行結算。</div>
-                </div>
+                <div>1.藝人是否有參加MBC<br>2.上週打歌舞台在YT MNET TV的觀看數。</div>
+            </div>
+        </div>
+                    </div>
+
+                                <div class="image-wrapper" id="inkigayo-vote1-remark">
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">🗳️ 事前投票 (佔比 15%)</div>
+                <span class="app-badge">全網投票</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Mubeat/Muniverse事前投票。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>MBC定期招募的2000名，在節目播出前先看過內容進行評分。(5%)<br>App投票90天過期。(10%)</div>
+                     </div>
+                 </div>
+                    </div> 
+                                <div class="image-wrapper" id="inkigayo-vote2-remark">
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">🗳️ 實時投票 (佔比 10%)</div>
+                <span class="app-badge">全網投票</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Mubeat/Muniverse實時投票。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>韓國人簡訊投票。(4%)<br>APP投票，週六約14:15~15:15(GMT+8)，請在時限內投完。(6%)</div>
             </div>
         </div>
     </div>
+</div>
+
 
 
             <div id="showchamp-page" class="page">
@@ -1567,6 +1883,7 @@ html {
                         <p style="color:#aaa; font-size:14px;">以下標籤直接跳轉圖片⇩</p>
                         <span class="tag tag-btn" onclick="document.getElementById('IDOL CHAMP-tickets').scrollIntoView({ behavior: 'smooth' })">#存票教學👈</span>
                         <span class="tag tag-btn" onclick="document.getElementById('IDOL CHAMP-vote').scrollIntoView({ behavior: 'smooth' })">#投票教學👈</span>
+                        <span class="tag tag-btn" onclick="document.getElementById('IDOL CHAMP-vote1-expired').scrollIntoView({ behavior: 'smooth' })">#投票&過期說明👇</span>
 
                         <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解-實時投票待：</p>
                                 <div class="image-wrapper" id="IDOL CHAMP-tickets">
@@ -1613,10 +1930,21 @@ html {
                             <span class="step-badge">投票步驟 8</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票8.png" alt="步驟8">
                         </div>
+
+                                <div class="image-wrapper" id="IDOL CHAMP-vote1-expired">
+        <div class="app-card">
+            <div class="app-header">
+            <div class="info-row">
+                <div class="info-label-vote">規則</div>
+                <div>1.每日簽到(隨簽到日增加每日獲得數量)+刷廣告。<br>2.需使用愛心投票，一票50藍心or 一票1黃心，投票每次只能選擇一種愛心最多500票，CD10分鐘(藍心30天過期)。</div>
+            </div>
+        </div>
+                    </div> </div>  
                     </div>
                 </div>
             </div>
         </div>
+
 
 <div id="showchamp-detail-page" class="page">
     <button class="back-btn" onclick="switchPage('showchamp-page')">⏎ 返回教學介面</button>
@@ -1629,54 +1957,132 @@ html {
 
     <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算方式與管道說明：</p>
 
-    <div class="app-grid">
+<div class="app-card">
+    <h3>計分模式</h3>
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>各項</th>
+                <th>總分<br>20萬分</th>
+                <th>備註</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>數位音源</td>
+                <td>各團均分120000分</td>
+                <td> <span class="tag tag-btn" onclick="document.getElementById('showchamp-digitals-remark').scrollIntoView({ behavior: 'smooth' })">音源說明👇</span></td>
+            </tr>
+            <tr>
+                <td>實體銷量</td>
+                <td>各團均分10000分</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('showchamp-album-remark').scrollIntoView({ behavior: 'smooth' })">銷量說明👇</span></td>
+            </tr>
+            <tr>
+                <td>SNS</td>
+                <td>各團均分10000分</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('showchamp-SNS-remark').scrollIntoView({ behavior: 'smooth' })">SNS說明👇</span></td>
+            </tr>
+            <tr>
+                <td>Broadcast<br>放送分</td>
+                <td>各團均分40000分</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('showchamp-broadcast-remark').scrollIntoView({ behavior: 'smooth' })">放送說明👇</span></td>
+            </tr>
+            <tr>
+                <td>事前投票</td>
+                <td>2000分</td>
+                <td><span class="tag tag-btn" onclick="document.getElementById('showchamp-vote1-remark').scrollIntoView({ behavior: 'smooth' })">投票說明👇</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+                                <div class="image-wrapper" id="showchamp-digitals-remark">
         <div class="app-card">
             <div class="app-header">
-                <div class="app-title">🎵 音源 (佔比 35%)</div>
+                <div class="app-title">🎵 音源 (佔比 60%)</div>
                 <span class="app-badge">核心主要項</span>
             </div>
             <div class="info-row">
                 <div class="info-label">採計渠道</div>
-                <div>Melon, Genie, Bugs, Flo, VIBE 等韓國主流音源榜單。</div>
+                <div>Melon, Genie, Bugs, Flo, Vibe 等韓國主流音源榜單。</div>
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
-                <div>主要統計每日獨立收聽數（Stream）與下載量（Download），依比例換算成分數。</div>
+                <div>主要統計每日獨立收聽數與下載量，依比例換算成分數。<br>※需數位音源任一周榜單200名內才計入。</div>
             </div>
         </div>
+                    </div>
 
+                                <div class="image-wrapper" id="showchamp-album-remark">
         <div class="app-card">
             <div class="app-header">
-                <div class="app-title">💿 銷量 (佔比 15%)</div>
+                <div class="app-title">💿 銷量 (佔比 5%)</div>
                 <span class="app-badge">實體專輯</span>
             </div>
             <div class="info-row">
                 <div class="info-label">採計渠道</div>
-                <div>Hanteo Chart (瀚特榜)、Circle Chart (原Gaon榜)。</div>
+                <div>Hanteo Chart、CIRCLE CHART(原Gaon榜)。</div>
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
                 <div>採計首週或當週實體專輯之總銷售張數。</div>
             </div>
         </div>
+                    </div>
 
+                                <div class="image-wrapper" id="showchamp-SNS-remark">
+                 <div class="app-card">
+                     <div class="app-header">
+                         <div class="app-title">📱 SNS (佔比 5%)</div>
+                         <span class="app-badge">音樂平台</span>
+                     </div>
+                     <div class="info-row">
+                         <div class="info-label">採計渠道</div>
+                         <div>CIRCLE/Youtube/Tiktok。</div>
+                     </div>
+                     <div class="info-row">
+                         <div class="info-label">計算規則</div>
+                         <div>以CIRCLE SOCIAL榜為準，基本上看YT+Tiktok。</div>
+                     </div>
+                 </div>
+                    </div> 
+
+                                <div class="image-wrapper" id="showchamp-broadcast-remark">
         <div class="app-card">
             <div class="app-header">
-                <div class="app-title">📱 SNS (佔比 10%)</div>
-                <span class="app-badge">社群數據</span>
+                <div class="app-title">📺 放送 (佔比 20%)</div>
+                <span class="app-badge">放送節目</span>
             </div>
             <div class="info-row">
                 <div class="info-label">採計渠道</div>
-                <div>YouTube 官方 MV 播放量、TikTok 等社群互動。</div>
+                <div>KBS打歌舞台/廣播。</div>
             </div>
             <div class="info-row">
                 <div class="info-label">計算規則</div>
-                <div>主要依據官方釋出之主打歌 MV 點閱率與按讚數成長量進行結算。</div>
-                </div>
+                <div>參加音銀打歌+打歌舞台觀看數、在電台的播放次數。</div>
+            </div>
+        </div>
+                    </div>
+
+                                <div class="image-wrapper" id="showchamp-vote1-remark">
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">🗳️ 投票 (佔比 10%)</div>
+                <span class="app-badge">全網投票</span>
+            </div>
+            <div class="info-row">
+                <div class="info-label">採計渠道</div>
+                <div>Fancast事前投票。</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">計算規則</div>
+                <div>1.每日簽到(隨簽到日增加每日獲得數量)+刷廣告。<br>2.需使用藍心投票，一票50藍心，投票一次最多500票，CD10分鐘(愛心30天過期)。</div>
             </div>
         </div>
     </div>
-
+</div>
 
     <div id="Melon-page" class="page">
         <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
@@ -1800,7 +2206,7 @@ window.addEventListener('popstate', function(event) {
         'vote-page': '音放存票投票教學',
         'mubank-page': '音放存票投票教學/Music_Bank_音樂銀行',
         'mcd-page': '音放存票投票教學/M_Countdown_MCD',
-        'musiccenter-page': '音放存票投票教學/Show! Music Core 音樂中心',
+        'musiccore-page': '音放存票投票教學/Show! Music Core 音樂中心',
         'inkigayo-page': '音放存票投票教學/Inkigayo_人氣歌謠',
         'showchamp-page': '音放存票投票教學/SHOW_champion_冠軍秀',
         'Melon-page': 'Melon_切瓜刷音源教學',
