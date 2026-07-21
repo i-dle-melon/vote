@@ -303,14 +303,30 @@ html {
     cursor: pointer;       /* 游標變成小手手提示可點擊 */
     transition: all 0.2s;
 }
-
 /* 滑鼠滑入時的微發光效果 */
 .tag.tag-btn:hover {
     background-color: rgba(0, 205, 60, 0.1); /* 淡淡的綠色背景 */
     box-shadow: 0 0 8px rgba(0, 205, 60, 0.3);
 }
 
-/* 懸浮回到最頂按鈕 */
+/* 獨立綠色小標籤按鈕樣式 */
+.alone.tag-btn {
+    float: right;          /* 強制浮動靠最右側 */
+    background: #1e1e1e;   /* 補上深色背景底色 */
+    border: 1px solid #00cd3c; /* 補上實體邊框 */
+    border-color: #00cd3c; /* 經典應援綠邊框 */
+    border-radius: 4px;   /* 圓角弧度，數值越大越圓（可依需求調整 10px 等） */
+    padding: 2px 4px; /* 2px 為上下留白，4px 為左右留白，可自由調整 */
+    color: #00cd3c;        /* 綠色字體 */
+    cursor: pointer;       /* 游標變成小手手提示可點擊 */
+    transition: all 0.2s;
+}
+/* 獨立滑鼠滑入時的微發光效果 */
+.alone.tag-btn:hover {
+    background-color: rgba(0, 205, 60, 0.1); /* 淡淡的綠色背景 */
+    box-shadow: 0 0 8px rgba(0, 205, 60, 0.3);
+}
+
 /* 懸浮回到最頂按鈕 - 縮小且半透明版 */
 .back-to-top {
     position: fixed;
@@ -636,6 +652,9 @@ html {
 <div id="vote-page" class="page">
     <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
 
+        <span class="alone tag-btn" onclick="document.getElementById('for dummies-modal').style.display='flex'">每日任務懶人包🫴</span>
+
+
 <div class="header.weight-header">
     <header>
         <h2>節目選單</h2>
@@ -795,7 +814,7 @@ html {
 <div class="app-card">
     <div style="display: flex; align-items: center; justify-content: space-between;">
         <h3 style="margin: 0;">計分模式</h3>
-        <span class="tag tag-btn" onclick="document.getElementById('score-modal').style.display='flex'">SNS音源一覽圖</span>
+        <span class="tag tag-btn" onclick="document.getElementById('score-modal').style.display='flex'">SNS音源一覽圖☝️</span>
     </div>
 </div>
 
@@ -1033,7 +1052,7 @@ html {
 <div class="app-card">
     <div style="display: flex; align-items: center; justify-content: space-between;">
         <h3 style="margin: 0;">計分模式</h3>
-        <span class="tag tag-btn" onclick="document.getElementById('score-modal').style.display='flex'">SNS音源一覽圖</span>
+        <span class="tag tag-btn" onclick="document.getElementById('score-modal').style.display='flex'">SNS音源一覽圖☝️</span>
     </div>
 </div>
 
@@ -1363,7 +1382,7 @@ html {
 <div class="app-card">
     <div style="display: flex; align-items: center; justify-content: space-between;">
         <h3 style="margin: 0;">計分模式</h3>
-        <span class="tag tag-btn" onclick="document.getElementById('score-modal').style.display='flex'">SNS音源一覽圖</span>
+        <span class="tag tag-btn" onclick="document.getElementById('score-modal').style.display='flex'">SNS音源一覽圖☝️</span>
     </div>
 </div>
 
@@ -1738,7 +1757,7 @@ html {
 <div class="app-card">
     <div style="display: flex; align-items: center; justify-content: space-between;">
         <h3 style="margin: 0;">計分模式</h3>
-        <span class="tag tag-btn" onclick="document.getElementById('score-modal').style.display='flex'">SNS音源一覽圖</span>
+        <span class="tag tag-btn" onclick="document.getElementById('score-modal').style.display='flex'">SNS音源一覽圖☝️</span>
     </div>
 </div>
     <table class="score-table">
@@ -2021,7 +2040,7 @@ html {
 <div class="app-card">
     <div style="display: flex; align-items: center; justify-content: space-between;">
         <h3 style="margin: 0;">計分模式</h3>
-        <span class="tag tag-btn" onclick="document.getElementById('score-modal').style.display='flex'">SNS音源一覽圖</span>
+        <span class="tag tag-btn" onclick="document.getElementById('score-modal').style.display='flex'">SNS音源一覽圖☝️</span>
     </div>
 </div>
 
@@ -2241,6 +2260,14 @@ html {
         </div>
     </div>
 
+<div id="for dummies-modal" class="modal-overlay">
+        <div class="modal-container">
+            <img src="https://i-dle-melon.github.io/vote/投票App彙整.jpg" alt="每日任務懶人包" class="modal-img">
+            <button id="close-for dummies-modal" class="modal-close-btn">✕ 關閉</button>
+        </div>
+    </div>
+
+
 <script>
 
 // 1. 核心工人：這段才是真正動手去切換畫面、控制顯示/隱藏的本體！
@@ -2360,9 +2387,17 @@ window.addEventListener('popstate', function(event) {
 document.getElementById('close-score-modal').addEventListener('click', function() {
     document.getElementById('score-modal').style.display = 'none';
 });
+document.getElementById('close-for dummies-modal').addEventListener('click', function() {
+    document.getElementById('for dummies-modal').style.display = 'none';
+});
 
 // 點擊背景空白處也能關閉彈窗
 document.getElementById('score-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        this.style.display = 'none';
+    }
+});
+document.getElementById('for dummies-modal').addEventListener('click', function(e) {
     if (e.target === this) {
         this.style.display = 'none';
     }
