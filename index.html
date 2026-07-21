@@ -518,6 +518,7 @@ html {
     width: 100%;
     border-collapse: collapse;
     margin-top: 12px;
+    margin-bottom: 10px;
     font-size: 14px;
     color: #eee;
 }
@@ -537,6 +538,50 @@ html {
 /* 滑鼠滑過表格列時的微亮效果 */
 .score-table tbody tr:hover {
     background-color: rgba(0, 205, 60, 0.05);
+}
+
+/* 彈窗背景遮罩 */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 彈窗內容容器 */
+.modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+/* 彈窗圖片 */
+.modal-img {
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 8px;
+    border: 1px solid #00cd3c;
+}
+
+/* 關閉按鈕 */
+.modal-close-btn {
+    margin-top: 15px;
+    background: #1e1e1e;
+    color: #00cd3c;
+    border: 1px solid #00cd3c;
+    padding: 8px 24px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
 }
 
     </style>
@@ -748,7 +793,12 @@ html {
     <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算方式與管道說明：</p>
 
 <div class="app-card">
-    <h3>計分模式</h3>
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <h3 style="margin: 0;">計分模式</h3>
+        <span class="tag tag-btn" onclick="document.getElementById('score-modal').style.display='flex'">SNS音源一覽圖</span>
+    </div>
+</div>
+
     <table class="score-table">
         <thead>
             <tr>
@@ -785,7 +835,6 @@ html {
             </tr>
         </tbody>
     </table>
-</div>
 
 
                                 <div class="image-wrapper" id="Fancast-digitals-remark">
@@ -982,7 +1031,12 @@ html {
     <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算方式與管道說明：</p>
 
 <div class="app-card">
-    <h3>計分模式</h3>
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <h3 style="margin: 0;">計分模式</h3>
+        <span class="tag tag-btn" onclick="document.getElementById('score-modal').style.display='flex'">SNS音源一覽圖</span>
+    </div>
+</div>
+
     <table class="score-table">
         <thead>
             <tr>
@@ -1024,7 +1078,7 @@ html {
             </tr>
         </tbody>
     </table>
-</div>
+
 
 
                                 <div class="image-wrapper" id="mcd-digitals-remark">
@@ -1307,7 +1361,12 @@ html {
     <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算方式與管道說明：</p>
 
 <div class="app-card">
-    <h3>計分模式</h3>
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <h3 style="margin: 0;">計分模式</h3>
+        <span class="tag tag-btn" onclick="document.getElementById('score-modal').style.display='flex'">SNS音源一覽圖</span>
+    </div>
+</div>
+
     <table class="score-table">
         <thead>
             <tr>
@@ -1349,7 +1408,6 @@ html {
             </tr>
         </tbody>
     </table>
-</div>
 
 
                                 <div class="image-wrapper" id="musiccore-digitals-remark">
@@ -1678,7 +1736,11 @@ html {
     <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算方式與管道說明：</p>
 
 <div class="app-card">
-    <h3>計分模式</h3>
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <h3 style="margin: 0;">計分模式</h3>
+        <span class="tag tag-btn" onclick="document.getElementById('score-modal').style.display='flex'">SNS音源一覽圖</span>
+    </div>
+</div>
     <table class="score-table">
         <thead>
             <tr>
@@ -1720,7 +1782,6 @@ html {
             </tr>
         </tbody>
     </table>
-</div>
 
 
                                 <div class="image-wrapper" id="inkigayo-digitals-remark">
@@ -1958,7 +2019,12 @@ html {
     <p style="color: #aaa; font-size: 14px; margin-bottom: 20px;">以下為各個計分項目的詳細計算方式與管道說明：</p>
 
 <div class="app-card">
-    <h3>計分模式</h3>
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <h3 style="margin: 0;">計分模式</h3>
+        <span class="tag tag-btn" onclick="document.getElementById('score-modal').style.display='flex'">SNS音源一覽圖</span>
+    </div>
+</div>
+
     <table class="score-table">
         <thead>
             <tr>
@@ -1995,7 +2061,7 @@ html {
             </tr>
         </tbody>
     </table>
-</div>
+
 
 
                                 <div class="image-wrapper" id="showchamp-digitals-remark">
@@ -2168,6 +2234,13 @@ html {
     ⤒
 </div>
 
+<div id="score-modal" class="modal-overlay">
+        <div class="modal-container">
+            <img src="https://i-dle-melon.github.io/vote/SNS音源一覽圖.jpg" alt="計分模式圖解" class="modal-img">
+            <button id="close-score-modal" class="modal-close-btn">✕ 關閉</button>
+        </div>
+    </div>
+
 <script>
 
 // 1. 核心工人：這段才是真正動手去切換畫面、控制顯示/隱藏的本體！
@@ -2283,6 +2356,18 @@ window.addEventListener('popstate', function(event) {
         }
     }
 
+// 綁定關閉按鈕點擊事件
+document.getElementById('close-score-modal').addEventListener('click', function() {
+    document.getElementById('score-modal').style.display = 'none';
+});
+
+// 點擊背景空白處也能關閉彈窗
+document.getElementById('score-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        this.style.display = 'none';
+    }
+});
+
 // 回到最頂端功能
 function scrollToTop() {
     window.scrollTo({
@@ -2291,7 +2376,14 @@ function scrollToTop() {
     });
 }
 
+// 觸發彈窗顯示的函式（可綁定在任何頁面的按鈕上）
+        function openScoreModal() {
+            document.getElementById('score-modal').style.display = 'flex';
+        }
+
+
 </script>
+
 
 </body>
 </html>
