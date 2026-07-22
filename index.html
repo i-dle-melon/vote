@@ -816,7 +816,7 @@ html {
             <div class="app-header">
             <div class="info-row">
                 <div class="info-label-vote">規則</div>
-                <div>1.每日簽到(隨簽到日增加每日獲得數量)+刷廣告。<br>2.需使用愛心投票，一票50藍心or 一票1黃心，投票每次只能選擇一種愛心最多500票，CD10分鐘<span style="color: #ff3b30;">(藍心30天過期)。</span></div>
+                <div>1.每日簽到(隨簽到日增加每日獲得數量)+刷廣告。<br><span style="color: #ff3b30;">禁止點Trade兌換票券 : 錢錢會不見。</span><span class="tag tag-btn" onclick="document.getElementById('trade-modal').style.display='flex'">圖例👈</span><br>2.需使用愛心投票，一票50藍心or 一票1黃心，投票每次只能選擇一種愛心最多500票，CD10分鐘<span style="color: #ff3b30;">(藍心30天過期)。</span></div>
             </div>
         </div>
                     </div> </div>  
@@ -1671,10 +1671,6 @@ html {
                             <span class="step-badge">存票步驟 2</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/存票2.jpg" alt="步驟2">
                     </div>
-                                <div class="image-wrapper">
-                            <span class="step-badge">存票步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/存票3.jpg" alt="步驟3">
-                    </div>
                                 <div class="image-wrapper" id="Linc-vote">
                             <span class="step-badge">投票步驟 1</span>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/投票1.jpg" alt="步驟1">
@@ -2501,6 +2497,13 @@ function scrollToTop() {
         </div>
     </div>
 
+<div id="trade-modal" class="modal-overlay">
+        <div class="modal-container">
+            <img src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/禁止點trade.jpg" alt="禁止點Trade" class="modal-img">
+            <button id="close-trade-modal" class="modal-close-btn">✕ 關閉</button>
+        </div>
+    </div>
+
 <div id="sheet-modal" class="modal-overlay">
     <div class="modal-container sheet-container">
 <div class="iframe-wrapper">
@@ -2520,6 +2523,9 @@ document.getElementById('close-score-modal').addEventListener('click', function(
 document.getElementById('close-for dummies-modal').addEventListener('click', function() {
     document.getElementById('for dummies-modal').style.display = 'none';
 });
+document.getElementById('close-trade-modal').addEventListener('click', function() {
+    document.getElementById('trade-modal').style.display = 'none';
+});
 // 試算表關閉事件
 document.getElementById('close-sheet-modal').addEventListener('click', function() {
     document.getElementById('sheet-modal').style.display = 'none';
@@ -2532,6 +2538,11 @@ document.getElementById('score-modal').addEventListener('click', function(e) {
     }
 });
 document.getElementById('for dummies-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        this.style.display = 'none';
+    }
+});
+document.getElementById('trade-modal').addEventListener('click', function(e) {
     if (e.target === this) {
         this.style.display = 'none';
     }
