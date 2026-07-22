@@ -688,6 +688,7 @@ html {
             border-color: #00cd3c; /* 經典應援綠邊框 */
             border-radius: 4px;   /* 圓角弧度，數值越大越圓（可依需求調整 10px 等） */
             padding: 2px 4px; /* 2px 為上下留白，4px 為左右留白，可自由調整 */
+            font-size: 16px;       /* 💡 新增：設定字體大小（可依需求改為 16px 等） */
             color: #00cd3c;        /* 綠色字體 */
             cursor: pointer;       /* 游標變成小手手提示可點擊 */
             transition: all 0.2s;
@@ -872,7 +873,7 @@ html {
 
         <span class="alone tag-btn" onclick="document.getElementById('sheet-modal').style.display='flex'">每日任務懶人包🫴</span>
 
-<button class="opencalendar-btn" onclick="openCalendar()">📅 開啟行事曆</button>
+<button class="opencalendar-btn" onclick="openCalendar()">📅 行事曆</button>
     <!-- 彈窗calendar結構 -->
     <div class="modalcalendar-overlay" id="calendarModal" onclick="closeCalendarOnOverlay(event)">
         <div class="modal-content">
