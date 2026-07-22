@@ -658,6 +658,166 @@ html {
     z-index: 10;
 }
 
+.calendar-container {
+    background: #1e1e1e;
+    color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    border: 1px solid #00cd3c;
+    position: relative;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 10px; right: 15px;
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+        /* calendar開啟彈窗按鈕 */
+        .opencalendar-btn {
+            float: right;          /* 強制浮動靠最右側 */
+            background: #1e1e1e;   /* 補上深色背景底色 */
+            border: 1px solid #00cd3c; /* 補上實體邊框 */
+            border-color: #00cd3c; /* 經典應援綠邊框 */
+            border-radius: 4px;   /* 圓角弧度，數值越大越圓（可依需求調整 10px 等） */
+            padding: 2px 4px; /* 2px 為上下留白，4px 為左右留白，可自由調整 */
+            color: #00cd3c;        /* 綠色字體 */
+            cursor: pointer;       /* 游標變成小手手提示可點擊 */
+            transition: all 0.2s;
+        }
+        /* 獨立滑鼠滑入時的微發光效果 */
+        .opencalendar-btn:hover {
+            background-color: rgba(0, 205, 60, 0.1); /* 淡淡的綠色背景 */
+            box-shadow: 0 0 8px rgba(0, 205, 60, 0.3);
+        }
+
+
+        /* calendar彈窗背景遮罩 */
+        .modalcalendar-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* 彈窗主體 */
+        .modal-content {
+            background: #d8b4fe; /* 修改：背景顏色 */
+            padding: 20px;
+            border-radius: 10px;
+            min-height: 450px; /* 固定最小高度，避免切換月份時彈窗忽大忽小 */
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        /* 關閉按鈕 */
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: #666666; /* 新增：關閉按鈕顏色 */
+        }
+
+        /* 日曆頂部月分標題 */
+        .calendar-header {
+            text-align: center;
+            justify-content: space-between; /* 左右按鈕分開，文字居中 */
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1e293b; /* 新增：標題顏色 */
+            gap: 10px 5px;
+        }
+
+        /* 切換月份按鈕樣式 */
+        .nav-btn {
+          background-color: #f1f5f9;
+          border: 1px solid #cbd5e1;
+          border-radius: 4px;
+          padding: 4px 10px;
+          font-size: 14px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+
+        .nav-btn:hover {
+          background-color: #e2e8f0;
+        }
+
+        /* 日曆網格布局 */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            text-align: center;
+        }
+
+        .weekday-header {
+            font-weight: bold;
+            padding: 5px 0;
+            background-color: #f3e8ff; /* 修改：星期標頭改成淺紫色 */
+            color: #6b21a8;            /* 修改：星期文字深紫 */
+            font-size: 12px;
+            margin-bottom: 8px; /* 👈 新增這行：調整與下方格子的距離 */
+        }
+
+        .day-cell {
+            min-height: 55px;
+            border: 1px solid #9333ea; /* 修改：邊框顏色 */
+            border-radius: 4px;
+            padding: 2px;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            overflow: hidden;       /* 避免內容過多時溢出格子 */
+        }
+
+        /* 今天日期的紅框標示 */
+        .today {
+            border: 2px solid #ff3b30 !important;
+            background-color: #fff5f5;
+        }
+
+        .day-number {
+            font-weight: bold;
+            margin-bottom: 2px;
+            color: #334155; /* 新增：日期數字顏色 */
+        }
+
+        /* 行事曆事件文字與連結 */
+        .event-text {
+            font-size: 10px;
+            color: #475569; /* 修改：事件內文深灰 */
+            line-height: 1.2;
+        }
+
+        .event-link {
+            font-size: 10px;
+            color: #9333ea; /* 修改：連結改成紫色 */
+            text-decoration: underline;
+            word-break: break-all;
+            margin-top: 2px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -711,6 +871,34 @@ html {
     <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
 
         <span class="alone tag-btn" onclick="document.getElementById('sheet-modal').style.display='flex'">每日任務懶人包🫴</span>
+
+<button class="opencalendar-btn" onclick="openCalendar()">📅 開啟行事曆</button>
+    <!-- 彈窗calendar結構 -->
+    <div class="modalcalendar-overlay" id="calendarModal" onclick="closeCalendarOnOverlay(event)">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeCalendar()">&times;</button>
+<div class="calendar-header">
+            <button class="nav-btn" onclick="changeMonth(-1)">❮</button>
+            <span id="calendarMonth"></span>
+            <button class="nav-btn" onclick="changeMonth(1)">❯</button>
+        </div>
+            
+            <div class="calendar-grid">
+                <!-- 星期標頭 -->
+                <div class="weekday-header">日</div>
+                <div class="weekday-header">一</div>
+                <div class="weekday-header">二</div>
+                <div class="weekday-header">三</div>
+                <div class="weekday-header">四</div>
+                <div class="weekday-header">五</div>
+                <div class="weekday-header">六</div>
+            </div>
+
+            <!-- 日期填入區塊 -->
+            <div class="calendar-grid" id="calendarDays"></div>
+        </div>
+    </div>
+    <!-- 彈窗calendar 結束-->
 
 
 <div class="header.weight-header">
@@ -2466,6 +2654,99 @@ function scrollToTop() {
     });
 }
 
+// 設定行程與傳送門資料 (格式：'YYYY-MM-DD')
+const events = {
+    '2026-07-22': { text: '測試<br>事前投票', link: 'https://i-dle-melon.github.io/vote/?page=%E9%9F%B3%E6%94%BE%E5%AD%98%E7%A5%A8%E6%8A%95%E7%A5%A8%E6%95%99%E5%AD%B8%2FInkigayo_%E4%BA%BA%E6%B0%A3%E6%AD%8C%E8%AC%A0', linkText:  '👉人歌' },
+    '2026-07-25': { text: '測試<br>實時投票', link: 'https://i-dle-melon.github.io/vote/?page=%E9%9F%B3%E6%94%BE%E5%AD%98%E7%A5%A8%E6%8A%95%E7%A5%A8%E6%95%99%E5%AD%B8%2FSHOW_champion_%E5%86%A0%E8%BB%8D%E7%A7%80', linkText: '👉冠軍秀' }
+};
+
+// 1. 新增：記錄當前顯示的日期 (預設為今天)
+let currentDate = new Date();
+
+function openCalendar() {
+    document.getElementById('calendarModal').style.display = 'flex';
+    renderCalendar();
+}
+
+function closeCalendar() {
+    document.getElementById('calendarModal').style.display = 'none';
+}
+
+function closeCalendarOnOverlay(e) {
+    if (e.target.classList.contains('modalcalendar-overlay')) {
+        closeCalendar();
+    }
+}
+
+// 2. 切換月份函式 ( -1 代表上個月，1 代表下個月 )
+function changeMonth(offset) {
+// 先設為 1 號，避免 31 號切換到 30 號或 2 月時造成月份溢位異常
+    currentDate.setDate(1); 
+    currentDate.setMonth(currentDate.getMonth() + offset);
+    renderCalendar();
+}
+
+function renderCalendar() {
+    // 改從 currentDate 取得目前切換到的年份與月份
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth(); // 0 - 11
+    
+    // 取得真正的「今天」日期，用來判斷紅框
+    const today = new Date();
+    const realYear = today.getFullYear();
+    const realMonth = today.getMonth();
+    const realDate = today.getDate();
+
+    // 顯示當前年月
+    document.getElementById('calendarMonth').innerText = `${year} 年 ${month + 1} 月`;
+
+    const firstDay = new Date(year, month, 1).getDay(); // 本月第一天是星期幾
+    const totalDays = new Date(year, month + 1, 0).getDate(); // 本月共有幾天
+
+    const daysContainer = document.getElementById('calendarDays');
+    daysContainer.innerHTML = '';
+
+    // 補齊第一天之前的空白格子
+    for (let i = 0; i < firstDay; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.className = 'day-cell';
+        emptyCell.style.border = 'none';
+        daysContainer.appendChild(emptyCell);
+    }
+
+    // 渲染日期格子
+    for (let day = 1; day <= totalDays; day++) {
+        const cell = document.createElement('div');
+        cell.className = 'day-cell';
+
+        // 只有「年、月、日」完全對應真正的今天時，才加上紅框 (避免切換月份時別的月份同日期也變紅框)
+        if (day === realDate && month === realMonth && year === realYear) {
+            cell.classList.add('today');
+        }
+
+        // 組合日期字串 (YYYY-MM-DD) 比對事件
+        const formattedMonth = String(month + 1).padStart(2, '0');
+        const formattedDay = String(day).padStart(2, '0');
+        const dateKey = `${year}-${formattedMonth}-${formattedDay}`;
+
+        let cellContent = `<span class="day-number">${day}</span>`;
+
+        // 如果該日期有行程資料，加入文字與傳送門連結
+        if (events[dateKey]) {
+            const evt = events[dateKey];
+            if (evt.text) {
+                cellContent += `<span class="event-text">${evt.text}</span>`;
+            }
+            if (evt.link) {
+                cellContent += `<a href="${evt.link}" target="_blank" class="event-link">${evt.linkText || '連結'}</a>`;
+            }
+        }
+
+        cell.innerHTML = cellContent;
+        daysContainer.appendChild(cell);
+    }
+}
+
 
 </script>
 
@@ -2723,6 +3004,7 @@ const appConfig = {
         ios: "https://apps.apple.com/tw/app/mnet-plus/id6443405421"
     }
 };
+
 
 </script>
 
