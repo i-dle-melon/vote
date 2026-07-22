@@ -51,11 +51,19 @@ html {
             margin-top: 5px;
         }
 
-        /* 專屬調整該標題的間距 */
+        /* 專屬header.weight-header調整該標題的間距 */
         header.weight-header {
             padding-top: 5px !important;    /* 縮減上方留白，與按鈕拉近 */
             padding-bottom: 15px;           /* 保持與下方進度條的適當距離 */
             }
+
+        /* 專屬header-title調整該標題的間距 */
+        .header-title {
+            font-size: 1rem;   /* 放大成標題大小 */
+            font-weight: bold;   /* 粗體 */
+            color: #00c853;      /* 綠色 */
+            margin-left: 10px;   /* 與按鈕保持距離 */
+        }
 
         /* 導覽按鈕（返回首頁用） */
         .back-btn {
@@ -634,7 +642,7 @@ html {
     top: -15px;              /* 向上平移：完全裁掉頂部標題 */
     left: 0;
     width: 610px;            /* 加寬基準寬度，確保右側「節目」欄位 100% 完整露出來 */
-    height: 880px;           /* 加高基準高度，配合下方裁切頁腳 */
+    height: 920px;           /* 加高基準高度，配合下方裁切頁腳 */
     border: none;
     transform: scale(var(--scale, 0.6));
     transform-origin: top left;
@@ -746,7 +754,9 @@ html {
 
             <div id="mubank-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
-    
+
+<span class="header-title">Music Bank (音樂銀行)</span>
+
 <div class="header.weight-header">
     <header>
         <h2>總分統計權重</h2>
@@ -783,7 +793,7 @@ html {
    
             <div class="app-card">
                 <div class="app-header">
-                    <div class="app-title">① Music Bank (音樂銀行)</div>
+                    <div class="app-title">① 音樂銀行(事前投票)</div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
 <img src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;">
                     <div class="app-badge">Fancast</div>
@@ -994,6 +1004,8 @@ html {
             <div id="mcd-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
         
+<span class="header-title">M Countdown (MCD)</span>
+  
 <div class="header.weight-header">
     <header>
         <h2>總分統計權重</h2>
@@ -1031,7 +1043,7 @@ html {
    
             <div class="app-card">
                 <div class="app-header">
-                    <div class="app-title">② M Countdown (MCD)</div>
+                    <div class="app-title">② MCD(實時/事前投票)</div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
 <img src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;">
                     <div class="app-badge">Mnet Plus</div>
@@ -1254,7 +1266,9 @@ html {
 
             <div id="musiccore-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
-        
+      
+<span class="header-title">Show! Music Core (音樂中心)</span>
+  
 <div class="header.weight-header">
     <header>
         <h2>總分統計權重</h2>
@@ -1292,7 +1306,7 @@ html {
    
             <div class="app-card">
                 <div class="app-header">
-                    <div class="app-title">③ Show! Music Core 音樂中心(事前投票) </div>
+                    <div class="app-title">③ 音樂中心(實時/事前投票) </div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
 <img src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;">
                     <div class="app-badge">Mubeat</div>
@@ -1353,7 +1367,7 @@ html {
 
             <div class="app-card">
                 <div class="app-header">
-                    <div class="app-title">③ Show! Music Core 音樂中心(事前投票) </div>
+                    <div class="app-title">③ 音樂中心(實時/事前投票) </div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
 <img src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;">
                     <div class="app-badge">Muniverse</div>
@@ -1580,6 +1594,8 @@ html {
             <div id="inkigayo-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
         
+<span class="header-title">Inkigayo (人氣歌謠)</span>
+
 <div class="header.weight-header">
     <header>
         <h2>總分統計權重</h2>
@@ -1955,6 +1971,8 @@ html {
             <div id="showchamp-page" class="page">
     <button class="back-btn" onclick="switchPage('vote-page')">⏎ 返回節目選單</button>
         
+<span class="header-title">SHOW champion (冠軍秀)</span>
+
 <div class="header.weight-header">
     <header>
         <h2>總分統計權重</h2>
@@ -1991,7 +2009,7 @@ html {
    
             <div class="app-card">
                 <div class="app-header">
-                    <div class="app-title">⑤ SHOW champion 冠軍秀</div>
+                    <div class="app-title">⑤ 冠軍秀(事前投票)</div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
 <img src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;">
                     <div class="app-badge">IDOL CHAMP</div>
