@@ -600,6 +600,55 @@ html {
     font-weight: bold;
 }
 
+
+/* sheet彈窗主體容器：極致縮減邊框、加大顯示面積 */
+.modal-container.sheet-container {
+    width: 95vw;             /* 從 90vw 放寬到 95vw */
+    max-width: 520px;
+    height: 90vh;            /* 從 80vh 拉高到 90vh，充分利用螢幕 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;            /* 從 12px 縮減到 3px，減少邊框浪費 */
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 3px solid #00cd3c;  /* 新增：綠色外框線 (粗細可自行改成 1px 或 3px) */
+}
+
+/* 試算表區域 */
+.iframe-wrapper {
+    width: 100%;
+    height: 70;              /* 設定固定高度供滾動 */
+    flex: 1;
+    position: relative;
+    overflow: auto;          /* 關鍵：回復顯示滾動條 (auto 會在需要時自動顯示) */
+    border-radius: 8px;
+    margin-bottom: 4px;      /* 從 10px 縮減到 4px，貼緊關閉按鈕 */
+}
+
+/* iframe 畫面對齊與裁切修正 */
+.modal-iframe {
+    position: absolute;
+    top: -15px;              /* 向上平移：完全裁掉頂部標題 */
+    left: 0;
+    width: 610px;            /* 加寬基準寬度，確保右側「節目」欄位 100% 完整露出來 */
+    height: 880px;           /* 加高基準高度，配合下方裁切頁腳 */
+    border: none;
+    transform: scale(var(--scale, 0.6));
+    transform-origin: top left;
+}
+
+/* 關閉按鈕：緊貼底部 */
+#sheet-modal .modal-close-btn {
+    flex-shrink: 0;
+    padding: 6px 20px;       /* 微調按鈕上下內邊距 */
+    margin-bottom: 2px;
+    cursor: pointer;
+    z-index: 10;
+}
+
     </style>
 </head>
 <body>
@@ -652,7 +701,7 @@ html {
 <div id="vote-page" class="page">
     <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
 
-        <span class="alone tag-btn" onclick="document.getElementById('for dummies-modal').style.display='flex'">每日任務懶人包🫴</span>
+        <span class="alone tag-btn" onclick="document.getElementById('sheet-modal').style.display='flex'">每日任務懶人包🫴</span>
 
 
 <div class="header.weight-header">
@@ -2249,21 +2298,6 @@ html {
     ⤒
 </div>
 
-<div id="score-modal" class="modal-overlay">
-        <div class="modal-container">
-            <img src="https://i-dle-melon.github.io/vote/SNS音源一覽圖.jpg" alt="計分模式圖解" class="modal-img">
-            <button id="close-score-modal" class="modal-close-btn">✕ 關閉</button>
-        </div>
-    </div>
-
-<div id="for dummies-modal" class="modal-overlay">
-        <div class="modal-container">
-            <img src="https://i-dle-melon.github.io/vote/投票App彙整.jpg" alt="每日任務懶人包" class="modal-img">
-            <button id="close-for dummies-modal" class="modal-close-btn">✕ 關閉</button>
-        </div>
-    </div>
-
-
 <script>
 
 // 1. 核心工人：這段才是真正動手去切換畫面、控制顯示/隱藏的本體！
@@ -2382,25 +2416,6 @@ window.addEventListener('popstate', function(event) {
         }
     }
 
-// 綁定關閉按鈕點擊事件
-document.getElementById('close-score-modal').addEventListener('click', function() {
-    document.getElementById('score-modal').style.display = 'none';
-});
-document.getElementById('close-for dummies-modal').addEventListener('click', function() {
-    document.getElementById('for dummies-modal').style.display = 'none';
-});
-
-// 點擊背景空白處也能關閉彈窗
-document.getElementById('score-modal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        this.style.display = 'none';
-    }
-});
-document.getElementById('for dummies-modal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        this.style.display = 'none';
-    }
-});
 
 // 回到最頂端功能
 function scrollToTop() {
@@ -2417,7 +2432,117 @@ function scrollToTop() {
     <p>總次數：<span id="view-count" style="color: #00e676; font-weight: bold;">載入中...</span> 次瀏覽</p>
 </div>
 
+<footer class="site-footer" style="
+    position: relative; 
+    margin-top: 0px; 
+    width: 100%; 
+    text-align: center; 
+    padding: 10px 0 0 0; 
+    background-color: #111111; 
+    border-top: 1px solid #2a2a2a;
+">
+<p style="margin: 0; font-size: 14px; color: #888888; line-height: 1;">
+        &copy; 2026 
+        <a href="https://line.me/ti/g2/lquJYJWOJudOLkUti7prCFNeSbvKF2vn2AdEYQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" 
+           target="_blank" 
+           style="color: #00cd3c; text-decoration: none; font-weight: bold;">
+           i-dle西瓜攤
+        </a> 
+        GigiBoss. All rights reserved. Designed & Maintained by GigiBoss
+    </p>
+</footer>
+
+<div id="score-modal" class="modal-overlay">
+        <div class="modal-container">
+            <img src="https://i-dle-melon.github.io/vote/SNS音源一覽圖.jpg" alt="計分模式圖解" class="modal-img">
+            <button id="close-score-modal" class="modal-close-btn">✕ 關閉</button>
+        </div>
+    </div>
+
+<div id="for dummies-modal" class="modal-overlay">
+        <div class="modal-container">
+            <img src="https://i-dle-melon.github.io/vote/投票App彙整.jpg" alt="每日任務懶人包" class="modal-img">
+            <button id="close-for dummies-modal" class="modal-close-btn">✕ 關閉</button>
+        </div>
+    </div>
+
+<div id="sheet-modal" class="modal-overlay">
+    <div class="modal-container sheet-container">
+<div class="iframe-wrapper">
+        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR_U4cnMku5ZjX2uQfNx_DBz7emMT6-7MJAEe7r9GOkhQ6sE2lpc5WLQKOgITYPzr9W-WNuL00Kuhg8/pubhtml?gid=0&single=true&widget=false&headers=false&rm=demo&range=B2:F11" class="modal-iframe"></iframe>
+</div>
+        <button id="close-sheet-modal" class="modal-close-btn">✕ 關閉</button>
+    </div>
+</div>
+
+
 <script>
+
+// 綁定關閉按鈕點擊事件
+document.getElementById('close-score-modal').addEventListener('click', function() {
+    document.getElementById('score-modal').style.display = 'none';
+});
+document.getElementById('close-for dummies-modal').addEventListener('click', function() {
+    document.getElementById('for dummies-modal').style.display = 'none';
+});
+// 試算表關閉事件
+document.getElementById('close-sheet-modal').addEventListener('click', function() {
+    document.getElementById('sheet-modal').style.display = 'none';
+});
+
+// 點擊背景空白處也能關閉彈窗
+document.getElementById('score-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        this.style.display = 'none';
+    }
+});
+document.getElementById('for dummies-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        this.style.display = 'none';
+    }
+});
+// 試算表點擊背景關閉事件
+document.getElementById('sheet-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        this.style.display = 'none';
+    }
+});
+
+// 自動動態計算試算表縮放比例的函式
+    function autoScaleSheet() {
+        const wrapper = document.getElementById('sheet-wrapper');
+        const iframe = document.getElementById('sheet-iframe');
+        if (!wrapper || !iframe) return;
+
+        const containerWidth = wrapper.clientWidth;
+        const containerHeight = wrapper.clientHeight;
+
+        const baseWidth = 650;
+        const baseHeight = 900;
+
+        const scaleX = containerWidth / baseWidth;
+        const scaleY = containerHeight / baseHeight;
+        const fitScale = Math.min(scaleX, scaleY);
+
+        iframe.style.setProperty('--scale', fitScale);
+    }
+
+    // 視窗大小改變時自動重新計算
+    window.addEventListener('resize', autoScaleSheet);
+
+    // 監聽彈窗打開：只要 #sheet-modal 變成顯示狀態就自動計算一次
+    const sheetModal = document.getElementById('sheet-modal');
+    if (sheetModal) {
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.attributeName === 'style' && sheetModal.style.display !== 'none') {
+                    setTimeout(autoScaleSheet, 50);
+                }
+            });
+        });
+        observer.observe(sheetModal, { attributes: true });
+    }
+
 
 // 觸發彈窗顯示的函式（可綁定在任何頁面的按鈕上）
         function openScoreModal() {
@@ -2456,22 +2581,4 @@ if (!sessionStorage.getItem('has_voted')) {
 </body>
 </html>
 
-<footer class="site-footer" style="
-    position: relative; 
-    margin-top: 0px; 
-    width: 100%; 
-    text-align: center; 
-    padding: 10px 0 0 0; 
-    background-color: #111111; 
-    border-top: 1px solid #2a2a2a;
-">
-<p style="margin: 0; font-size: 14px; color: #888888; line-height: 1;">
-        &copy; 2026 
-        <a href="https://line.me/ti/g2/lquJYJWOJudOLkUti7prCFNeSbvKF2vn2AdEYQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" 
-           target="_blank" 
-           style="color: #00cd3c; text-decoration: none; font-weight: bold;">
-           i-dle西瓜攤
-        </a> 
-        GigiBoss. All rights reserved. Designed & Maintained by GigiBoss
-    </p>
-</footer>
+
