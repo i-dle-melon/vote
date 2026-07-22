@@ -797,7 +797,7 @@ html {
                     <div class="app-title">① 音樂銀行(事前投票)</div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
 <img src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;">
-                    <div class="app-badge">Fancast</div>
+                    <button class="app-badge" onclick="openApp('fancast')">Fancast</button>
     </div>
                 </div>
                 <div class="info-row"><div class="info-label">🕒 播出時間</div><div>每週五 16:00 (GMT+8)</div></div>
@@ -2631,6 +2631,62 @@ if (!sessionStorage.getItem('has_voted')) {
   const savedViews = sessionStorage.getItem('current_views');
   document.getElementById('view-count').innerText = savedViews ? savedViews : '---';
 }
+
+    
+// 1. openApp 直接帶入清單中的 Key 名稱
+function openApp(appName) {
+    // 檢查清單中是否有這個 APP，沒有的話彈出提示
+    const app = appConfig[appName];
+    if (!app) {
+        alert("找不到對應的 APP 設定！");
+        return;
+    }
+
+    const userAgent = navigator.userAgent || navigator.vendor;
+    const isAndroid = /android/i.test(userAgent);
+    const isIOS = /iPad|iPhone|iPod/.test(userAgent);
+
+    const now = Date.now();
+
+    // 嘗試開啟已安裝的 APP
+    window.location.href = app.scheme;
+
+    // 備用機制：2 秒後未開啟成功，導向商店
+    setTimeout(() => {
+        if (Date.now() - now < 2500) {
+            if (isAndroid) {
+                window.location.href = app.android;
+            } else if (isIOS) {
+                window.location.href = app.ios;
+            } else {
+                alert("請使用手機點擊，或至應用商店搜尋該 App");
+            }
+        }
+    }, 2000);
+}
+
+// 2. 在 JS 內建立所有 APP 的資料清單
+const appConfig = {
+    // Fancast 首頁
+    fancast: {
+        scheme: "https://open.fanca.io",
+        android: "https://play.google.com/store/apps/details?id=com.contentsmadang.fancast",
+        ios: "https://apps.apple.com/app/id1641638840"
+    },
+    // Fancast_EP1299
+    fancast_EP1299: {
+        scheme: "fancast://open.fanca.io?target=event%2Fdetail%3Fkey_event%3D753",
+        android: "https://play.google.com/store/apps/details?id=com.contentsmadang.fancast",
+        ios: "https://apps.apple.com/app/id1641638840"
+    },
+    // LINE 範例
+    line: {
+        scheme: "line://",
+        android: "https://play.google.com/store/apps/details?id=jp.naver.line.android",
+        ios: "https://apps.apple.com/app/id443904275"
+    }
+};
+
 </script>
 
 
