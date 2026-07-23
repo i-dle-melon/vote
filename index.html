@@ -446,6 +446,15 @@ html {
     color: #00cd3c;
 }
 
+#rotateWarning {
+    display: none; /* 預設一律隱藏 */
+}
+/* 只有加上 show class 時才顯示 */
+#rotateWarning.show {
+    display: flex;
+}
+
+
 /* 動態特效 */
 @keyframes spin {
     0% { transform: rotate(0deg); }
@@ -469,7 +478,6 @@ html {
     border-radius: 8px;   /* 可選：給圖片加點圓角，看起來更精緻 */
 }
 
-/* 將這段代碼加入到您網頁頂端的 <style> 標籤內 */
 
 /* 定義一個「未開放」的類別 */
 .not-open {
@@ -867,12 +875,12 @@ html {
 </head>
 <body>
 
-
 <div class="container">
     <header>
         <h1 onclick="switchPage('home-page')" style="cursor: pointer;">i-dle* 打歌投票刷榜單指南</h1>
         <p>即時更新最新打歌節目投票時間與音源刷榜教學</p>
     </header>
+
 
 <div id="rotateWarning" class="orientation-warning">
     <div class="warning-content">
@@ -884,6 +892,7 @@ html {
 
 
     <div id="home-page" class="page active">
+
         <div class="main-menu">
             <div class="menu-card" onclick="switchPage('vote-page')">
                 <div class="img-wrapper">
@@ -913,7 +922,9 @@ html {
         </div>
     </div>
 
+
 <div id="vote-page" class="page">
+
     <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
 
 <div class="header.weight-header">
@@ -2579,39 +2590,9 @@ html {
 
 <script>
 
-// 1. 核心工人：這段才是真正動手去切換畫面、控制顯示/隱藏的本體！
-function switchPage(pageId, isPopState = false) {
-    // 隱藏所有頁面
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(page => {
-        page.classList.remove('active');
-    });
-
-    // 顯示目標頁面
-    const targetPage = document.getElementById(pageId);
-    if (targetPage) {
-        targetPage.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // 如果不是按上一頁觸發的，就紀錄歷史紀錄
-    if (!isPopState) {
-        history.pushState({ pageId: pageId }, '', `#${pageId}`);
-    }
-}
-
-// 2. 監聽器：當使用者按上一頁時，通知上方的工人切換
-window.addEventListener('popstate', function(event) {
-    if (event.state && event.state.pageId) {
-        switchPage(event.state.pageId, true);
-    } else {
-        switchPage('home-page', true);
-    }
-});
-
 // 1. 新增：定義每個頁面 ID 對應的網址路徑
     const pageUrls = {
-        'home-page': '',
+        'home-page': '首頁',
         'vote-page': '音放存票投票教學',
         'mubank-page': '音放存票投票教學/Music_Bank_音樂銀行',
         'mcd-page': '音放存票投票教學/M_Countdown_MCD',
@@ -2629,57 +2610,73 @@ window.addEventListener('popstate', function(event) {
         'showchamp-detail-page': '音放詳細計分/SHOW champion 冠軍秀(MBC Music)'
     };
 
-    // 2. 這是你原本的 switchPage，升級成可以改網址的版本
-    function switchPage(pageId, isBackAction = false) {
-        // 隱藏所有頁面
-        document.querySelectorAll('.page').forEach(page => {
-            page.classList.remove('active');
-        });
-        
-        // 顯示被點選的頁面
-        const targetPage = document.getElementById(pageId);
-        if (!targetPage) return;
-        targetPage.classList.add('active');
-        
-        // 切換頁面時自動滾動回頂部
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+// 2. 核心切換頁面工人（整合公告控制與 URL 修改）
+function switchPage(pageId, isBackAction = false) {
+    let targetPage = document.getElementById(pageId);
 
-        // 動態修改網址列（按上一頁觸發時不重複記錄）
-        if (!isBackAction) {
-            const subPath = pageUrls[pageId] !== undefined ? pageUrls[pageId] : '';
-            const baseUrl = window.location.origin + window.location.pathname;
-            const newUrl = subPath ? `${baseUrl}?page=${encodeURIComponent(subPath)}` : baseUrl;
-            
-            history.pushState({ pageId: pageId }, '', newUrl);
+    // 防呆：如果找不到該 ID，預設顯示第一個 .page 避免整頁全白
+    if (!targetPage) {
+        console.warn(`找不到 ID 為 "${pageId}" 的頁面，自動退回第一個頁面。`);
+        targetPage = document.querySelector('.page');
+        if (!targetPage) return;
+    }
+
+    // 隱藏所有頁面並顯示目標頁面
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+    targetPage.classList.add('active');
+
+    // 滾動回頂部
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // 關鍵修復：控制公告（首頁隱藏，其他頁面顯示）
+    const warning = document.getElementById('rotateWarning');
+    if (warning) {
+        const isHomePage = (pageId === 'home-page' || pageId === 'home' || pageId === '');
+        if (isHomePage) {
+            warning.style.setProperty('display', 'none', 'important');
+        } else {
+            warning.style.setProperty('display', 'block', 'important');
         }
     }
 
-    // 3. 新增：監聽使用者點擊瀏覽器「上一頁/下一頁」
-    window.addEventListener('popstate', function(event) {
-        if (event.state && event.state.pageId) {
-            switchPage(event.state.pageId, true);
-        } else {
-            switchPage('home-page', true);
-        }
-    });
-
-    // 4. 新增：當網頁重新整理時，讀取網址參數直接幫使用者開到該頁面（加入解碼修復回首頁問題）
-    window.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        let pageParam = urlParams.get('page');
+    // 動態修改網址列（按上一頁觸發時不重複記錄）
+    if (!isBackAction) {
+        const subPath = pageUrls[pageId] !== undefined ? pageUrls[pageId] : '';
+        const baseUrl = window.location.origin + window.location.pathname;
+        const newUrl = subPath && subPath !== '首頁' ? `${baseUrl}?page=${encodeURIComponent(subPath)}` : baseUrl;
         
-        if (pageParam) {
-            // 關鍵修改：將網址轉碼後的 %2F 完美還原成斜線 /，這樣才能和 pageUrls 成功對照
-            pageParam = decodeURIComponent(pageParam); 
-            
-            const matchedPageId = Object.keys(pageUrls).find(key => pageUrls[key] === pageParam);
-            if (matchedPageId) {
-                switchPage(matchedPageId);
-                return;
-            }
+        history.pushState({ pageId: pageId }, '', newUrl);
+    }
+}
+
+// 3. 監聽瀏覽器「上一頁/下一頁」
+window.addEventListener('popstate', function(event) {
+    if (event.state && event.state.pageId) {
+        switchPage(event.state.pageId, true);
+    } else {
+        switchPage('home-page', true);
+    }
+});
+
+// 4. 初次載入或重新整理時讀取網址參數開頁
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let pageParam = urlParams.get('page');
+    let initialPage = 'home-page';
+
+    if (pageParam) {
+        pageParam = decodeURIComponent(pageParam);
+        const matchedPageId = Object.keys(pageUrls).find(key => pageUrls[key] === pageParam);
+        if (matchedPageId) {
+            initialPage = matchedPageId;
         }
-        history.replaceState({ pageId: 'home-page' }, '', window.location.href);
-    });
+    }
+
+    history.replaceState({ pageId: initialPage }, '', window.location.href);
+    switchPage(initialPage, true);
+});
 
     // 控制詳細圖文教學展開/收合的邏輯
     function toggleTutorial(tutId) {
