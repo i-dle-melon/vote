@@ -353,10 +353,52 @@ html {
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     z-index: 999; 
-    
     opacity: 0.6;                  /* 【關鍵】預設半透明度 60% */
     transition: opacity 0.2s, transform 0.2s; /* 加入透明度轉場效果 */
 }
+
+/* 懸浮按鈕 - 縮小且半透明版 */
+.task-fab {
+    position: fixed;                          /* 定位方式：固定在螢幕畫面上（不隨頁面滾動） */
+    top: 120px;                               /* 位置：距離螢幕頂部 120px */
+    left: 20px;                               /* 位置：距離螢幕左側 20px */
+    background-color: #00cd3c;                /* 背景顏色：鮮綠色 */
+    color: #000000;                           /* 圖示/文字顏色：純黑色 */
+    width: 40px;                              /* 按鈕寬度：40px */
+    height: 40px;                             /* 按鈕高度：40px */
+    border-radius: 50%;                       /* 邊框圓角：50%（將方形修飾成正圓形） */
+    display: flex;                            /* 排列方式：啟用彈性盒模型 */
+    justify-content: center;                  /* 主軸對齊：內容水平居中 */
+    align-items: center;                      /* 交叉軸對齊：內容垂直居中 */
+    font-size: 22px;                          /* 圖示/文字大小：22px */
+    cursor: pointer;                          /* 滑鼠指標：移上去時顯示「手型」圖示 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);/* 陰影效果：x軸0, y軸向下4px, 模糊10px, 黑色30%透明 */
+    z-index: 999;                             /* 圖層順序：置於極高圖層（避免被其他元素遮擋） */
+    opacity: 0.6;                             /* 透明度：預設為 60% 半透明 */
+    transition: opacity 0.2s, transform 0.2s; /* 動畫過渡：透明度和縮放效果在 0.2 秒內平滑變化 */
+}
+
+.calendar-fab{
+    position: fixed;                          /* 定位方式：固定在螢幕畫面上（不隨頁面滾動） */
+    top: 180px;                               /* 位置：距離螢幕頂部 180px */
+    left: 20px;                               /* 位置：距離螢幕左側 20px */
+    background-color: #00cd3c;                /* 背景顏色：鮮綠色 */
+    color: #000000;                           /* 圖示/文字顏色：純黑色 */
+    width: 40px;                              /* 按鈕寬度：40px */
+    height: 40px;                             /* 按鈕高度：40px */
+    border-radius: 50%;                       /* 邊框圓角：50%（將方形修飾成正圓形） */
+    display: flex;                            /* 排列方式：啟用彈性盒模型 */
+    justify-content: center;                  /* 主軸對齊：內容水平居中 */
+    align-items: center;                      /* 交叉軸對齊：內容垂直居中 */
+    font-size: 22px;                          /* 圖示/文字大小：22px */
+    cursor: pointer;                          /* 滑鼠指標：移上去時顯示「手型」圖示 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);/* 陰影效果：x軸0, y軸向下4px, 模糊10px, 黑色30%透明 */
+    z-index: 999;                             /* 圖層順序：置於極高圖層（避免被其他元素遮擋） */
+    opacity: 0.6;                             /* 透明度：預設為 60% 半透明 */
+    transition: opacity 0.2s, transform 0.2s; /* 動畫過渡：透明度和縮放效果在 0.2 秒內平滑變化 */
+}
+
+
 
 /* 滑鼠移上去時的效果 */
 .back-to-top:hover {
@@ -381,8 +423,9 @@ html {
 
 .warning-content {
     display: flex;
-    align-items: center;
-    gap: 12px;
+    align-items: center;         /* 垂直居中 */
+    justify-content: flex-start; /* 改為靠左對齊（預設值） */
+    gap: 12px;                   /* 設定圖片與文字之間的距離 */
 }
 
 .warning-icon {
@@ -393,6 +436,7 @@ html {
 
 .warning-content p {
     margin: 0;
+    flex: 1;        /* 讓文字靠左側 */
     color: #ffffff;
     font-size: 14px;
     line-height: 1.5;
@@ -416,9 +460,9 @@ html {
 
 /* 圖片自適應縮放樣式 */
 .guide-img {
-    width: 30%;          /* 讓圖片寬度最大撐滿容器 */
+    width: 20%;          /* 讓圖片寬度最大撐滿容器 */
     max-width: 100px;        /* 限制最大寬度，避免在平板或大螢幕上突然變得太大 */
-    min-width: 100px;        /* 限制最小寬度，避免在極小的小手機上變太小看不清 */
+    min-width: 70px;        /* 限制最小寬度，避免在極小的小手機上變太小看不清 */
     height: auto;         /* 高度自動等比例縮放，防止圖片變形 */
     display: block;       /* 消除圖片下方微小間隙 */
     margin: 15px auto 15px 15px;       /* 圖片水平置中 */
@@ -779,14 +823,14 @@ html {
         }
 
         .day-cell {
-            min-height: 55px;
+            min-height: 15px;
             border: 1px solid #9333ea; /* 修改：邊框顏色 */
             border-radius: 4px;
             padding: 2px;
             font-size: 12px;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: self-start;
             box-sizing: border-box;
             overflow: hidden;       /* 避免內容過多時溢出格子 */
         }
@@ -794,7 +838,7 @@ html {
         /* 今天日期的紅框標示 */
         .today {
             border: 2px solid #ff3b30 !important;
-            background-color: #fff5f5;
+            background-color: #ffcae7;           /* 修改：今天的底色淺粉 */
         }
 
         .day-number {
@@ -823,20 +867,21 @@ html {
 </head>
 <body>
 
-<div id="rotateWarning" class="orientation-warning">
-    <div class="warning-content">
-        <img src="https://i-dle-melon.github.io/vote/NEVERLAND.png" alt="" class="guide-img">
-<p><b>公告：</b>事前存票優先順序：Fancast ≥  LiNC ≥ Mubeat ≥ IDOL CHAMP <br>
-實時存票：Higher只需要存250顆紅色鑽石，後面提及過期的問題只限於免費的存票！</p>
-    </div>
-</div>
-
 
 <div class="container">
     <header>
         <h1 onclick="switchPage('home-page')" style="cursor: pointer;">i-dle* 打歌投票刷榜單指南</h1>
         <p>即時更新最新打歌節目投票時間與音源刷榜教學</p>
     </header>
+
+<div id="rotateWarning" class="orientation-warning">
+    <div class="warning-content">
+        <img src="https://i-dle-melon.github.io/vote/icon/NEVERLAND.jpg" alt="" class="guide-img">
+<p><b>公告：</b><br>事前存票優先順序：依照每日任務。<br>
+實時存票：Higher只需要存250紅鑽。</p>
+    </div>
+</div>
+
 
     <div id="home-page" class="page active">
         <div class="main-menu">
@@ -870,37 +915,6 @@ html {
 
 <div id="vote-page" class="page">
     <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
-
-        <span class="alone tag-btn" onclick="document.getElementById('sheet-modal').style.display='flex'">每日任務懶人包🫴</span>
-
-<button class="opencalendar-btn" onclick="openCalendar()">📅 行事曆</button>
-    <!-- 彈窗calendar結構 -->
-    <div class="modalcalendar-overlay" id="calendarModal" onclick="closeCalendarOnOverlay(event)">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeCalendar()">&times;</button>
-<div class="calendar-header">
-            <button class="nav-btn" onclick="changeMonth(-1)">❮</button>
-            <span id="calendarMonth"></span>
-            <button class="nav-btn" onclick="changeMonth(1)">❯</button>
-        </div>
-            
-            <div class="calendar-grid">
-                <!-- 星期標頭 -->
-                <div class="weekday-header">日</div>
-                <div class="weekday-header">一</div>
-                <div class="weekday-header">二</div>
-                <div class="weekday-header">三</div>
-                <div class="weekday-header">四</div>
-                <div class="weekday-header">五</div>
-                <div class="weekday-header">六</div>
-            </div>
-
-            <!-- 日期填入區塊 -->
-            <div class="calendar-grid" id="calendarDays"></div>
-        </div>
-    </div>
-    <!-- 彈窗calendar 結束-->
-
 
 <div class="header.weight-header">
     <header>
@@ -2524,9 +2538,44 @@ html {
             </div>
         </div>
 
-<div class="back-to-top" onclick="scrollToTop()">
-    ⤒
+    <!-- 彈窗calendar結構 -->
+    <div class="modalcalendar-overlay" id="calendarModal" onclick="closeCalendarOnOverlay(event)">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeCalendar()">&times;</button>
+<div class="calendar-header">
+            <button class="nav-btn" onclick="changeMonth(-1)">❮</button>
+            <span id="calendarMonth"></span>
+            <button class="nav-btn" onclick="changeMonth(1)">❯</button>
+        </div>
+            
+            <div class="calendar-grid">
+                <!-- 星期標頭 -->
+                <div class="weekday-header">日</div>
+                <div class="weekday-header">一</div>
+                <div class="weekday-header">二</div>
+                <div class="weekday-header">三</div>
+                <div class="weekday-header">四</div>
+                <div class="weekday-header">五</div>
+                <div class="weekday-header">六</div>
+            </div>
+
+            <!-- 日期填入區塊 -->
+            <div class="calendar-grid" id="calendarDays"></div>
+        </div>
+    </div>
+    <!-- 彈窗calendar 結束-->
+
+
+<div class="back-to-top" onclick="scrollToTop()">⤒
 </div>
+
+<div class="task-fab" onclick="document.getElementById('sheet-modal').style.display='flex'">📋
+</div>
+
+<div class="calendar-fab"  onclick="openCalendar()">📅
+</div>
+
+
 
 <script>
 
@@ -2777,14 +2826,14 @@ function renderCalendar() {
 
 <div id="score-modal" class="modal-overlay">
         <div class="modal-container">
-            <img src="https://i-dle-melon.github.io/vote/SNS音源一覽圖.jpg" alt="計分模式圖解" class="modal-img">
+            <img src="https://i-dle-melon.github.io/vote/icon/SNS音源一覽圖.jpg" alt="計分模式圖解" class="modal-img">
             <button id="close-score-modal" class="modal-close-btn">✕ 關閉</button>
         </div>
     </div>
 
 <div id="for dummies-modal" class="modal-overlay">
         <div class="modal-container">
-            <img src="https://i-dle-melon.github.io/vote/投票App彙整.jpg" alt="每日任務懶人包" class="modal-img">
+            <img src="https://i-dle-melon.github.io/vote/icon/投票App彙整.jpg" alt="每日任務懶人包" class="modal-img">
             <button id="close-for dummies-modal" class="modal-close-btn">✕ 關閉</button>
         </div>
     </div>
@@ -3012,5 +3061,3 @@ const appConfig = {
 
 </body>
 </html>
-
-
