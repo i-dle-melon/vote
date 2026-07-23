@@ -361,8 +361,8 @@ html {
 /* 懸浮按鈕 - 縮小且半透明版 */
 .task-fab {
     position: fixed;                          /* 定位方式：固定在螢幕畫面上（不隨頁面滾動） */
-    top: 120px;                               /* 位置：距離螢幕頂部 120px */
-    left: 20px;                               /* 位置：距離螢幕左側 20px */
+    top: 230px;                               /* 位置：距離螢幕頂部 230px */
+    right: 20px;                               /* 位置：距離螢幕右側 20px */
     background-color: #00cd3c;                /* 背景顏色：鮮綠色 */
     color: #000000;                           /* 圖示/文字顏色：純黑色 */
     width: 40px;                              /* 按鈕寬度：40px */
@@ -381,8 +381,8 @@ html {
 
 .calendar-fab{
     position: fixed;                          /* 定位方式：固定在螢幕畫面上（不隨頁面滾動） */
-    top: 180px;                               /* 位置：距離螢幕頂部 180px */
-    left: 20px;                               /* 位置：距離螢幕左側 20px */
+    top: 280px;                               /* 位置：距離螢幕頂部 280px */
+    right: 20px;                               /* 位置：距離螢幕右側 20px */
     background-color: #00cd3c;                /* 背景顏色：鮮綠色 */
     color: #000000;                           /* 圖示/文字顏色：純黑色 */
     width: 40px;                              /* 按鈕寬度：40px */
@@ -2657,16 +2657,30 @@ function switchPage(pageId, isBackAction = false) {
     // 滾動回頂部
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // 關鍵修復：控制公告（首頁隱藏，其他頁面顯示）
+    // 判斷是否為首頁 (先在最外面宣告，讓後面大家都能用)
+        const isHomePage = (pageId === 'home-page' || pageId === 'home' || pageId === '');
+
+    // 1：控制公告（首頁隱藏，其他頁面顯示）
     const warning = document.getElementById('rotateWarning');
     if (warning) {
-        const isHomePage = (pageId === 'home-page' || pageId === 'home' || pageId === '');
         if (isHomePage) {
             warning.style.setProperty('display', 'none', 'important');
         } else {
             warning.style.setProperty('display', 'block', 'important');
         }
     }
+
+    // 2. 控制懸浮按鈕 (📋 task-fab & 📅 calendar-fab)
+    const taskFab = document.querySelector('.task-fab');
+      const calendarFab = document.querySelector('.calendar-fab');
+
+      if (taskFab) {
+        // 懸浮按鈕通常用 flex 或 block 呈現，這裡首頁設 none，其他頁設 flex
+          taskFab.style.setProperty('display', isHomePage ? 'none' : 'flex', 'important');
+      }
+      if (calendarFab) {
+        calendarFab.style.setProperty('display', isHomePage ? 'none' : 'flex', 'important');
+      }
 
     // 動態修改網址列（按上一頁觸發時不重複記錄）
     if (!isBackAction) {
