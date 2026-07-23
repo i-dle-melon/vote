@@ -871,6 +871,16 @@ html {
             margin-top: 2px;
         }
 
+.event-link-text {
+    font-size: 12px;           /* 字體大小：12px (偏小，適合標籤或次要說明文字) */
+    color: #666666;            /* 文字顏色：深灰色/中灰色 (閱讀視覺較溫和，不刺眼) */
+    background-color: #f0f0f0; /* 背景顏色：極淺灰色 (提供淡淡底色襯托文字) */
+    padding: 1px 4px;          /* 內邊距：上下 1px、左右 4px (讓底色略微撐開，形成小標籤效果) */
+    border-radius: 3px;        /* 圓角：3px (微幅圓角，使標籤邊角較為柔和) */
+    display: inline-block;     /* 排版模式：行內區塊 (能隨文字排列，又能套用 padding 與 margin) */
+    margin-top: 2px;           /* 上外邊距：2px (與上方元素保持微小間距) */
+}
+        
 /* 單個行程區塊 */
 .event-item {
   display: flex;
