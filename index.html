@@ -870,6 +870,32 @@ html {
             margin-top: 2px;
         }
 
+/* 單個行程區塊 */
+.event-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 4px;
+  padding-top: 2px;
+  border-top: 1px dashed #c084fc; /* 可選：加虛線分隔兩組行程 */
+}
+
+/* 第一組行程頂部不需要分隔線 */
+.event-item:first-of-type {
+  border-top: none;
+  margin-top: 2px;
+}
+
+/* 連結獨立成一行 */
+.event-link {
+  display: block;
+  font-size: 11px;
+  color: #7e22ce;
+  text-decoration: underline;
+  word-break: break-all;
+}
+
 
     </style>
 </head>
@@ -2703,7 +2729,10 @@ function scrollToTop() {
 
 // 設定行程與傳送門資料 (格式：'YYYY/MM/DD')
 const events = {
-    '2026/07/22': { text: '測試<br>事前投票', link: 'https://i-dle-melon.github.io/vote/?page=%E9%9F%B3%E6%94%BE%E5%AD%98%E7%A5%A8%E6%8A%95%E7%A5%A8%E6%95%99%E5%AD%B8%2FInkigayo_%E4%BA%BA%E6%B0%A3%E6%AD%8C%E8%AC%A0', linkText:  '👉人歌' },
+    '2026/07/22': {
+    items: [ {text: '', link: 'https://i-dle-melon.github.io/vote/?page=%E9%9F%B3%E6%94%BE%E5%AD%98%E7%A5%A8%E6%8A%95%E7%A5%A8%E6%95%99%E5%AD%B8%2FInkigayo_%E4%BA%BA%E6%B0%A3%E6%AD%8C%E8%AC%A0', linkText:  '👉人歌' },
+ {text: '測試<br>事前投票', link: 'https://i-dle-melon.github.io/vote/?page=%E9%9F%B3%E6%94%BE%E5%AD%98%E7%A5%A8%E6%8A%95%E7%A5%A8%E6%95%99%E5%AD%B8%2FInkigayo_%E4%BA%BA%E6%B0%A3%E6%AD%8C%E8%AC%A0', linkText:  '👉人歌' }
+]},
     '2026/07/25': { text: '測試<br>實時投票', link: 'https://i-dle-melon.github.io/vote/?page=%E9%9F%B3%E6%94%BE%E5%AD%98%E7%A5%A8%E6%8A%95%E7%A5%A8%E6%95%99%E5%AD%B8%2FSHOW_champion_%E5%86%A0%E8%BB%8D%E7%A7%80', linkText: '👉冠軍秀' }
 };
 
@@ -2778,15 +2807,23 @@ function renderCalendar() {
 
         let cellContent = `<span class="day-number">${day}</span>`;
 
-        // 如果該日期有行程資料，加入文字與傳送門連結
+        // 如果該日期有行程資料，遍歷陣列加入文字與傳送門連結
         if (events[dateKey]) {
-            const evt = events[dateKey];
-            if (evt.text) {
-                cellContent += `<span class="event-text">${evt.text}</span>`;
-            }
-            if (evt.link) {
-                cellContent += `<a href="${evt.link}" target="_blank" class="event-link">${evt.linkText || '連結'}</a>`;
-            }
+            // 相容舊寫法：若 events[dateKey] 是物件就自動包成陣列，若是陣列就直接使用
+            const eventList = Array.isArray(events[dateKey]) 
+                ? events[dateKey] 
+                : (events[dateKey].items || [events[dateKey]]);
+
+            eventList.forEach(evt => {
+                cellContent += `<div class="event-item">`;
+                if (evt.text) {
+                    cellContent += `<span class="event-text">${evt.text}</span>`;
+                }
+                if (evt.link) {
+                    cellContent += `<a href="${evt.link}" target="_blank" class="event-link">${evt.linkText || '連結'}</a>`;
+                }
+                cellContent += `</div>`;
+            });
         }
 
         cell.innerHTML = cellContent;
