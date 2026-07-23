@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>i-dle* 追榜打歌投票應援指南</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <style>
 html {
     scroll-behavior: smooth; /* 讓網頁所有跳轉都變成滑動特效 */
@@ -2726,26 +2727,27 @@ function scrollToTop() {
         behavior: 'smooth' // 平滑捲動效果
     });
 }
+// 設定試算表 CSV 發布網址
+const SPREADSHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQrrQmNaPZEiutOwd0S5B8vY_HLa8EMXQC9eH6gtSlcK6ClfQIW4djWdmYZ0Ru7cQN7Xt0Aq6wlKy7j/pub?output=csv';
+let events = {};
+let currentDate = new Date(); // 記錄當前顯示的日期 (預設為今天)
 
-// 設定行程與傳送門資料 (格式：'YYYY/MM/DD')
-const events = {
-    '2026/07/22': {
-    items: [ {text: '', link: 'https://i-dle-melon.github.io/vote/?page=%E9%9F%B3%E6%94%BE%E5%AD%98%E7%A5%A8%E6%8A%95%E7%A5%A8%E6%95%99%E5%AD%B8%2FInkigayo_%E4%BA%BA%E6%B0%A3%E6%AD%8C%E8%AC%A0', linkText:  '👉人歌' },
- {text: '測試<br>事前投票', link: 'https://i-dle-melon.github.io/vote/?page=%E9%9F%B3%E6%94%BE%E5%AD%98%E7%A5%A8%E6%8A%95%E7%A5%A8%E6%95%99%E5%AD%B8%2FInkigayo_%E4%BA%BA%E6%B0%A3%E6%AD%8C%E8%AC%A0', linkText:  '👉人歌' }
-]},
-    '2026/07/25': { text: '測試<br>實時投票', link: 'https://i-dle-melon.github.io/vote/?page=%E9%9F%B3%E6%94%BE%E5%AD%98%E7%A5%A8%E6%8A%95%E7%A5%A8%E6%95%99%E5%AD%B8%2FSHOW_champion_%E5%86%A0%E8%BB%8D%E7%A7%80', linkText: '👉冠軍秀' }
-};
+// 頁面載入完成後自動抓取資料
+document.addEventListener('DOMContentLoaded', () => {
+    fetchEventsFromSheet();
+});
 
-// 1. 新增：記錄當前顯示的日期 (預設為今天)
-let currentDate = new Date();
-
+// 開啟行事曆彈窗
 function openCalendar() {
-    document.getElementById('calendarModal').style.display = 'flex';
-    renderCalendar();
+    const modal = document.getElementById('calendarModal');
+    if (modal) modal.style.display = 'flex';
+    fetchEventsFromSheet(); // 開啟時確保抓取並更新資料
 }
 
+// 關閉行事曆彈窗
 function closeCalendar() {
-    document.getElementById('calendarModal').style.display = 'none';
+    const modal = document.getElementById('calendarModal');
+    if (modal) modal.style.display = 'none';
 }
 
 function closeCalendarOnOverlay(e) {
@@ -2754,32 +2756,98 @@ function closeCalendarOnOverlay(e) {
     }
 }
 
-// 2. 切換月份函式 ( -1 代表上個月，1 代表下個月 )
+// 切換月份函式
 function changeMonth(offset) {
-// 先設為 1 號，避免 31 號切換到 30 號或 2 月時造成月份溢位異常
     currentDate.setDate(1); 
     currentDate.setMonth(currentDate.getMonth() + offset);
     renderCalendar();
 }
 
+// 抓取試算表 CSV 資料
+async function fetchEventsFromSheet() {
+    try {
+        const response = await fetch(SPREADSHEET_CSV_URL);
+        const csvText = await response.text();
+        
+        if (typeof Papa === 'undefined') {
+            console.error('PapaParse 套件未成功載入，請檢查 head 區塊的 script 標籤！');
+            return;
+        }
+
+        Papa.parse(csvText, {
+            header: false,
+            skipEmptyLines: true,
+            complete: function(results) {
+                console.log('1. CSV 原始解析結果：', results.data);
+                events = processSheetData(results.data);
+                console.log('2. 轉換後的 events 物件：', events);
+                renderCalendar();
+            }
+        });
+    } catch (error) {
+        console.error('抓取試算表失敗：', error);
+    }
+}
+
+// 轉換與清洗資料
+function processSheetData(data) {
+    const result = {};
+
+    for (let i = 1; i < data.length; i++) {
+        const row = data[i];
+        if (!row || row.length === 0) continue;
+
+        let rawDate = (row[0] || '')
+            .toString()
+            .replace(/[\u200B-\u200D\uFEFF]/g, '')
+            .replace(/／/g, '/')
+            .replace(/-/g, '/')
+            .trim();
+
+        const text = (row[1] || '').trim();
+        const link = (row[2] || '').trim();
+        const linkText = (row[3] || '').trim() || '👉連結';
+
+        if (!rawDate) continue;
+
+        const parts = rawDate.split('/');
+        if (parts.length === 3) {
+            const y = parts[0];
+            const m = String(parts[1]).padStart(2, '0');
+            const d = String(parts[2]).padStart(2, '0');
+            rawDate = `${y}/${m}/${d}`;
+        }
+
+        if (!result[rawDate]) {
+            result[rawDate] = [];
+        }
+
+        result[rawDate].push({ text, link, linkText });
+    }
+
+    return result;
+}
+
+// 渲染日曆
 function renderCalendar() {
-    // 改從 currentDate 取得目前切換到的年份與月份
     const year = currentDate.getFullYear();
-    const month = currentDate.getMonth(); // 0 - 11
+    const month = currentDate.getMonth();
     
-    // 取得真正的「今天」日期，用來判斷紅框
     const today = new Date();
     const realYear = today.getFullYear();
     const realMonth = today.getMonth();
     const realDate = today.getDate();
 
-    // 顯示當前年月
-    document.getElementById('calendarMonth').innerText = `${year} 年 ${month + 1} 月`;
+    const monthElement = document.getElementById('calendarMonth');
+    if (monthElement) {
+        monthElement.innerText = `${year} 年 ${month + 1} 月`;
+    }
 
-    const firstDay = new Date(year, month, 1).getDay(); // 本月第一天是星期幾
-    const totalDays = new Date(year, month + 1, 0).getDate(); // 本月共有幾天
+    const firstDay = new Date(year, month, 1).getDay();
+    const totalDays = new Date(year, month + 1, 0).getDate();
 
     const daysContainer = document.getElementById('calendarDays');
+    if (!daysContainer) return;
     daysContainer.innerHTML = '';
 
     // 補齊第一天之前的空白格子
@@ -2795,21 +2863,17 @@ function renderCalendar() {
         const cell = document.createElement('div');
         cell.className = 'day-cell';
 
-        // 只有「年、月、日」完全對應真正的今天時，才加上紅框 (避免切換月份時別的月份同日期也變紅框)
         if (day === realDate && month === realMonth && year === realYear) {
             cell.classList.add('today');
         }
 
-        // 組合日期字串 (YYYY/MM/DD) 比對事件
         const formattedMonth = String(month + 1).padStart(2, '0');
         const formattedDay = String(day).padStart(2, '0');
         const dateKey = `${year}/${formattedMonth}/${formattedDay}`;
 
         let cellContent = `<span class="day-number">${day}</span>`;
 
-        // 如果該日期有行程資料，遍歷陣列加入文字與傳送門連結
         if (events[dateKey]) {
-            // 相容舊寫法：若 events[dateKey] 是物件就自動包成陣列，若是陣列就直接使用
             const eventList = Array.isArray(events[dateKey]) 
                 ? events[dateKey] 
                 : (events[dateKey].items || [events[dateKey]]);
@@ -2830,7 +2894,6 @@ function renderCalendar() {
         daysContainer.appendChild(cell);
     }
 }
-
 
 </script>
 
