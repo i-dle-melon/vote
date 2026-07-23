@@ -2899,7 +2899,10 @@ function renderCalendar() {
                 }
                 if (evt.link) {
                     cellContent += `<a href="${evt.link}" target="_blank" class="event-link">${evt.linkText || '連結'}</a>`;
-                }
+                } else if (evt.linkText) {
+        // 2. 沒網址：渲染成純文字 <span>
+        cellContent += `<span class="event-link-text">${evt.linkText}</span>`;
+    }
                 cellContent += `</div>`;
             });
         }
