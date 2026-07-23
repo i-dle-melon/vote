@@ -826,7 +826,7 @@ html {
             min-height: 15px;
             border: 1px solid #9333ea; /* 修改：邊框顏色 */
             border-radius: 4px;
-            padding: 2px;
+            padding: 2px 0px;
             font-size: 12px;
             display: flex;
             flex-direction: column;
@@ -837,7 +837,7 @@ html {
 
         /* 今天日期的紅框標示 */
         .today {
-            border: 2px solid #ff3b30 !important;
+            border: 1px solid #ff3b30 !important;
             background-color: #ffcae7;           /* 修改：今天的底色淺粉 */
         }
 
@@ -2704,10 +2704,10 @@ function scrollToTop() {
     });
 }
 
-// 設定行程與傳送門資料 (格式：'YYYY-MM-DD')
+// 設定行程與傳送門資料 (格式：'YYYY/MM/DD')
 const events = {
-    '2026-07-22': { text: '測試<br>事前投票', link: 'https://i-dle-melon.github.io/vote/?page=%E9%9F%B3%E6%94%BE%E5%AD%98%E7%A5%A8%E6%8A%95%E7%A5%A8%E6%95%99%E5%AD%B8%2FInkigayo_%E4%BA%BA%E6%B0%A3%E6%AD%8C%E8%AC%A0', linkText:  '👉人歌' },
-    '2026-07-25': { text: '測試<br>實時投票', link: 'https://i-dle-melon.github.io/vote/?page=%E9%9F%B3%E6%94%BE%E5%AD%98%E7%A5%A8%E6%8A%95%E7%A5%A8%E6%95%99%E5%AD%B8%2FSHOW_champion_%E5%86%A0%E8%BB%8D%E7%A7%80', linkText: '👉冠軍秀' }
+    '2026/07/22': { text: '測試<br>事前投票', link: 'https://i-dle-melon.github.io/vote/?page=%E9%9F%B3%E6%94%BE%E5%AD%98%E7%A5%A8%E6%8A%95%E7%A5%A8%E6%95%99%E5%AD%B8%2FInkigayo_%E4%BA%BA%E6%B0%A3%E6%AD%8C%E8%AC%A0', linkText:  '👉人歌' },
+    '2026/07/25': { text: '測試<br>實時投票', link: 'https://i-dle-melon.github.io/vote/?page=%E9%9F%B3%E6%94%BE%E5%AD%98%E7%A5%A8%E6%8A%95%E7%A5%A8%E6%95%99%E5%AD%B8%2FSHOW_champion_%E5%86%A0%E8%BB%8D%E7%A7%80', linkText: '👉冠軍秀' }
 };
 
 // 1. 新增：記錄當前顯示的日期 (預設為今天)
@@ -2774,10 +2774,10 @@ function renderCalendar() {
             cell.classList.add('today');
         }
 
-        // 組合日期字串 (YYYY-MM-DD) 比對事件
+        // 組合日期字串 (YYYY/MM/DD) 比對事件
         const formattedMonth = String(month + 1).padStart(2, '0');
         const formattedDay = String(day).padStart(2, '0');
-        const dateKey = `${year}-${formattedMonth}-${formattedDay}`;
+        const dateKey = `${year}/${formattedMonth}/${formattedDay}`;
 
         let cellContent = `<span class="day-number">${day}</span>`;
 
