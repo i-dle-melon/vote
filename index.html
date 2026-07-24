@@ -813,6 +813,17 @@ html {
         .nav-btn:hover {
           background-color: #e2e8f0;
         }
+        
+        /* 月曆刷新按鈕樣式 */
+        .nav-refresh-btn {
+          background-color: #f1f5f9;
+          border: 1px solid #cbd5e1;
+          border-radius: 4px;
+          padding: 4px 10px;
+          font-size: 14px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
 
         /* 日曆網格布局 */
         .calendar-grid {
@@ -2637,15 +2648,15 @@ html {
             <button class="nav-btn" onclick="changeMonth(-1)">❮</button>
             <span id="calendarMonth"></span>
             <button class="nav-btn" onclick="changeMonth(1)">❯</button>
-        <!-- 手動重新整理按鈕 -->
-            <button class="nav-btn refresh-btn" onclick="forceRefreshEvents()" title="強制更新資料">🔄</button>
-        </div>
-            
+
             <!-- 標籤說明 -->
             <div class="calendar-legend">
                 <span class="legend-item"><span class="event-tag tag-before">前</span> 事前投票</span>
                 <span class="legend-item"><span class="event-tag tag-realtime">時</span> 實時投票</span>
             </div>
+            <!-- 手動重新整理按鈕 -->
+            <button class="nav-btn refresh-btn" onclick="forceRefreshEvents()" title="強制更新資料">刷新</button>
+        </div>
 
             <div class="calendar-grid">
                 <!-- 星期標頭 -->
