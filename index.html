@@ -942,6 +942,13 @@ html {
     gap: 4px;
 }
 
+/* 重新整理按鈕樣式 */
+.refresh-btn {
+    margin-left: 8px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+        
 /* CSS結尾 */
 
     </style>
@@ -2630,6 +2637,8 @@ html {
             <button class="nav-btn" onclick="changeMonth(-1)">❮</button>
             <span id="calendarMonth"></span>
             <button class="nav-btn" onclick="changeMonth(1)">❯</button>
+        <!-- 手動重新整理按鈕 -->
+            <button class="nav-btn refresh-btn" onclick="forceRefreshEvents()" title="強制更新資料">🔄</button>
         </div>
             
             <!-- 標籤說明 -->
@@ -2829,10 +2838,24 @@ function changeMonth(offset) {
     renderCalendar();
 }
 
+// 當使用者按下重新整理按鈕時呼叫
+function forceRefreshEvents() {
+    fetchEventsFromSheet(true);
+}
+
 // 抓取試算表 CSV 資料
-async function fetchEventsFromSheet() {
+async function fetchEventsFromSheet(isForce = false) {
     try {
-        const response = await fetch(SPREADSHEET_CSV_URL);
+        let url = SPREADSHEET_CSV_URL;
+        let fetchOptions = {};
+
+// 當傳入 isForce = true 時（點擊 🔄 按鈕），才會觸發下面這段
+            if (isForce) {
+            url += '&_t=' + Date.now();           // 加上當下的時間戳記
+            fetchOptions = { cache: 'no-store' }; // 強制瀏覽器不使用快取
+        }
+
+        const response = await fetch(url, fetchOptions);
         const csvText = await response.text();
         
         if (typeof Papa === 'undefined') {
@@ -2848,12 +2871,17 @@ async function fetchEventsFromSheet() {
                 events = processSheetData(results.data);
                 console.log('2. 轉換後的 events 物件：', events);
                 renderCalendar();
+                
+                if (isForce) {
+                    alert('資料已成功更新！');
+                }
             }
         });
     } catch (error) {
         console.error('抓取試算表失敗：', error);
     }
 }
+
 
 // 轉換與清洗資料
 function processSheetData(data) {
