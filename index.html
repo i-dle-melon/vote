@@ -856,33 +856,30 @@ html {
             color: #334155; /* 新增：日期數字顏色 */
         }
 
-        /* 行事曆事件文字與連結 */
-        .event-text {
-            font-size: 10px;
-            color: #475569; /* 修改：事件內文深灰 */
-            line-height: 1.2;
-        }
-
+        /* 行事曆事件連結 */
         .event-link {
             font-size: 10px;
             color: #9333ea; /* 修改：連結改成紫色 */
             text-decoration: underline;
             word-break: break-all;
             margin-top: 1px;
+            display: inline !important; /* ✅ 改為行內元素，跟標籤同一行 */
         }
 
-.event-link-text {
-    font-size: 10px;           /* 字體大小：11px (調整為與 .event-link 一致) */
-    color: #7e22ce;            /* 文字顏色：紫色/Purple (調整為與 .event-link 一致) */
-    display: block;
-    margin-top: 1px;           /* 上外邊距：2px (與上方元素保持微小間距) */
-}
+        /* 行事曆事件連結轉文字 */
+        .event-link-text {
+            font-size: 10px; /* 字體大小：11px (調整為與 .event-link 一致) */
+            color: #7e22ce;  /* 文字顏色：紫色 (調整為與 .event-link 一致) */
+            display: inline !important; /* ✅ 改為行內元素，緊跟在標籤後面 */
+            margin-top: 1px; /* 上外邊距：2px (與上方元素保持微小間距) */
+        }
         
 /* 單個行程區塊 */
 .event-item {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;                /* ✅ 改動：允許空間不夠時自動換行 */
+  align-items: center;            /* 垂直居中 */
+  justify-content: flex-start;    /* ✅ 改動：改為靠左對齊，換行時比較好看 */
   width: 100%;
   margin-top: 2px;
   padding-top: 0px;
@@ -906,7 +903,7 @@ html {
     font-size: 10px;            /* 字體大小：10px */
     font-weight: 350;           /* 一般字體 (不加粗) */
     color: #ffffff;             /* 文字顏色：純白色 */
-    margin-right: 4px;          /* 右外邊距：4px (與右側內容保持微小間距) */
+    margin-right: 2px;          /* 右外邊距：2px (與右側內容保持微小間距) */
     flex-shrink: 0;             /* Flex 壓縮率：0 (空間不足時防止圓形標籤被壓扁) */
 }
 
@@ -917,7 +914,7 @@ html {
 
 /* 實時標籤（粉紅色圓圈） */
 .event-tag.tag-realtime {
-    background-color: #ff7878/* 背景顏色：粉紅色 (高優先級/實時狀態色) */
+    background-color: #ff7878;  /* 背景顏色：粉紅色 (高優先級/實時狀態色) */
 }
 
 /* 左上角標籤說明區塊 */
