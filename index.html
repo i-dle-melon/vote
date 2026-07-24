@@ -816,14 +816,15 @@ html {
         
         /* 月曆刷新按鈕樣式 */
         .nav-refresh-btn {
-          background-color: #f1f5f9;
-          border: 1px solid #cbd5e1;
-          border-radius: 4px;
-          padding: 4px 10px;
-          font-size: 14px;
-          cursor: pointer;
-          transition: background-color 0.2s;
-        }
+          background-color: #f1f5f9;  /* 背景顏色：極淺灰藍色 (色彩調性溫和) */
+          border: 1px solid #cbd5e1;  /* 邊框：1px 實線淺灰藍邊框 */
+          border-radius: 6px;         /* 圓角：4px (微圓角) */
+          padding: 4px 8px;           /* 內邊距：上下 4px、左右 10px */
+          font-size: 11px;            /* 字體大小：14px */
+          margin-left: auto;          /* 左外邊距：自動(在Flexbox容器中推至最右) */
+          cursor: pointer;            /* 滑鼠指標：游移時顯示為手型 (代表可點擊) */
+          transition: background-color 0.2s; /* 滑鼠過渡效果：背景色變換0.2秒  */
+      }
 
         /* 日曆網格布局 */
         .calendar-grid {
