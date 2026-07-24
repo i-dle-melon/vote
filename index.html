@@ -2864,10 +2864,8 @@ html {
     <div class="gallery-content">
         <span class="gallery-close" onclick="closeGalleryModal()">&times;</span>
         
-        <div class="gallery-slide-container">
-            <button class="gallery-prev" onclick="changeGallerySlide(-1)">❮</button>
-            <img id="gallery-current-img" src="" alt="沒有圖片請重整頁面稍等載入">
-            <button class="gallery-next" onclick="changeGallerySlide(1)">❯</button>
+        <!-- 👇 修改：移除左右按鈕，改用滑動軌道 (slider) -->
+        <div id="gallery-slider" class="gallery-slider">
         </div>
 
         <div id="gallery-dots-container" class="gallery-dots"></div>
