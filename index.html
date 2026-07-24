@@ -895,6 +895,49 @@ html {
   margin-top: 2px;
 }
 
+/* 圓點標籤基礎樣式 */
+.event-tag {
+    display: inline-flex;       /* 排版模式：行內彈性盒 (內部文字水平垂直置中) */
+    justify-content: center;    /* 水平置中：讓內部的文字在圓圈內水平居中 */
+    align-items: center;        /* 垂直置中：讓內部的文字在圓圈內垂直居中 */
+    width: 18px;                /* 寬度：16px */
+    height: 18px;               /* 高度：16px (配合 50% 圓角形成正圓形) */
+    border-radius: 50%;         /* 邊框圓角：50% (將正方形轉為圓形標籤) */
+    font-size: 10px;            /* 字體大小：10px */
+    font-weight: 350;           /* 一般字體 (不加粗) */
+    color: #ffffff;             /* 文字顏色：純白色 */
+    margin-right: 4px;          /* 右外邊距：4px (與右側內容保持微小間距) */
+    flex-shrink: 0;             /* Flex 壓縮率：0 (空間不足時防止圓形標籤被壓扁) */
+}
+
+/* 事前標籤（淺紫色圓圈） */
+.event-tag.tag-before {
+    background-color: #cf7ee9;  /* 背景顏色：淺紫色 (提示色) */
+}
+
+/* 實時標籤（粉紅色圓圈） */
+.event-tag.tag-realtime {
+    background-color: #ff7878/* 背景顏色：粉紅色 (高優先級/實時狀態色) */
+}
+
+/* 左上角標籤說明區塊 */
+.calendar-legend {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    padding-left: 4px;
+    font-size: 12px;
+    color: #555555;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* CSS結尾 */
 
     </style>
 </head>
@@ -2584,6 +2627,12 @@ html {
             <button class="nav-btn" onclick="changeMonth(1)">❯</button>
         </div>
             
+            <!-- 標籤說明 -->
+            <div class="calendar-legend">
+                <span class="legend-item"><span class="event-tag tag-before">前</span> 事前投票</span>
+                <span class="legend-item"><span class="event-tag tag-realtime">時</span> 實時投票</span>
+            </div>
+
             <div class="calendar-grid">
                 <!-- 星期標頭 -->
                 <div class="weekday-header">日</div>
@@ -2890,17 +2939,33 @@ function renderCalendar() {
                 ? events[dateKey] 
                 : (events[dateKey].items || [events[dateKey]]);
 
-            eventList.forEach(evt => {
-                cellContent += `<div class="event-item">`;
-                if (evt.text) {
-                    cellContent += `<span class="event-text">${evt.text}</span>`;
-                }
-                if (evt.link) {
-                    cellContent += `<a href="${evt.link}" target="_blank" class="event-link">${evt.linkText || '連結'}</a>`;
-                } else if (evt.linkText) {
-        // 2. 沒網址：渲染成純文字 <span>
+eventList.forEach(evt => {
+    cellContent += `<div class="event-item">`;
+    
+    // 1. 自動判讀「事前」或「實時」並轉為圓點標籤
+    if (evt.text) {
+        let tagHTML = '';
+        const rawText = evt.text.trim();
+
+        if (rawText.includes('事前')) {
+            tagHTML = `<span class="event-tag tag-before" title="事前">前</span>`;
+        } else if (rawText.includes('實時')) {
+            tagHTML = `<span class="event-tag tag-realtime" title="實時">時</span>`;
+        } else {
+            // 如果是其他文字，保持原樣顯示
+            tagHTML = `<span class="event-text">${evt.text}</span>`;
+        }
+        
+        cellContent += tagHTML;
+    }
+    
+    // 2. 顯示 linkText（無論有無網址）
+    if (evt.link) {
+        cellContent += `<a href="${evt.link}" target="_blank" class="event-link">${evt.linkText || '連結'}</a>`;
+    } else if (evt.linkText) {
         cellContent += `<span class="event-link-text">${evt.linkText}</span>`;
     }
+
                 cellContent += `</div>`;
             });
         }
