@@ -2881,6 +2881,7 @@ html {
         <div class="modal-content">
             <button class="close-btn" onclick="closeCalendar()">&times;</button>
 <div class="calendar-header">
+            <button class="nav-refresh-btn" onclick="goToToday()">回當月</button>
             <button class="nav-btn" onclick="changeMonth(-1)">❮</button>
             <span id="calendarMonth"></span>
             <button class="nav-btn" onclick="changeMonth(1)">❯</button>
@@ -3111,6 +3112,20 @@ function changeMonth(offset) {
     renderCalendar();
 }
 
+// 回當月函式
+function goToToday() {
+  currentDate = new Date(); // 重置為今天的日期
+  renderCalendar();         // 重新繪製月曆
+}
+  
+  // 1. 將全域的當前年月變數重置為今天
+  currentYear = today.getFullYear();
+  currentMonth = today.getMonth(); // 0 代表 1 月，6 代表 7 月
+  
+  // 2. 重新渲染月曆 (請改成你專案中負責繪製月曆的函式名稱)
+  renderCalendar(currentYear, currentMonth); 
+}
+
 // 當使用者按下重新整理按鈕時呼叫
 function forceRefreshEvents() {
     fetchEventsFromSheet(true);
@@ -3122,7 +3137,7 @@ async function fetchEventsFromSheet(isForce = false) {
         let url = SPREADSHEET_CSV_URL;
         let fetchOptions = {};
 
-// 當傳入 isForce = true 時（點擊 🔄 按鈕），才會觸發下面這段
+// 當傳入 isForce = true 時（點擊 刷新 按鈕），才會觸發下面這段
             if (isForce) {
             url += '&_t=' + Date.now();           // 加上當下的時間戳記
             fetchOptions = { cache: 'no-store' }; // 強制瀏覽器不使用快取
