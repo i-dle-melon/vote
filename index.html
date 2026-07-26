@@ -3117,14 +3117,6 @@ function goToToday() {
   currentDate = new Date(); // 重置為今天的日期
   renderCalendar();         // 重新繪製月曆
 }
-  
-  // 1. 將全域的當前年月變數重置為今天
-  currentYear = today.getFullYear();
-  currentMonth = today.getMonth(); // 0 代表 1 月，6 代表 7 月
-  
-  // 2. 重新渲染月曆 (請改成你專案中負責繪製月曆的函式名稱)
-  renderCalendar(currentYear, currentMonth); 
-}
 
 // 當使用者按下重新整理按鈕時呼叫
 function forceRefreshEvents() {
