@@ -3117,7 +3117,7 @@ function goToToday() {
   currentDate = new Date(); // 重置為今天的日期
   renderCalendar();         // 重新繪製月曆
 }
-
+  
 // 當使用者按下重新整理按鈕時呼叫
 function forceRefreshEvents() {
     fetchEventsFromSheet(true);
@@ -3333,7 +3333,7 @@ function renderGallery() {
     slider.innerHTML = galleryImages.map((item, idx) => `
         <div class="gallery-item">
             <h3 class="gallery-item-title">${item.title || ''}</h3>
-            <img src="${item.src}" alt="${item.title || '教學圖片'}"draggable="false">
+            <img src="${item.src}" alt="圖片載入失敗，請重整稍後" draggable="false"   onerror="this.outerHTML='<span>圖片載入失敗，請重整稍後</span>';">
             <p class="gallery-item-desc">${item.desc || ''}</p>
         </div>
     `).join('');
