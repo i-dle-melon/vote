@@ -1052,7 +1052,7 @@ html {
 /* ⭕ 中間圖片樣式 */
 .gallery-item img {
     width: 100%;
-    max-height: 68vh;                   /* 留出空間給上方標題與下方文字 */
+    max-height: 65vh;                   /* 留出空間給上方標題與下方文字 */
     object-fit: contain;
     border-radius: 8px;
 }
@@ -1064,6 +1064,21 @@ html {
     line-height: 1.5;
     margin: 10px 0 0 0;
     text-align: center;
+}
+
+/* ⭕⭕左側垂直文字 */
+.vertical-text {
+  position: absolute;
+  left: 10px; /* 貼在內部左邊；若想掛在彈窗外面可改為 left: -30px */
+  top: 50%;
+  transform: translateY(-50%); /* 垂直居中 */
+  /* 設定直書 */
+  writing-mode: vertical-rl;
+  /* 樣式設定 */
+  font-size: 14px;
+  color: #888;
+  letter-spacing: 2px; /* 字距調鬆一點比較好看 */
+  white-space: nowrap;
 }
 
 /* 下方圓點（...）容器 */
@@ -2893,12 +2908,20 @@ html {
 <div id="image-gallery-modal" class="gallery-modal">
     <div class="gallery-content">
         <span class="gallery-close" onclick="closeGalleryModal()">&times;</span>
-        
+
+    <!-- 左側垂直文字 -->
+    <div class="vertical-text">每次打歌都不同，課金建議詳情，請進<a href="https://line.me/ti/g2/lquJYJWOJudOLkUti7prCFNeSbvKF2vn2AdEYQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" 
+           target="_blank" 
+           style="color: #00cd3c; text-decoration: none; font-weight: bold;">
+           i-dle西瓜攤
+        </a>賴社群</div>
+
         <!-- 👇 修改：移除左右按鈕，改用滑動軌道 (slider) -->
         <div id="gallery-slider" class="gallery-slider">
         </div>
 
         <div id="gallery-dots-container" class="gallery-dots"></div>
+        </div>
     </div>
 </div>
 
@@ -3424,6 +3447,7 @@ const GALLERY_DATA = {
         openGalleryModal(categoryKey);
     }
 });
+
 
 </script>
 
