@@ -1020,6 +1020,17 @@ html {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;/* iOS 順暢滑動 */
     scrollbar-width: none;            /* 隱藏 Firefox 滾動條 */
+    /* 新增：電腦版拖曳設定 */
+    cursor: grab;                     /* 平時顯示抓取手勢 */
+    user-select: none;                /* 避免拖曳時選取文字 */
+    -webkit-user-drag: none;
+}
+
+/* ⭕⭕按下拖曳時的狀態 */
+.gallery-slider.dragging {
+    cursor: grabbing;                 /* 按下時變抓緊手勢 */
+    scroll-snap-type: none;           /* 拖曳期間暫時關閉對齊，滑動更順暢 */
+    scroll-behavior: auto !important; /* 關閉平滑滾動以提升手感 */
 }
 
 /* 隱藏 Chrome/Safari/Edge 滾動條 */
@@ -1027,7 +1038,7 @@ html {
     display: none;
 }
 
-/* ⭕ 新增：滑動軌道內的卡片容器（包含 標題 + 圖片 + 說明文字） */
+/* ⭕ 滑動軌道內的卡片容器（包含 標題 + 圖片 + 說明文字） */
 .gallery-item {
     flex: 0 0 100%;                    /* 每張卡片滿寬 */
     width: 100%;
@@ -1104,7 +1115,7 @@ html {
     transform: scale(1.2);
 }
 
-/* ⭕ 新增：獨立的呼吸燈風格按鈕 */
+/* ⭕ 獨立的呼吸燈風格按鈕 */
 .pay-btn {
     display: inline-flex;
     align-items: center;
@@ -3270,7 +3281,7 @@ eventList.forEach(evt => {
     }
 }
 
-// ⭕ 新增：相冊圖片陣列與索引變數
+// ⭕ 相冊圖片陣列與索引變數
 let galleryImages = []; // 儲存傳入的圖片網址清單
 
 
@@ -3315,7 +3326,7 @@ function renderGallery() {
     slider.innerHTML = galleryImages.map((item, idx) => `
         <div class="gallery-item">
             <h3 class="gallery-item-title">${item.title || ''}</h3>
-            <img src="${item.src}" alt="${item.title || '教學圖片'}">
+            <img src="${item.src}" alt="${item.title || '教學圖片'}"draggable="false">
             <p class="gallery-item-desc">${item.desc || ''}</p>
         </div>
     `).join('');
@@ -3329,6 +3340,7 @@ function renderGallery() {
     slider.removeEventListener('scroll', handleGalleryScroll);
     slider.addEventListener('scroll', handleGalleryScroll);
 }
+
 
 // ⭕ 監聽滑動位置以更新圓點
 function handleGalleryScroll() {
@@ -3356,6 +3368,41 @@ function scrollToSlide(index) {
         behavior: 'smooth'
     });
 }
+
+// ⭕⭕ 電腦版滑鼠拖曳切換（網頁載入後自動綁定一次即可）
+document.addEventListener('DOMContentLoaded', () => {
+    const slider = document.getElementById('gallery-slider');
+    if (!slider) return;
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.classList.add('dragging');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.classList.remove('dragging');
+    });
+
+    slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.classList.remove('dragging');
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 1.5; // 拖曳速度 multipliers
+        slider.scrollLeft = scrollLeft - walk;
+    });
+});
 
 // 點擊背景空白處關閉彈窗
 document.getElementById('image-gallery-modal').addEventListener('click', function(e) {
