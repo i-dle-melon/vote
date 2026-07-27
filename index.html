@@ -3274,7 +3274,7 @@ eventList.forEach(evt => {
     
     // 2. 顯示 linkText（無論有無網址）
     if (evt.link) {
-        cellContent += `<a href="${evt.link}" target="_blank" class="event-link">${evt.linkText || '連結'}</a>`;
+        cellContent += `<a href="${evt.link}" target="_self" class="event-link">${evt.linkText || '連結'}</a>`;
     } else if (evt.linkText) {
         cellContent += `<span class="event-link-text">${evt.linkText}</span>`;
     }
