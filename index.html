@@ -1177,11 +1177,6 @@ html {
                 <img src="https://i-dle-melon.github.io/Gimme-Dat-Love/Gimme Dat Love.png"class="song-cover" alt="投票教學">
                </div> <h3>🗳️ 音放存票投票教學</h3>
             </div>
-            <div class="menu-card" onclick="switchPage('Kakao-page')">
-                <div class="img-wrapper">
-                <img src="https://i-dle-melon.github.io/vote/Kakao/Kakao.png"class="song-cover" alt="Kakao註冊教學">
-               </div> <h3>👤 Kakao 網頁註冊點讚教學</h3>
-            </div>
             <div class="menu-card not-open" onclick="switchPage('Melon-page')">
                 <div class="img-wrapper">
                 <img src="https://i-dle-melon.github.io/vote/melon/melon.png"class="song-cover" alt="切瓜教學">
@@ -2801,91 +2796,6 @@ html {
     </div>
 </div>
 
-    <div id="Kakao-page" class="page">
-        <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
-        
-        <div class="header.weight-header">
-    <header>
-        <h2>Kakao 網頁註冊點讚教學</h2>
-    </header>
-    </div>
-   
-            <div class="app-card">
-                <div class="app-header">
-                    <div class="app-title">👤 Kakao 註冊點讚教學</div>
-<div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
-<img src="https://i-dle-melon.github.io/vote/Kakao/Kakao/Kakao.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('kakao')">
-                    <button class="app-badge" onclick="openApp('kakao')"style="cursor: pointer;">Kakao<br>👈開啟網頁</button>
-    </div>
-                </div>
-
-                
-                <div class="tutorial-section">
-                    <button class="toggle-tutorial-btn" onclick="toggleTutorial('Kakao-tut')">查看詳細圖文教學 <span>▼</span></button>
-                    <div id="Kakao-tut" class="tutorial-content">
-
-                        <p style="color:#aaa; font-size:14px;">以下標籤直接跳轉圖片⇩</p>
-                        <span class="tag tag-btn" onclick="document.getElementById('Kakao-tickets').scrollIntoView({ behavior: 'smooth' })">#註冊教學👈</span>
-                        <span class="tag tag-btn" onclick="document.getElementById('Kakao-vote').scrollIntoView({ behavior: 'smooth' })">#點讚教學👈</span>
- 
-<button class="pay-btn" onclick="openApp('melon like')"style="cursor: pointer;">👉#melon點讚網頁</button>
- 
-                        <span class="tag tag-btn" onclick="document.getElementById('Higher-vote1-expired').scrollIntoView({ behavior: 'smooth' })">#規則&註冊限制  👇</span>
-
-                                <div class="image-wrapper" id="Kakao-vote1-expired">
-        <div class="app-card">
-            <div class="app-header">
-            </div>
-            <div class="info-row">
-                <div class="info-label-vote">規則</div>
-                <div>註冊只需要信箱，電話可以跳過。<br>完成後進melon網頁點讚。</span></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label-vote">註冊限制</div>
-                <div><span style="color: #ff3b30;">※只能註冊10個，多了全部會鎖。</span></div>
-
-        </div>
-                    </div> </div>  
-                        <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解：</p>
-                                <div class="image-wrapper" id="Kakao-tickets">
-                            <span class="step-badge">註冊步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊1.jpg" alt="沒有圖片請重整頁面稍等載入">
-                    </div>
-                                <div class="image-wrapper">
-                            <span class="step-badge">註冊步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊2.jpg" alt="沒有圖片請重整頁面稍等載入">
-                    </div>
-                                <div class="image-wrapper">
-                            <span class="step-badge">註冊步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊3.jpg" alt="沒有圖片請重整頁面稍等載入">
-                    </div>
-                                <div class="image-wrapper">
-                            <span class="step-badge">註冊步驟 4</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊4.jpg" alt="沒有圖片請重整頁面稍等載入">
-                    </div>
-                                <div class="image-wrapper" id="Kakao-vote">
-                            <span class="step-badge">點讚步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚1.jpg" alt="沒有圖片請重整頁面稍等載入">
-                    </div>
-                                <div class="image-wrapper">
-                            <span class="step-badge">點讚步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚2.jpg" alt="沒有圖片請重整頁面稍等載入">
-                    </div>
-                                <div class="image-wrapper">
-                            <span class="step-badge">點讚步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚3.jpg" alt="沒有圖片請重整頁面稍等載入">
-                    </div>
-                                <div class="image-wrapper">
-                            <span class="step-badge">點讚步驟 4</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚4.jpg" alt="沒有圖片請重整頁面稍等載入">
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
     <div id="Melon-page" class="page">
         <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
         
@@ -2905,7 +2815,6 @@ html {
                 </div>
             </div>
         </div>
-
 
     <div id="Youtube-page" class="page">
         <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
@@ -3052,7 +2961,6 @@ html {
         'musiccore-page': '音放存票投票教學/Show! Music Core 音樂中心',
         'inkigayo-page': '音放存票投票教學/Inkigayo_人氣歌謠',
         'showchamp-page': '音放存票投票教學/SHOW_champion_冠軍秀',
-        'Kakao-page': 'Kakao_網頁註冊點讚教學',
         'Melon-page': 'Melon_切瓜刷音源教學',
         'Youtube-page': 'Youtube_無痕刷音源教學',
         'Tiktok-page': 'Tiktok_引用刷音源教學',
@@ -3849,18 +3757,6 @@ const appConfig = {
         scheme: "https://mnetplus.onelink.me/TRa8/",
         android: "https://play.google.com/store/apps/details?id=world.mnetplus",
         ios: "https://apps.apple.com/tw/app/mnet-plus/id6443405421"
-    },
-    // 9. Kakao
-    kakao: {
-        scheme: "https://accounts.kakao.com/weblogin/create_account/?continue=https%3A%2F%2Faccounts.kakao.com%2Fweblogin%2Faccount&lang=en&showHeader=false#selectVerifyMethod",
-        android: "https://accounts.kakao.com/weblogin/create_account/?continue=https%3A%2F%2Faccounts.kakao.com%2Fweblogin%2Faccount&lang=en&showHeader=false#selectVerifyMethod",
-        ios: "https://accounts.kakao.com/weblogin/create_account/?continue=https%3A%2F%2Faccounts.kakao.com%2Fweblogin%2Faccount&lang=en&showHeader=false#selectVerifyMethod"
-    },
-    // 10. Melon Like
-    melon like: {
-        scheme: "https://m2.melon.com/artist/detail.htm?artistId=2137482",
-        android: "https://m2.melon.com/artist/detail.htm?artistId=2137482",
-        ios: "https://m2.melon.com/artist/detail.htm?artistId=2137482"
     }
 };
 
