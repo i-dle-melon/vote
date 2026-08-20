@@ -1164,9 +1164,24 @@ html {
     max-width: 90%;
     width: 420px;
     text-align: center;
-    box-shadow: 0 0 12px rgba(0, 205, 60, 0.4),  /* 綠色邊框外發光效果 */
-                0 4px 20px rgba(0, 0, 0, 0.8);
     box-sizing: border-box;
+    animation: pulse 1s infinite;[cite: 1, 6]
+}
+
+/* 呼吸燈動畫 Keyframes（讓綠色外框與發光陰影強弱漸變） */
+@keyframes pulse {[cite: 1, 6]
+    0% { 
+        box-shadow: 0 0 6px rgba(0, 205, 60, 0.3), 0 4px 15px rgba(0, 0, 0, 0.8);[cite: 1, 6]
+        border-color: rgba(0, 205, 60, 0.5) !important;[cite: 1, 6]
+    } 
+    50% { 
+        box-shadow: 0 0 18px rgba(0, 205, 60, 0.8), 0 4px 20px rgba(0, 0, 0, 0.9);[cite: 1, 6]
+        border-color: rgba(0, 205, 60, 1) !important;[cite: 1, 6]
+    } 
+    100% { 
+        box-shadow: 0 0 6px rgba(0, 205, 60, 0.3), 0 4px 15px rgba(0, 0, 0, 0.8);[cite: 1, 6]
+        border-color: rgba(0, 205, 60, 0.5) !important;[cite: 1, 6]
+    } 
 }
 
 /* 公告標題 */
@@ -1185,6 +1200,17 @@ html {
     text-align: left;
     margin-bottom: 20px;
     word-break: break-all;
+}
+
+.notice-body b {
+    color: #00cd3c;
+}
+
+/* 單獨控制網頁更新版本說明文字：小一點、淺灰色 */
+.notice-body .update-version {
+    color: #888888;       /* 淺灰色 */
+    font-size: 12px;      /* 較小字體 (原本約為 14px) */
+    margin-top: 6px;      /* 與上方公告保持微小間隔 */
 }
 
 /* 我知道了 / 關閉按鈕 */
@@ -3187,7 +3213,8 @@ style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-d
     <div class="notice-modal-content">
         <h3>📢 最新公告</h3>
         <div class="notice-body">
-            <p>娟lo預計9月回歸！請開始提前存票。</p>
+            <p><b>※</b>娟lo預計9月回歸！請開始提前存票。</p>
+            <p class="update-version">網頁更新v1.0.1<br>-新增Kakao網頁註冊點讚教學。<br>-新增彈窗最新公告</p>
         </div>
 <!-- 新增：底部操作區（包含勾選框與關閉按鈕） -->
         <div class="notice-footer">
