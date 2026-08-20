@@ -1154,6 +1154,85 @@ html {
     transform: scale(0.98);
 }
 
+/* 新增：公告彈窗內容盒 */
+.notice-modal-content {
+    background: #1e1e1e;
+    color: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    border: 2px solid #00cd3c;  /* 經典綠色邊框 */
+    max-width: 90%;
+    width: 420px;
+    text-align: center;
+    box-shadow: 0 0 12px rgba(0, 205, 60, 0.4),  /* 綠色邊框外發光效果 */
+                0 4px 20px rgba(0, 0, 0, 0.8);
+    box-sizing: border-box;
+}
+
+/* 公告標題 */
+.notice-modal-content h3 {
+    color: #00cd3c;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+/* 公告內文區域 */
+.notice-body {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ffffff;
+    text-align: left;
+    margin-bottom: 20px;
+    word-break: break-all;
+}
+
+/* 我知道了 / 關閉按鈕 */
+.notice-close-btn {
+    background: #1e1e1e;
+    color: #00cd3c;
+    border: 1px solid #00cd3c;
+    padding: 8px 28px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.notice-close-btn:hover {
+    background-color: rgba(0, 205, 60, 0.1);
+    box-shadow: 0 0 8px rgba(0, 205, 60, 0.3);
+}
+
+/* 新增：底部排版容器，讓勾選框與按鈕並排且垂直對齊 */
+.notice-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 新增：勾選框與文字樣式 */
+.dont-show-label {
+    font-size: 13px;
+    color: #aaa;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+}
+
+.dont-show-label input[type="checkbox"] {
+    accent-color: #00cd3c; /* 勾選框改成主題綠色 */
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+}
+
 /* CSS結尾 */
 
 
@@ -2864,7 +2943,7 @@ html {
                     </步驟後面可以新增文字，可備註>
         <a href="https://accounts.kakao.com/weblogin/create_account#selectVerifyMethod" target="_blank" rel="noopener noreferrer" 
 style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-decoration: underline;">
-    網址:accounts.kakao.com/weblogin/create_account#selectVerifyMethod
+    分頁網址:accounts.kakao.com/weblogin/create_account#selectVerifyMethod
 </a>
 
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊1.jpg" alt="沒有圖片請重整頁面稍等載入">
@@ -2902,7 +2981,7 @@ style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-d
                     </步驟後面可以新增文字，可備註>
         <a href="https://m2.melon.com/artist/detail.htm?artistId=2137482" target="_blank" rel="noopener noreferrer" 
 style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-decoration: underline;">
-    網址:m2.melon.com/artist/detail.htm?artistId=2137482
+    分頁網址:m2.melon.com/artist/detail.htm?artistId=2137482
 </a>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
@@ -3103,6 +3182,24 @@ style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-d
 </div>
 
 
+<!-- 公告彈窗 -->
+<div id="notice-modal" class="modal-overlay" style="display: none;">
+    <div class="notice-modal-content">
+        <h3>📢 最新公告</h3>
+        <div class="notice-body">
+            <p>娟lo預計9月回歸！請開始提前存票。</p>
+        </div>
+<!-- 新增：底部操作區（包含勾選框與關閉按鈕） -->
+        <div class="notice-footer">
+            <label class="dont-show-label">
+                <input type="checkbox" id="dont-show-today">
+                不再提醒
+            </label>
+        <button id="close-notice-btn" class="notice-close-btn">我知道了</button>
+    </div>
+</div>
+</div>
+
 
 <script>
 
@@ -3243,6 +3340,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 開啟行事曆彈窗
 function openCalendar() {
+    if (typeof renderCalendar === 'function') {
+        renderCalendar(); // ⭕ 關鍵：點擊開啟時立刻渲染日曆格子與日期
+    }
     const modal = document.getElementById('calendarModal');
     if (modal) modal.style.display = 'flex';
     fetchEventsFromSheet(); // 開啟時確保抓取並更新資料
@@ -3648,6 +3748,7 @@ const GALLERY_DATA = {
     ]
 };
 
+
 // 全域監聽器
     document.addEventListener('click', (e) => {
     const target = e.target.closest('[data-gallery]');
@@ -3657,6 +3758,49 @@ const GALLERY_DATA = {
     }
 });
 
+
+// 💡 每次更新公告內容時，修改此版本號即可讓所有人重新收到一次公告
+const ANNOUNCEMENT_ID = 'notice_v1.0'; 
+
+document.addEventListener('DOMContentLoaded', function() {
+    const noticeModal = document.getElementById('notice-modal');
+    const closeBtn = document.getElementById('close-notice-btn');
+    const dontShowCheckbox = document.getElementById('dont-show-today');
+
+    // 檢查使用者是否已經勾選過「不再提醒」
+    const hasOptedOut = localStorage.getItem('hide_announcement') === ANNOUNCEMENT_ID ||
+                        sessionStorage.getItem('hide_announcement') === ANNOUNCEMENT_ID;
+
+    // 若未勾選過不再提醒，則開啟彈窗
+    if (!hasOptedOut && noticeModal) {
+        noticeModal.style.display = 'flex';
+    }
+
+    // 點擊「我知道了」關閉按鈕
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            if (noticeModal) noticeModal.style.display = 'none';
+
+            // 只有當使用者「勾選了不再提醒」才寫入快取紀錄
+            if (dontShowCheckbox && dontShowCheckbox.checked) {
+                try {
+                    localStorage.setItem('hide_announcement', ANNOUNCEMENT_ID);
+                } catch (e) {
+                    sessionStorage.setItem('hide_announcement', ANNOUNCEMENT_ID);
+                }
+            }
+        });
+    }
+
+    // 點擊背景空白處關閉
+    if (noticeModal) {
+        noticeModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBtn.click();
+            }
+        });
+    }
+});
 
 </script>
 
@@ -3713,7 +3857,6 @@ const GALLERY_DATA = {
         <button id="close-sheet-modal" class="modal-close-btn">✕ 關閉</button>
     </div>
 </div>
-
 
 <script>
 
