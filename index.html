@@ -250,6 +250,14 @@ html {
             display: block;
         }
 
+        /* 針對 Kakao-tut 內部的所有子元素強制自動斷行，防止撐開螢幕 */
+        .tutorial-content * {
+            max-width: 100%;
+            box-sizing: border-box;
+            word-break: break-all;  /* 遇到長網址或無空格文字時強制自動折行 */
+            white-space: normal;    /* 覆蓋任何可能導致不換行的 nowrap 設定 */
+        }
+
         /* 未來你放教學圖片的樣式 */
         .guide-image {
             width: 100%;
@@ -2830,7 +2838,7 @@ html {
  
 <button class="pay-btn" onclick="openApp('melonlike')"style="cursor: pointer;">👉#melon點讚網頁</button>
  
-                        <span class="tag tag-btn" onclick="document.getElementById('Higher-vote1-expired').scrollIntoView({ behavior: 'smooth' })">#規則&註冊限制  👇</span>
+                        <span class="tag tag-btn" onclick="document.getElementById('Kakao-vote1-expired').scrollIntoView({ behavior: 'smooth' })">#規則&註冊限制  👇</span>
 
                                 <div class="image-wrapper" id="Kakao-vote1-expired">
         <div class="app-card">
@@ -2858,7 +2866,7 @@ html {
 style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-decoration: underline;">
     網址:accounts.kakao.com/weblogin/create_account#selectVerifyMethod
 </a>
-    </div>
+
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
@@ -2896,7 +2904,6 @@ style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-d
 style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-decoration: underline;">
     網址:m2.melon.com/artist/detail.htm?artistId=2137482
 </a>
-    </div>
                         <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
