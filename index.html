@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#00cd3c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="./icons/icon-192.png">
     <title>i-dle* 追榜打歌投票應援指南</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <style>
@@ -385,6 +391,33 @@ html {
     z-index: 999;                             /* 圖層順序：置於極高圖層（避免被其他元素遮擋） */
     opacity: 0.6;                             /* 透明度：預設為 60% 半透明 */
     transition: opacity 0.2s, transform 0.2s; /* 動畫過渡：透明度和縮放效果在 0.2 秒內平滑變化 */
+}
+
+
+/* Web Push 通知懸浮按鈕 */
+.push-fab {
+    position: fixed;
+    top: 330px;
+    right: 20px;
+    background-color: #00cd3c;
+    color: #000000;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    opacity: 0.6;
+    transition: opacity 0.2s, transform 0.2s;
+    user-select: none;
+}
+.push-fab:hover {
+    opacity: 1;
+    transform: scale(1.05);
 }
 
 .calendar-fab{
@@ -1526,7 +1559,7 @@ html {
                 <div class="app-header">
                     <div class="app-title">① 音樂銀行(事前投票)</div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
-<img src="https://i-dle-melon.github.io/vote/Music_Bank/coogoong.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('fancast')">
+<img decoding="async" loading="lazy" src="https://i-dle-melon.github.io/vote/Music_Bank/coogoong.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('fancast')">
                     <button class="app-badge" onclick="openApp('fancast')"style="cursor: pointer;">coogoong<br>👈開啟App</button>
     </div>
                 </div>
@@ -1562,35 +1595,35 @@ html {
                         <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解：</p>
                                 <div class="image-wrapper" id="Fancast-tickets">
                             <span class="step-badge">存票步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/存票1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/存票1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">存票步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/存票2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/存票2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">存票步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/存票3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/存票3.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">存票步驟 4</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/存票4.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/存票4.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper" id="Fancast-vote">
                             <span class="step-badge">投票步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/投票1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/投票1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/投票2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/投票2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/投票3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/投票3.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 4</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/投票4.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/投票4.jpg" alt="沒有圖片請重整頁面稍等載入">
                         </div>
 
                     </div>
@@ -1784,7 +1817,7 @@ html {
                 <div class="app-header">
                     <div class="app-title">② MCD(實時/事前投票)</div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
-<img src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('mnetplus')">
+<img decoding="async" loading="lazy" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('mnetplus')">
                     <button class="app-badge" onclick="openApp('mnetplus')"style="cursor: pointer;">Mnet Plus<br>👈開啟App</button>
     </div>
                 </div>
@@ -1819,23 +1852,23 @@ html {
 
                                 <div class="image-wrapper" id="Mnet Plus-vote">
                             <span class="step-badge">投票步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票3.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 4</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票4.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票4.jpg" alt="沒有圖片請重整頁面稍等載入">
                         </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 5</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票5.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/M_Countdown/Mnet Plus/投票5.jpg" alt="沒有圖片請重整頁面稍等載入">
                         </div>
 
                     </div>
@@ -2052,7 +2085,7 @@ html {
                 <div class="app-header">
                     <div class="app-title">③ 音樂中心(實時/事前投票) </div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
-<img src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('mubeat')">
+<img decoding="async" loading="lazy" src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('mubeat')">
                     <button class="app-badge" onclick="openApp('mubeat')"style="cursor: pointer;">Mubeat<br>👈開啟App</button>
     </div>
                 </div>
@@ -2089,27 +2122,27 @@ html {
                         <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解：</p>
                                 <div class="image-wrapper" id="Mubeat-tickets">
                             <span class="step-badge">存票步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat/存票1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat/存票1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">存票步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat/存票2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat/存票2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">存票步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat/存票3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat/存票3.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper" id="Mubeat-vote">
                             <span class="step-badge">投票步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat/投票1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat/投票1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat/投票2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat/投票2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat/投票3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Mubeat/投票3.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
 
 
@@ -2121,7 +2154,7 @@ html {
                 <div class="app-header">
                     <div class="app-title">③ 音樂中心(實時/事前投票) </div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
-<img src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('muniverse')">
+<img decoding="async" loading="lazy" src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('muniverse')">
                     <button class="app-badge" onclick="openApp('muniverse')"style="cursor: pointer;">Muniverse<br>👈開啟App</button>
     </div>
                 </div>
@@ -2158,27 +2191,27 @@ html {
                         <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解：</p>
                                 <div class="image-wrapper" id="Muniverse-tickets">
                             <span class="step-badge">存票步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse/存票1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse/存票1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">存票步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse/存票2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse/存票2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper" id="Muniverse-vote">
                             <span class="step-badge">投票步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse/投票1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse/投票1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse/投票2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse/投票2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse/投票3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse/投票3.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 4</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse/投票4.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Music/Muniverse/投票4.jpg" alt="沒有圖片請重整頁面稍等載入">
                         </div>
 
 
@@ -2394,7 +2427,7 @@ html {
                 <div class="app-header">
                     <div class="app-title">④ 人氣歌謠(事前投票)</div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
-<img src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('linc')">
+<img decoding="async" loading="lazy" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('linc')">
                     <button class="app-badge" onclick="openApp('linc')"style="cursor: pointer;">Linc<br>👈開啟App</button>
     </div>
                 </div>
@@ -2432,31 +2465,31 @@ html {
                         <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解：</p>
                                 <div class="image-wrapper" id="Linc-tickets">
                             <span class="step-badge">存票步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/存票1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/存票1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">存票步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/存票2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/存票2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">存票步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/存票3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/存票3.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper" id="Linc-vote">
                             <span class="step-badge">投票步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/投票1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/投票1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/投票2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/投票2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/投票3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/投票3.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 4</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/投票4.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/LiNC/投票4.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
 
                 </div>
@@ -2467,7 +2500,7 @@ html {
                 <div class="app-header">
                     <div class="app-title">④ 人氣歌謠(事前投票)</div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
-<img src="https://i-dle-melon.github.io/vote/Inkigayo/tin.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('tin')">
+<img decoding="async" loading="lazy" src="https://i-dle-melon.github.io/vote/Inkigayo/tin.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('tin')">
                     <button class="app-badge" onclick="openApp('tin')"style="cursor: pointer;">tin<br>👈開啟App</button>
     </div>
                 </div>
@@ -2502,15 +2535,15 @@ html {
                         <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解：</p>
                                 <div class="image-wrapper" id="tin-tickets">
                             <span class="step-badge">存票步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/tin/存票1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/tin/存票1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">存票步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/tin/存票2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/tin/存票2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">存票步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/tin/存票3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/tin/存票3.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper" id="tin-vote">
                             <span class="step-badge">⚠️投票步驟⚠️ </span>
@@ -2525,7 +2558,7 @@ html {
                 <div class="app-header">
                     <div class="app-title">④ 人氣歌謠(實時投票)</div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
-<img src="https://i-dle-melon.github.io/vote/Inkigayo/Higher.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;<button class="app-badge" onclick="openApp('higher')"style="cursor: pointer;">
+<img decoding="async" loading="lazy" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;<button class="app-badge" onclick="openApp('higher')"style="cursor: pointer;">
                     <button class="app-badge" onclick="openApp('higher')"style="cursor: pointer;">Higher<br>👈開啟App</button>
     </div>
                 </div>
@@ -2567,31 +2600,31 @@ html {
         <span style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px;"> </span>  
     </div>
 
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/存票1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/存票1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">存票步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/存票2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/存票2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">存票步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/存票3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/存票3.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper" id="Higher-vote">
                             <span class="step-badge">投票步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/投票1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/投票1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/投票2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/投票2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/投票3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/投票3.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 4</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/投票4.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Inkigayo/Higher/投票4.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
 
 
@@ -2808,7 +2841,7 @@ html {
                 <div class="app-header">
                     <div class="app-title">⑤ 冠軍秀(事前投票)</div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
-<img src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('idolchamp')">
+<img decoding="async" loading="lazy" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('idolchamp')">
                     <button class="app-badge" onclick="openApp('idolchamp')"style="cursor: pointer;">IDOL CHAMP<br>👈開啟App</button>
     </div>
                 </div>
@@ -2842,47 +2875,47 @@ html {
                         <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解：</p>
                                 <div class="image-wrapper" id="IDOL CHAMP-tickets">
                             <span class="step-badge">存票步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/存票1.png" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/存票1.png" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">存票步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/存票2.png" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/存票2.png" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">存票步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/存票3.png" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/存票3.png" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper" id="IDOL CHAMP-vote">
                             <span class="step-badge">投票步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票1.png" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票1.png" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票2.png" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票2.png" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票3.png" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票3.png" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 4</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票4.png" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票4.png" alt="沒有圖片請重整頁面稍等載入">
                         </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 5</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票5.png" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票5.png" alt="沒有圖片請重整頁面稍等載入">
                         </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 6</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票6.png" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票6.png" alt="沒有圖片請重整頁面稍等載入">
                         </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 7</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票7.png" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票7.png" alt="沒有圖片請重整頁面稍等載入">
                         </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">投票步驟 8</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票8.png" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Show_Champion/IDOL CHAMP/投票8.png" alt="沒有圖片請重整頁面稍等載入">
                         </div>
 
                     </div>
@@ -3047,7 +3080,7 @@ html {
                 <div class="app-header">
                     <div class="app-title">👤 Kakao 註冊點讚教學</div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
-<img src="https://i-dle-melon.github.io/vote/Kakao/Kakao/Kakao.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('kakao')">
+<img decoding="async" loading="lazy" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/Kakao.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('kakao')">
                     <button class="app-badge" onclick="openApp('kakao')"style="cursor: pointer;">Kakao<br>👈開啟網頁</button>
     </div>
                 </div>
@@ -3092,35 +3125,35 @@ style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-d
     分頁網址:accounts.kakao.com/weblogin/create_account#selectVerifyMethod
 </a>
 
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">註冊步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">註冊步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊3.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">註冊步驟 4</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊4.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊4.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">註冊步驟 5</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊5.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊5.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">註冊步驟 6</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊6.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊6.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">註冊步驟 7</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊7.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊7.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">註冊步驟 8</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊8.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/註冊8.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper" id="Kakao-vote">
                             <span class="step-badge">點讚步驟 1</span>
@@ -3129,43 +3162,43 @@ style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-d
 style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-decoration: underline;">
     分頁網址:m2.melon.com/artist/detail.htm?artistId=2137482
 </a>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">點讚步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">點讚步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚3.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">點讚步驟 4</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚4.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚4.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">點讚步驟 5</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚5.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚5.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">點讚步驟 6</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚6.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚6.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">點讚步驟 7</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚7.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚7.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">點讚步驟 8</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚8.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚8.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">點讚步驟 9</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚9.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚9.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">點讚步驟 10</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚10.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Kakao/Kakao/點讚10.jpg" alt="沒有圖片請重整頁面稍等載入">
                         </div>
 
                     </div>
@@ -3229,7 +3262,7 @@ style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-d
                 <div class="app-header">
                     <div class="app-title">♪ Tiktok 引用刷音源教學</div>
 <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
-<img src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('tiktok')">
+<img decoding="async" loading="lazy" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok.png" alt="" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;"onclick="openApp('tiktok')">
                     <button class="app-badge" onclick="openApp('tiktok')"style="cursor: pointer;">Tiktok<br>👈開啟App</button>
     </div>
                 </div>
@@ -3278,59 +3311,59 @@ style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-d
     分頁網址:https://www.tiktok.com/upload?lang=zh
 </a>
 
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/註冊1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/註冊1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">註冊步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/註冊2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/註冊2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">註冊步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/註冊3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/註冊3.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper" id="Tiktok-vote">
                             <span class="step-badge">引用步驟 1</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用1.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">引用步驟 2</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用2.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">引用步驟 3</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用3.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">引用步驟 4</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用4.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用4.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">引用步驟 5</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用5.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用5.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">引用步驟 6</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用6.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用6.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">引用步驟 7</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用7.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用7.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">引用步驟 8</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用8.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用8.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">引用步驟 9</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用9.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用9.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">引用步驟 10</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用10.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用10.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">引用步驟 11</span>
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用11.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用11.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
                                 <div class="image-wrapper">
                             <span class="step-badge">引用步驟 12</span>
@@ -3338,7 +3371,7 @@ style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-d
         <span style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px;">複製範本:<br>#아이들 #idle
 #소연 #SOYEON
 #퇴사할게여 </span>  
-                        <img class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用12.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/引用12.jpg" alt="沒有圖片請重整頁面稍等載入">
                     </div>
 
                     </div>
@@ -3439,6 +3472,8 @@ style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-d
 
 <div class="calendar-fab"  onclick="openCalendar()">📅<span id="calendar-event-badge" class="calendar-fab-badge"></span>
 </div>
+<div class="push-fab" onclick="togglePushNotifications()">🔕
+</div>
 
 
 <!-- 公告彈窗 -->
@@ -3527,6 +3562,7 @@ function switchPage(pageId, isBackAction = false) {
     // 2. 控制懸浮按鈕 (📋 task-fab & 📅 calendar-fab)
     const taskFab = document.querySelector('.task-fab');
       const calendarFab = document.querySelector('.calendar-fab');
+      const pushFab = document.querySelector('.push-fab');
 
       if (taskFab) {
         // 懸浮按鈕通常用 flex 或 block 呈現，這裡首頁設 none，其他頁設 flex
@@ -3534,6 +3570,9 @@ function switchPage(pageId, isBackAction = false) {
       }
       if (calendarFab) {
         calendarFab.style.setProperty('display', isHomePage ? 'none' : 'flex', 'important');
+      }
+      if (pushFab) {
+        pushFab.style.setProperty('display', isHomePage ? 'none' : 'flex', 'important');
       }
 
     // 動態修改網址列（按上一頁觸發時不重複記錄）
@@ -3606,6 +3645,10 @@ const TIKTOK_TEMPLATE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-
 let events = {};
 let currentDate = new Date(); // 記錄當前顯示的日期 (預設為今天)
 
+// 行事曆資料載入狀態：避免頁面剛開啟時點擊行事曆而看到空白
+let eventsReady = false;
+let eventsLoading = false;
+
 // 頁面載入完成後自動抓取資料
 document.addEventListener('DOMContentLoaded', () => {
     fetchEventsFromSheet();
@@ -3613,18 +3656,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 開啟行事曆彈窗
 function openCalendar() {
-    if (typeof renderCalendar === 'function') {
-        renderCalendar(); // ⭕ 關鍵：點擊開啟時立刻渲染日曆格子與日期
-    }
     const modal = document.getElementById('calendarModal');
     if (modal) modal.style.display = 'flex';
 
-    // ⚠️ 不在每次開啟日曆時重新抓取資料。
-    // 避免「頁面初次載入的請求」與「開啟日曆的請求」同時進行，
-    // 導致較新的資料先顯示，幾秒後又被較舊的 CSV 回應覆蓋。
+    // 如果 Google Sheet 尚未載入完成，不要直接把空資料當成「沒有行程」
+    if (!eventsReady) {
+        const daysContainer = document.getElementById('calendar-days');
+
+        if (daysContainer) {
+            daysContainer.innerHTML =
+                '<div style="grid-column:1 / -1; padding:30px 10px; text-align:center; color:#888;">📅 行事曆資料載入中…</div>';
+        }
+
+        // 避免重複發出相同的第一次請求
+        if (!eventsLoading) {
+            fetchEventsFromSheet();
+        }
+
+        return;
+    }
+
+    if (typeof renderCalendar === 'function') {
+        renderCalendar();
+    }
 }
 
 // 關閉行事曆彈窗
+
 function closeCalendar() {
     const modal = document.getElementById('calendarModal');
     if (modal) modal.style.display = 'none';
@@ -3713,6 +3771,7 @@ let eventsFetchController = null;
 
 async function fetchEventsFromSheet(isForce = false) {
     const requestId = ++eventsFetchRequestId;
+    eventsLoading = true;
 
     // 新請求開始時取消前一個尚未完成的請求。
     if (eventsFetchController) {
@@ -3768,7 +3827,14 @@ async function fetchEventsFromSheet(isForce = false) {
             return;
         }
 
+        eventsLoading = false;
         console.error('抓取試算表失敗：', error);
+
+        const daysContainer = document.getElementById('calendar-days');
+        if (daysContainer && !eventsReady) {
+            daysContainer.innerHTML =
+                '<div style="grid-column:1 / -1; padding:30px 10px; text-align:center; color:#888;">⚠️ 行事曆資料載入失敗，請稍後再試</div>';
+        }
     }
 }
 
@@ -3943,7 +4009,7 @@ function renderGallery() {
     slider.innerHTML = galleryImages.map((item, idx) => `
         <div class="gallery-item">
             <h3 class="gallery-item-title">${item.title || ''}</h3>
-            <img src="${item.src}" alt="圖片載入失敗，請重整稍後" draggable="false"   onerror="this.outerHTML='<span>圖片載入失敗，請重整稍後</span>';">
+            <img decoding="async" loading="lazy" src="${item.src}" alt="圖片載入失敗，請重整稍後" draggable="false"   onerror="this.outerHTML='<span>圖片載入失敗，請重整稍後</span>';">
             <p class="gallery-item-desc">${item.desc || ''}</p>
         </div>
     `).join('');
@@ -4130,6 +4196,8 @@ const GALLERY_DATA = {
  * 已發布公告才會更新，前端才會同步新內容。
  *************************************************/
 
+let announcementReady = false;
+
 let publishedAnnouncement = {
     announcement_title: '📢 最新公告',
     announcement_main: '',
@@ -4194,6 +4262,8 @@ async function loadPublishedAnnouncement() {
                         data.page_announcement || ''
                 };
 
+                announcementReady = true;
+
                 renderPublishedAnnouncement();
                 renderPageAnnouncement();
                 checkPublishedAnnouncement();
@@ -4201,6 +4271,16 @@ async function loadPublishedAnnouncement() {
         });
 
     } catch (error) {
+        announcementReady = false;
+
+        const pageAnnouncement =
+            document.getElementById('page-announcement');
+
+        if (pageAnnouncement) {
+            pageAnnouncement.textContent =
+                '⚠️ 公告資料載入失敗，請稍後再試。';
+        }
+
         console.error('❌ 無法讀取已發布公告：', error);
     }
 }
@@ -4236,6 +4316,11 @@ function renderPageAnnouncement() {
     const element = document.getElementById('page-announcement');
 
     if (!element) return;
+
+    if (!announcementReady) {
+        element.textContent = '📢 公告載入中…';
+        return;
+    }
 
     element.innerHTML =
         publishedAnnouncement.page_announcement || '';
@@ -4330,7 +4415,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- 圖示黑底圓圈 -->
     <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; background-color: #000000; border-radius: 50%; flex-shrink: 0;">
         <!-- 官方 SVG 圖片檔 -->
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Threads_%28app%29_logo.svg" alt="Threads" style="width: 14px; height: 14px; filter: brightness(0) invert(1); display: block;">
+        <img decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Threads_%28app%29_logo.svg" alt="Threads" style="width: 14px; height: 14px; filter: brightness(0) invert(1); display: block;">
     </span>
 
     <!-- 帳號名稱 -->
@@ -4342,21 +4427,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div id="score-modal" class="modal-overlay">
         <div class="modal-container">
-            <img src="https://i-dle-melon.github.io/vote/icon/SNS音源一覽圖.jpg" alt="計分模式圖解" class="modal-img">
+            <img decoding="async" loading="lazy" src="https://i-dle-melon.github.io/vote/icon/SNS音源一覽圖.jpg" alt="計分模式圖解" class="modal-img">
             <button id="close-score-modal" class="modal-close-btn">✕ 關閉</button>
         </div>
     </div>
 
 <div id="for dummies-modal" class="modal-overlay">
         <div class="modal-container">
-            <img src="https://i-dle-melon.github.io/vote/icon/投票App彙整.jpg" alt="每日任務懶人包" class="modal-img">
+            <img decoding="async" loading="lazy" src="https://i-dle-melon.github.io/vote/icon/投票App彙整.jpg" alt="每日任務懶人包" class="modal-img">
             <button id="close-for dummies-modal" class="modal-close-btn">✕ 關閉</button>
         </div>
     </div>
 
 <div id="trade-modal" class="modal-overlay">
         <div class="modal-container">
-            <img src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/禁止點trade.jpg" alt="禁止點Trade" class="modal-img">
+            <img decoding="async" loading="lazy" src="https://i-dle-melon.github.io/vote/Music_Bank/Fancast/禁止點trade.jpg" alt="禁止點Trade" class="modal-img">
             <button id="close-trade-modal" class="modal-close-btn">✕ 關閉</button>
         </div>
     </div>
@@ -4481,9 +4566,34 @@ if (!sessionStorage.getItem('has_voted')) {
 
 
 // Tiktok「引用網頁」複製範本彈窗
+// 避免使用者在 Google Sheet 資料尚未載入完成時點擊複製，
+// 導致複製到「載入中...」或空白內容。
+let tiktokTemplateReady = false;
+
+function updateTiktokCopyButtonState() {
+    const copyButton = document.querySelector(
+        '#tiktok-template-modal .tiktok-template-copy-btn'
+    );
+
+    if (!copyButton) return;
+
+    copyButton.disabled = !tiktokTemplateReady;
+    copyButton.style.opacity = tiktokTemplateReady ? '' : '0.5';
+    copyButton.style.cursor = tiktokTemplateReady ? 'pointer' : 'not-allowed';
+}
+
 function openTiktokTemplateModal() {
     const modal = document.getElementById('tiktok-template-modal');
+    const element = document.getElementById('tiktok-template-text');
+
     if (modal) modal.style.display = 'flex';
+
+    // 資料尚未完成時，明確告知使用者，而不是顯示空白。
+    if (!tiktokTemplateReady && element) {
+        element.textContent = '範本載入中，請稍候…';
+    }
+
+    updateTiktokCopyButtonState();
 }
 
 // 讀取「已發布Tiktok引用範本」
@@ -4530,6 +4640,10 @@ async function loadTiktokTemplate() {
                     element.textContent =
                         templateText || '目前沒有已發布的範本。';
                 }
+
+                // PapaParse 已完成，無論有沒有發布內容，都代表這次資料載入已完成。
+                tiktokTemplateReady = true;
+                updateTiktokCopyButtonState();
             }
         });
 
@@ -4538,6 +4652,15 @@ async function loadTiktokTemplate() {
             '❌ 無法讀取已發布TikTok引用範本：',
             error
         );
+
+        const element = document.getElementById('tiktok-template-text');
+        if (element) {
+            element.textContent = '範本載入失敗，請稍後再試。';
+        }
+
+        // 載入失敗時保持禁止複製，避免把錯誤訊息當成範本複製出去。
+        tiktokTemplateReady = false;
+        updateTiktokCopyButtonState();
     }
 }
 
@@ -4553,7 +4676,22 @@ function closeTiktokTemplateOnOverlay(event) {
 }
 
 function copyTiktokTemplate() {
-    const text = document.getElementById('tiktok-template-text').innerText;
+    // 防止使用者在資料尚未完成時快速點擊複製。
+    if (!tiktokTemplateReady) {
+        alert('⏳ 範本尚未載入完成，請稍候再試。');
+        return;
+    }
+
+    const element = document.getElementById('tiktok-template-text');
+    if (!element) return;
+
+    const text = element.innerText.trim();
+
+    // 沒有實際範本內容時也不允許複製提示文字。
+    if (!text || text === '目前沒有已發布的範本。') {
+        alert('目前沒有可複製的範本。');
+        return;
+    }
 
     if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(text)
@@ -4717,5 +4855,24 @@ const appConfig = {
         </div>
     </div>
 </div>
+
+<script src="./push.js"></script>
+
+<script>
+(function () {
+    if (!('serviceWorker' in navigator)) return;
+
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js', { scope: './' })
+            .then(function (registration) {
+                console.log('[PWA] Service Worker registered:', registration.scope);
+            })
+            .catch(function (error) {
+                console.warn('[PWA] Service Worker registration failed:', error);
+            });
+    });
+})();
+</script>
+
 </body>
 </html>
