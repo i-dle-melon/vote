@@ -1633,6 +1633,11 @@ html {
                 <img src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok.png"class="song-cover" alt="切瓜教學">
                </div> <h3> ♪ Tiktok  引用刷音源教學</h3>
             </div>
+            <div class="menu-card" onclick="switchPage('X-page')">
+                <div class="img-wrapper">
+                <img src="https://i-dle-melon.github.io/vote/X/X.jpg" class="song-cover" alt="X 教學">
+               </div> <h3>𝕏 推特貼文與標記教學</h3>
+            </div>
             <div class="menu-card not-open" onclick="switchPage('Melon-page')">
                 <div class="img-wrapper">
                 <img src="https://i-dle-melon.github.io/vote/melon/melon.png"class="song-cover" alt="切瓜教學">
@@ -3561,6 +3566,81 @@ style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-d
 
 
 
+    <div id="X-page" class="page">
+        <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
+        
+        <div class="header.weight-header">
+    <header>
+        <h2>推特貼文與標記教學</h2>
+    </header>
+    </div>
+   
+            <div class="app-card">
+                <div class="app-header">
+                    <div class="app-title">𝕏 推特貼文與標記教學</div>
+<div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
+<img decoding="async" loading="lazy" src="https://i-dle-melon.github.io/vote/X/X.jpg" alt="X" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;" onclick="openApp('x')">
+                    <button class="app-badge" onclick="openApp('x')" style="cursor: pointer;">X<br>👈開啟App</button>
+    </div>
+                </div>
+
+                
+                <div class="tutorial-section">
+                    <button class="toggle-tutorial-btn" onclick="toggleTutorial('X-tut')">查看詳細圖文教學 <span>▼</span></button>
+                    <div id="X-tut" class="tutorial-content">
+
+                        <p style="color:#aaa; font-size:14px;">以下標籤直接跳轉圖片⇩</p>
+                        <span class="tag tag-btn" onclick="document.getElementById('X-settings').scrollIntoView({ behavior: 'smooth' })">#設定教學👈</span>
+                        <span class="tag tag-btn" onclick="document.getElementById('X-post').scrollIntoView({ behavior: 'smooth' })">#貼文教學👈</span>
+
+                        <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解：</p>
+
+                        <div class="image-wrapper" id="X-settings">
+                            <span class="step-badge">設定步驟 1</span>
+</步驟後面可以新增文字，可備註>
+        <a href="https://x.com/settings/audience_and_tagging" target="_blank" rel="noopener noreferrer" 
+style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-decoration: underline;">
+    分頁網址:https://x.com/settings/audience_and_tagging
+</a>
+                            <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/X/X/設定1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        </div>
+                        <div class="image-wrapper">
+                            <span class="step-badge">設定步驟 2</span>
+                            <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/X/X/設定2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        </div>
+                        <div class="image-wrapper">
+                            <span class="step-badge">設定步驟 3</span>
+                            <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/X/X/設定3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        </div>
+                        <div class="image-wrapper">
+                            <span class="step-badge">設定步驟 4</span>
+                            <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/X/X/設定4.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        </div>
+                        <div class="image-wrapper">
+                            <span class="step-badge">設定步驟 5</span>
+                            <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/X/X/設定5.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        </div>
+
+                        <div class="image-wrapper" id="X-post">
+                            <span class="step-badge">貼文步驟 1</span>
+                            <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/X/X/貼文1.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        </div>
+                        <div class="image-wrapper">
+                            <span class="step-badge">貼文步驟 2</span>
+                            <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/X/X/貼文2.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        </div>
+                        <div class="image-wrapper">
+                            <span class="step-badge">貼文步驟 3</span>
+                            <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/X/X/貼文3.jpg" alt="沒有圖片請重整頁面稍等載入">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
     <div id="Shazam-page" class="page">
         <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
         
@@ -3725,6 +3805,7 @@ style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-d
         'Melon-page': 'Melon_切瓜刷音源教學',
         'Youtube-page': 'Youtube_無痕刷音源教學',
         'Tiktok-page': 'Tiktok_引用刷音源教學',
+        'X-page': 'X_設定與貼文教學',
         'Shazam-page': 'Shazam_搜尋刷音源教學',
         'mubank-detail-page': '音放詳細計分/Music Bank 音樂銀行(KBS)',
         'mcd-detail-page': '音放詳細計分/M Countdown MCD(Mnet)',
@@ -5149,7 +5230,14 @@ const appConfig = {
         android: "https://www.tiktok.com/upload?lang=zh",
         ios: "https://www.tiktok.com/upload?lang=zh"
     },
-    // 11. Melon Like
+    // 11. X
+    x: {
+        scheme: "https://x.com/home",
+        web: "https://x.com/home",
+        android: "https://x.com/home",
+        ios: "https://x.com/home"
+    },
+    // 12. Melon Like
      melonlike: {
         scheme: "https://m2.melon.com/artist/detail.htm?artistId=2137482",
         web: "https://m2.melon.com/artist/detail.htm?artistId=2137482",
