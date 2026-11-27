@@ -1638,12 +1638,6 @@ html {
                 <img src="https://i-dle-melon.github.io/vote/X/X.jpg" class="song-cover" alt="X 教學">
                </div> <h3>𝕏 推特貼文與標記教學</h3>
             </div>
-                        <!-- 年末投票教學 -->
-            <div class="menu-card" onclick="switchPage('PODOAL-page')">
-                <div class="img-wrapper">
-                    <img src="https://i-dle-melon.github.io/vote/HomeIcon/KPOP年末投票教學icon.png" class="song-cover" alt="年末投票教學">
-                </div><h3>🏆 年末投票教學</h3>
-            </div>
             <div class="menu-card not-open" onclick="switchPage('Melon-page')">
                 <div class="img-wrapper">
                 <img src="https://i-dle-melon.github.io/vote/melon/melon.png"class="song-cover" alt="切瓜教學">
@@ -3499,7 +3493,7 @@ style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-d
                     </步驟後面可以新增文字，可備註>
         <a href="https://www.tiktok.com/upload?lang=zh" target="_blank" rel="noopener noreferrer" 
 style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-decoration: underline;">
-    分頁網址:https://www.tiktok.com/upload?lang=zh
+    分頁網址:https://global.podoal.io/zh-Hant/app/fandings
 </a>
 
                         <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/Tiktok/Tiktok/註冊1.jpg" alt="沒有圖片請重整頁面稍等載入">
@@ -3646,55 +3640,6 @@ style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-d
         </div>
 
 
-
-        <!-- 年末投票教學 -->
-    <div id="PODOAL-page" class="page">
-        <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
-        <div class="header.weight-header"><header><h2>年末投票教學</h2></header></div>
-        <div class="app-card">
-            <div class="app-header">
-                <div class="app-title">🏆 PODOAL 年末投票教學</div>
-                <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
-                    <img decoding="async" loading="lazy" src="https://i-dle-melon.github.io/vote/PODOAL/PODOAL.jpg" alt="PODOAL" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;" onclick="openPodoalVoteApp()">
-                    <button class="app-badge" onclick="openPodoalVoteApp()" style="cursor: pointer;">PODOAL<br>👈開啟App</button>
-                </div>
-            </div>
-            <div class="tutorial-section">
-                <button class="toggle-tutorial-btn" onclick="toggleTutorial('PODOAL-tut')">查看詳細圖文教學 <span>▼</span></button>
-                <div id="PODOAL-tut" class="tutorial-content">
-                    <p style="color:#aaa; font-size:14px;">以下標籤直接跳轉圖片⇩</p>
-                    <span class="tag tag-btn" onclick="document.getElementById('PODOAL-vote').scrollIntoView({ behavior: 'smooth' })">#投票教學👈</span>
-                    <span class="tag tag-btn" onclick="document.getElementById('PODOAL-rules').scrollIntoView({ behavior: 'smooth' })">#規則👇</span>
-                    <div class="image-wrapper" id="PODOAL-rules">
-                        <div class="app-card">
-                            <div class="app-header"></div>
-                            <div class="info-row">
-                                <div class="info-label-vote">規則</div>
-                                <div>①每日能投 <span style="color: #ff3b30;">200 票</span>。<br>②結果由 PODOAL、mubeat 和 IDOLCHAMP 的投票率按 1:1:1 比例合算。<br>③第1輪最終得分：月度累計(30%) + 正式投票第1輪(70%)。<br>④各類別前20名將晉級正式投票第2輪。</div>
-                            </div>
-                        </div>
-                    </div>
-                    <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解：</p>
-                    <div class="image-wrapper" id="PODOAL-vote">
-                        <span class="step-badge">投票步驟 1</span>
-                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/PODOAL/PODOAL/投票1.jpg" alt="沒有圖片請重整頁面稍等載入">
-                    </div>
-                    <div class="image-wrapper">
-                        <span class="step-badge">投票步驟 2</span>
-                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/PODOAL/PODOAL/投票2.jpg" alt="沒有圖片請重整頁面稍等載入">
-                    </div>
-                    <div class="image-wrapper">
-                        <span class="step-badge">投票步驟 3</span>
-                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/PODOAL/PODOAL/投票3.jpg" alt="沒有圖片請重整頁面稍等載入">
-                    </div>
-                    <div class="image-wrapper">
-                        <span class="step-badge">投票步驟 4</span>
-                        <img decoding="async" loading="lazy" class="guide-image" src="https://i-dle-melon.github.io/vote/PODOAL/PODOAL/投票4.jpg" alt="沒有圖片請重整頁面稍等載入">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div id="Shazam-page" class="page">
         <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
@@ -3861,8 +3806,6 @@ style="color: #ccc; font-size: 13px; font-weight: bold; margin-left:12px; text-d
         'Youtube-page': 'Youtube_無痕刷音源教學',
         'Tiktok-page': 'Tiktok_引用刷音源教學',
         'X-page': 'X_設定與貼文教學',
-        'PODOAL-page': '年末投票教學',
-
         'Shazam-page': 'Shazam_搜尋刷音源教學',
         'mubank-detail-page': '音放詳細計分/Music Bank 音樂銀行(KBS)',
         'mcd-detail-page': '音放詳細計分/M Countdown MCD(Mnet)',
@@ -5459,8 +5402,5 @@ async function handlePushToggle() {
 })();
 </script>
 
-<script>
-function openPodoalVoteApp(){window.open('https://global.podoal.io/app/fandings','_blank','noopener,noreferrer');}
-</script>
 </body>
 </html>
