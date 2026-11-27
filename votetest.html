@@ -1,0 +1,61 @@
+<!doctype html><html lang="zh-TW"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>年末投票教學測試版</title><style>body{background:#121212;color:#eee;font:16px/1.7 system-ui,sans-serif;max-width:680px;margin:40px auto;padding:0 20px}h1{color:#00cd3c}button{padding:12px 20px;background:#00cd3c;color:#121212;border:0;border-radius:8px;font:inherit;font-weight:bold;cursor:pointer}button:disabled{opacity:.5}a{color:#00cd3c}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style></head><body><h1>載入年末投票教學測試版</h1><p id="status" role="status">讀取正式 index.html 作為底稿…</p><p>此檔案須放在原 GitHub Pages 專案根目錄使用。正式 index.html 不會被修改。</p><script>
+const base='https://i-dle-melon.github.io/vote/';
+const raw='https://raw.githubusercontent.com/i-dle-melon/vote/main/index.html';
+function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function imageUrl(path){path=path.trim();if(!path||path.startsWith('/')||path.split('/').some(x=>x==='..'||x==='.')||/[:\\?#]/.test(path))throw Error('圖片路徑格式不正確：'+path);return base+'PODOAL/'+path.split('/').join('/')}
+const paths = ['PODOAL.jpg','PODOAL/投票1.jpg','PODOAL/投票2.jpg','PODOAL/投票3.jpg','PODOAL/投票4.jpg'];
+function patch(src,paths){if(/id=["']PODOAL-page["']/.test(src))throw Error('此原始碼已包含 PODOAL 教學，為避免重複新增請選擇未修改的版本。');const pics=paths.slice(1).map(imageUrl),cover=imageUrl(paths[0]||paths[1]);if(new Set(pics).size!==4)throw Error('四個投票步驟必須使用不同的圖片。');
+const card=`            <!-- 年末投票教學 -->
+            <div class="menu-card" onclick="switchPage('PODOAL-page')">
+                <div class="img-wrapper">
+                    <img src="${esc(cover)}" class="song-cover" alt="年末投票教學">
+                </div><h3>🏆 年末投票教學</h3>
+            </div>\n`;
+const page=`    <!-- 年末投票教學 -->
+    <div id="PODOAL-page" class="page">
+        <button class="back-btn" onclick="switchPage('home-page')">⏎ 返回首頁</button>
+        <div class="header.weight-header"><header><h2>年末投票教學</h2></header></div>
+        <div class="app-card">
+            <div class="app-header">
+                <div class="app-title">🏆 PODOAL 年末投票教學</div>
+                <div class="app-row" style="display: flex; justify-content: space-between; align-items: center;">
+                    <img decoding="async" loading="lazy" src="${esc(cover)}" alt="PODOAL" class="app-icon" style="margin-left: auto; margin-right: 6px;cursor: pointer;" onclick="openPodoalVoteApp()">
+                    <button class="app-badge" onclick="openPodoalVoteApp()" style="cursor: pointer;">PODOAL<br>👈開啟App</button>
+                </div>
+            </div>
+            <div class="tutorial-section">
+                <button class="toggle-tutorial-btn" onclick="toggleTutorial('PODOAL-tut')">查看詳細圖文教學 <span>▼</span></button>
+                <div id="PODOAL-tut" class="tutorial-content">
+                    <p style="color:#aaa; font-size:14px;">以下標籤直接跳轉圖片⇩</p>
+                    <span class="tag tag-btn" onclick="document.getElementById('PODOAL-vote').scrollIntoView({ behavior: 'smooth' })">#投票教學👈</span>
+                    <span class="tag tag-btn" onclick="document.getElementById('PODOAL-rules').scrollIntoView({ behavior: 'smooth' })">#規則👇</span>
+                    <div class="image-wrapper" id="PODOAL-rules">
+                        <div class="app-card">
+                            <div class="app-header"></div>
+                            <div class="info-row">
+                                <div class="info-label-vote">規則</div>
+                                <div>①每日能投 <span style="color: #ff3b30;">200 票</span>。<br>②結果由 PODOAL、mubeat 和 IDOLCHAMP 的投票率按 1:1:1 比例合算。<br>③第1輪最終得分：月度累計(30%) + 正式投票第1輪(70%)。<br>④各類別前20名將晉級正式投票第2輪。</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color:#aaa; font-size:14px;">以下為完整步驟圖解：</p>
+${pics.map((p,i)=>`                    <div class="image-wrapper"${i===0?' id="PODOAL-vote"':''}>
+                        <span class="step-badge">投票步驟 ${i+1}</span>
+                        <img decoding="async" loading="lazy" class="guide-image" src="${esc(p)}" alt="沒有圖片請重整頁面稍等載入">
+                    </div>`).join('\n')}
+                </div>
+            </div>
+        </div>
+    </div>\n\n`;
+// 使用精確錨點，保留其他原始碼（不經 HTML 重新序列化）。
+const menu=/(<div\s+class=["']menu-card(?:\s+not-open)?["']\s+onclick=["']switchPage\('Melon-page'\)["']>)/;
+const xpage=/(<div\s+id=["']Shazam-page["']\s+class=["']page["']>)/;
+const mapping=/(^[\t ]*'X-page'[\t ]*:[\t ]*'[^']*',[\t ]*$)/m;
+const xcard=/<div\s+class=["']menu-card["']\s+onclick=["']switchPage\('X-page'\)["']>/;
+if(!menu.test(src)||!xpage.test(src)||!mapping.test(src)||!xcard.test(src)||src.search(xcard)>src.search(menu)||!/<\/body\s*>/i.test(src))throw Error('原始碼與目前已知網頁結構不同，未做任何輸出，請上傳原始檔。');
+const appScript=`<script>\nfunction openPodoalVoteApp(){window.open('https://global.podoal.io/app/fandings','_blank','noopener,noreferrer');}\n<`+`/script>\n`;
+return src.replace(menu,(_,a)=>card+'            '+a).replace(xpage,(_,a)=>page+'    '+a).replace(mapping,(_,a)=>a.trimEnd()+"\n        'PODOAL-page': '年末投票教學',\n").replace(/<\/body\s*>/i, m=>appScript+m);
+}
+
+(async()=>{try{if(location.protocol==='file:')throw Error('請先將本檔上傳到 GitHub Pages 的 vote 專案根目錄，再開啟 votetest.html。');const r=await fetch(new URL('index.html',location.href),{cache:'no-store'});if(!r.ok)throw Error('index.html HTTP '+r.status);const html=patch(await r.text(),paths);document.open();document.write(html);document.close();}catch(e){document.getElementById('status').textContent='測試版載入失敗：'+e.message;}})();
+</script></body></html>
